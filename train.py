@@ -25,37 +25,35 @@ def set_seed(seed):
     np.random.seed(seed)
     torch.manual_seed(seed)
     torch.cuda.manual_seed(seed)
+    # torch.backends.cudnn.deterministic = True
+    # torch.backends.cudnn.benchmark = False
+
 
 
 def args_parser():
     dt = datetime.now()
     id = dt.strftime("%Y%m%d-%H%M%S")
-    # id = "2021_01_04_19_08_27"
-    # id="20210401"
-    # id="20210406-200646"
-    # id="20210408-161004"
-    # id="20210411-134437"
-    # id="20210411-163108"
-    # id="20210410-165352"
-    # id = "20210415-190107"
-    # id = "20210416-163611"
+    # id = "20210416-163611"# 0.1 0.57、
+    # id = "20210418-205134"
+    # id = "20210419-102443"
+    # id = "20210419-102443"
     parser = argparse.ArgumentParser()
     parser.add_argument("--id", default=id)
     parser.add_argument("--log_path", default="./log/run_log")
-    parser.add_argument("--model", default="MRCTPLinker",choices=["MRCTPLinker","multiQA"])
+    parser.add_argument("--model", default="MRCTPLinker",choices=["MRCTPLinker", "multiQA"])
     parser.add_argument("--dataset_tag", default='ace2005',
-                        choices=['ace2005', 'ace2004'])
-    parser.add_argument("--train_path",default='data/cleaned_data/ACE2005/bert-base-uncased_overlap_15_window_100_threshold_1_max_distance_45_is_mq_False/train.json')
+                        choices=['ace2005', 'ace2004', 'duie'])
+    parser.add_argument("--train_path", default='data/cleaned_data/ACE2005/bert-base-uncased_overlap_15_window_100_threshold_1_max_distance_45_is_mq_False/train.json')
     parser.add_argument("--train_batch", type=int, default=24)
-    parser.add_argument("--test_path",default='data/cleaned_data/ACE2005/bert-base-uncased_overlap_15_window_100_threshold_1_max_distance_45_is_mq_False/test.json')
+    parser.add_argument("--test_path", default='data/cleaned_data/ACE2005/bert-base-uncased_overlap_15_window_100_threshold_1_max_distance_45_is_mq_False/test.json')
 
     parser.add_argument("--test_batch", type=int, default=24)
     parser.add_argument("--dev_path", default='data/cleaned_data/ACE2005/bert-base-uncased_overlap_15_window_100_threshold_1_max_distance_45_is_mq_False/dev.json')
     parser.add_argument("--dev_batch", type=int, default=24)
-    parser.add_argument("--max_len", default=120, type=int,
+    parser.add_argument("--max_len", default=200, type=int,
                         help="maximum length of input")
     parser.add_argument("--pretrained_model_path",default='../pretrained_models/bert-base-uncased')
-    parser.add_argument("--max_epochs", default=100, type=int)
+    parser.add_argument("--max_epochs", default=32, type=int)
     parser.add_argument("--warmup_ratio", type=float, default=-1)
     parser.add_argument("--lr", type=float, default=2e-5)
     parser.add_argument("--dropout_prob", type=float, default=0.1)
@@ -68,8 +66,7 @@ def args_parser():
                         help="overlap size of the two sliding windows")
     parser.add_argument("--threshold", type=int, default=5,
                         help="At least the number of times a possible relationship should appear in the training set (should be greater than or equal to the threshold in the data preprocessing stage)")
-    parser.add_argument("--local_rank", type=int, default=-
-                        1, help="用于DistributedDataParallel")
+    parser.add_argument("--local_rank", type=int, default=-1, help="用于DistributedDataParallel")
     parser.add_argument("--max_grad_norm", type=float, default=1)
     parser.add_argument("--seed", type=int, default=0)
     parser.add_argument("--amp", action="store_true",
@@ -89,23 +86,30 @@ def args_parser():
 
     parser.add_argument("--train_ent", type=bool, default=True)
     parser.add_argument("--train_rel", type=bool, default=True)
-    parser.add_argument("--cuda", type=int, default=0)
-    parser.add_argument("--shaking_type", type=str, default="cat",choices=["cat","cat_plus","cln","cln_plus"])
-    parser.add_argument("--inner_enc_type", type=str, default="lstm",choices=["lstm","mean_pooling","max_pooling","mean_pooling"])
+    parser.add_argument("--cuda", type=int, default=1)
+    parser.add_argument("--shaking_type", type=str, default="cat", choices=["cat","cat_plus", "cln", "cln_plus"])
+    parser.add_argument("--inner_enc_type", type=str, default="lstm", choices=["lstm", "mean_pooling", "max_pooling",  "mean_pooling"])
     parser.add_argument("--relH_theta", type=float,
                         help="weight of two tasks", default=0.4)
     parser.add_argument("--relT_theta", type=float,
                         help="weight of two tasks", default=0.4)
     parser.add_argument("--rel_loss_weight", type=float,
-                       help="rel loss O's weight", default=0.2)
+                       help="rel loss O's weight", default=0.25)
     args = parser.parse_args()
-    args.train=True
-    args.dev_eval=True
-    args.test_eval=True
+    args.train = True
+    args.dev_eval = True
+    args.test_eval = True
+    args.reload = True
+    args.dataset_tag = "duie"
+    if(args.dataset_tag == "duie"):
+        args.train_path = "data/cleaned_data/Duie/bert-base-chinese_is_mq_False/train.json"
+        args.dev_path = "data/cleaned_data/Duie/bert-base-chinese_is_mq_False/dev.json"
+        args.test_path = "data/cleaned_data/Duie/bert-base-chinese_is_mq_False/test1.json"
+    # args.local_rank = torch.distributed.get_rank()
     # print(args.train)
     # id = dt.strftime("%Y%m%d-%H%M%S")
     # id = "2021_01_04_19_08_27"
-    logger = get_logger(args.id,log_path=args.log_path, only_predict=not args.train and args.test_eval)
+    logger = get_logger(args.id, log_path=args.log_path, only_predict=not args.train and args.test_eval)
 
     return args,logger
 
@@ -143,7 +147,8 @@ def train(args, train_dataloader):
     if args.amp:
         scaler = GradScaler()
     device = args.local_rank if args.local_rank != -1 \
-        else (torch.device('cuda:{}'.format(args.cuda)) if torch.cuda.is_available() and args.cuda>=0 else torch.device('cpu'))
+        else (torch.device('cuda:{}'.format(args.cuda)) if torch.cuda.is_available() and args.cuda >= 0 else torch.device('cpu'))
+    # print(device)
     if args.local_rank != -1:
         torch.cuda.set_device(args.local_rank)
     model.to(device)
@@ -155,11 +160,17 @@ def train(args, train_dataloader):
         dev=args.dev_eval
         test=args.test_eval
         cuda=args.cuda
+        cs = args.checkpoint_start
+        tb = args.train_batch
+        local_rank = args.local_rank
         args = pickle.load(open(save_dir + "args", 'rb'))
         args.train=train
         args.dev_eval=dev
         args.test_eval=test
         args.cuda=cuda
+        args.checkpoint_start = cs
+        args.train_batch =tb
+        args.local_rank = local_rank
         checkpoint = torch.load(save_path, map_location=device)
         model_state_dict = checkpoint['model_state_dict']
         model.load_state_dict(model_state_dict, strict=False)
@@ -188,7 +199,7 @@ def train(args, train_dataloader):
             optimizer, warmup_steps, num_training_steps)
     if args.local_rank < 1:
         mid = args.id#time.strftime("%Y_%m_%d_%H_%M_%S", time.localtime(time.time()))
-    # print(args.train)
+    # print(args.train, device, args.local_rank)
     if(args.train):
         for epoch in range( args.checkpoint_start+1,args.max_epochs):
             if args.local_rank != -1:
@@ -220,8 +231,9 @@ def train(args, train_dataloader):
                     scaler.step(optimizer)
                     scaler.update()
                 else:
-                    loss, (loss_t1, loss_relH,loss_relT),acc = model(txt_ids, attention_mask,
-                                                     token_type_ids, context_mask, turn_mask,  relH_tags=relH_tags,relT_tags=relT_tags,target_tags=tags)
+                    loss, (loss_t1, loss_relH, loss_relT), acc = model(txt_ids, attention_mask,
+                                                     token_type_ids, context_mask, turn_mask,  relH_tags=relH_tags,
+                                                                       relT_tags=relT_tags,target_tags=tags)
                     loss.backward()
                     if args.max_grad_norm > 0:
                         clip_grad_norm_(model.parameters(), args.max_grad_norm)
@@ -286,7 +298,7 @@ def train(args, train_dataloader):
                     best_t1=[epoch,(p1, r1, f1)]
                 if (best_t2[1][-1] < f2):
                     best_t2 = [epoch,(p2, r2, f2)]
-                if(best[1][-1]<f1 and best[2][-1]<f2):
+                if(best[1][-1] + best[2][-1] < f1 + f2):
                     best=[epoch,(p1, r1, f1),(p2, r2, f2)]
                 # if(epoch-best[0]>3):
                 #     break
@@ -301,6 +313,17 @@ def train(args, train_dataloader):
                 "Turn 2: [epoch,p,r,f]:{}".format(best_t2))
             logger.info(
                 "all: [epoch,p1,r1,f1;p2,r2,f2]:{}".format(best))
+    with open("ace2005dev.txt", "a", encoding="utf-8") as f:
+        lis = [[], []]
+        lis[1] = [best[0], best[1][0], best[1][1], best[1][2], best[2][0], best[2][1], best[2][2]]
+        for k, v in vars(args).items():
+            if(k == "id"):
+                continue
+            lis[0].append(k)
+            lis[1].append(v)
+        lis[1] = [str(s) for s in lis[1]]
+        f.write("id,epoch,p1,r1,f1,p2,r2,f2," + ",".join(lis[0])+"\n")
+        f.write(str(args.id) + "," + ",".join(lis[1])+"\n")
 
     if args.test_eval and args.local_rank in [-1, 0]:
         logger.info('****' * 10 + "TEST" + "***" * 10)
@@ -317,6 +340,7 @@ def train(args, train_dataloader):
         logger.info(
             "Turn 2: precision:{:.4f} recall:{:.4f} f1:{:.4f}".format(p2, r2, f2))
 
+
 def predict(args, beg, end):
     if(args.model=='MRCTPLinker'):
         model=MrcTpLinkerModel(args)
@@ -327,7 +351,7 @@ def predict(args, beg, end):
     if args.amp:
         scaler = GradScaler()
     device = args.local_rank if args.local_rank != -1 \
-        else (torch.device('cuda:{}'.format(args.cuda)) if torch.cuda.is_available() and args.cuda>=0 else torch.device('cpu'))
+        else (torch.device('cuda:{}'.format(args.cuda)) if torch.cuda.is_available() and args.cuda >= 0 else torch.device('cpu'))
     if args.local_rank != -1:
         torch.cuda.set_device(args.local_rank)
     model.to(device)
@@ -344,16 +368,16 @@ def predict(args, beg, end):
         save_path = save_dir + "checkpoint_%d.cpt" % args.checkpoint_start
         # print(save_path)
         if (os.path.exists(save_path)):
-            train=args.train
-            dev=args.dev_eval
-            test=args.test_eval
-            cuda=args.cuda
+            train = args.train
+            dev = args.dev_eval
+            test = args.test_eval
+            cuda = args.cuda
             checkpoint_start = args.checkpoint_start
             args = pickle.load(open(save_dir + "args", 'rb'))
-            args.train=train
-            args.dev_eval=dev
-            args.test_eval=test
-            args.cuda=cuda
+            args.train = train
+            args.dev_eval = dev
+            args.test_eval = test
+            args.cuda = cuda
             args.checkpoint_start = checkpoint_start
             checkpoint = torch.load(save_path, map_location=device)
             model_state_dict = checkpoint['model_state_dict']
@@ -387,7 +411,7 @@ def predict(args, beg, end):
             best_t1 = [i, (p1, r1, f1)]
         if (best_t2[1][-1] < f2):
             best_t2 = [i, (p2, r2, f2)]
-        if (best[1][-1] < f1 and best[2][-1] < f2):
+        if (best[1][-1] + best[2][-1] < f1 + f2):
             best = [i, (p1, r1, f1), (p2, r2, f2)]
         logger.info(
             "Best Turn 1: [epoch,p,r,f]:{}".format(best_t1))
@@ -399,19 +423,20 @@ def predict(args, beg, end):
         lis = [[], []]
         lis[1] = [best[0], best[1][0], best[1][1], best[1][2], best[2][0], best[2][1], best[2][2]]
         for k, v in vars(args).items():
+            if(k == "id"):
+                continue
             lis[0].append(k)
             lis[1].append(v)
         lis[1] = [str(s) for s in lis[1]]
-        f.write("id,epoch,p1,r1,f1;p2,r2,f2," + ",".join(lis[0]))
-        f.write(str(args.id) + "," + ",".join(lis[1]))
+        # f.write("id,epoch,p1,r1,f1,p2,r2,f2," + ",".join(lis[0])+"\n")
+        f.write(str(args.id) + "," + ",".join(lis[1])+"\n")
 
-if __name__ == "__main__":
-
-
+if __name__  ==  "__main__":
     args,logger = args_parser()
     set_seed(args.seed)
     # print(args)
     if(args.train):
+        print(args.local_rank)
         if args.local_rank != -1:
             torch.distributed.init_process_group(backend='nccl')
         p = '{}_{}_{}'.format(args.dataset_tag, os.path.split(
