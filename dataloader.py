@@ -192,26 +192,46 @@ def collate_fn(batch):
             # print("seqlen",seq_len)
             num = 0
             for i, an in enumerate(ans):
-                if(len(an)!=3):
-                    continue
-                num += 1
-                rel, ent1, ent2 = an
-                if (ent1[1] < ent2[1]):
-                    index_s2o = convertrowcol2index(ent1[1], ent2[1], seq_len)
-                    relH_tags[index_s2o] = relH_tag_idxs["SH2OH"]
-                else:
-                    index_s2o = convertrowcol2index(ent2[1], ent1[1], seq_len)
-                    # print(len(relH_tags),seq_len,index_s2o,ent2[1],ent1[1])
-                    relH_tags[index_s2o] = relH_tag_idxs["OH2SH"]
-                if (ent1[2] < ent2[2]):
-                    index_s2o = convertrowcol2index(ent1[2]-1, ent2[2]-1, seq_len)
-                    # print(an)
-                    # print(len(context),index_s2o, len(tags), ent1[2], ent2[2])
-                    relT_tags[index_s2o] = relT_tag_idxs["ST2OT"]
+                if(len(an)==3 and len(an[1])==4):
+                    num += 1
+                    rel, ent1, ent2 = an
+                    if (ent1[1] < ent2[1]):
+                        index_s2o = convertrowcol2index(ent1[1], ent2[1], seq_len)
+                        relH_tags[index_s2o] = relH_tag_idxs["SH2OH"]
+                    else:#ent1=ent2=[type, s, e, role, entity]
+                        index_s2o = convertrowcol2index(ent2[1], ent1[1], seq_len)
+                        # print(len(relH_tags),seq_len,index_s2o,ent2[1],ent1[1])
+                        relH_tags[index_s2o] = relH_tag_idxs["OH2SH"]
+                    if (ent1[2] < ent2[2]):
+                        index_s2o = convertrowcol2index(ent1[2]-1, ent2[2]-1, seq_len)
+                        # print(an)
+                        # print(len(context),index_s2o, len(tags), ent1[2], ent2[2])
+                        relT_tags[index_s2o] = relT_tag_idxs["ST2OT"]
 
-                else:
-                    index_s2o = convertrowcol2index(ent2[2]-1, ent1[2]-1,seq_len)
-                    relT_tags[index_s2o] = relT_tag_idxs["OT2ST"]
+                    else:
+                        index_s2o = convertrowcol2index(ent2[2]-1, ent1[2]-1,seq_len)
+                        relT_tags[index_s2o] = relT_tag_idxs["OT2ST"]
+                elif(len(an) >= 3 and type(an[1]) == "list" and len(an[1]) == 5):
+                    rel = an[0]
+                    ent1 = an[1]
+                    for ent2 in an[2:]:#[type, start, end, role, entity]
+                        if (ent1[1] < ent2[1]):
+                            index_s2o = convertrowcol2index(ent1[1], ent2[1], seq_len)
+                            if(relT_tags[index_s2o] != 0):
+                                print(ans)
+                            relH_tags[index_s2o] = role2duieH[ent2[3]]["SH2OH"]
+                        else:#ent1=ent2=[type, s, e, role, entity]
+                            index_s2o = convertrowcol2index(ent2[1], ent1[1], seq_len)
+                            # print(len(relH_tags),seq_len,index_s2o,ent2[1],ent1[1])
+                            relH_tags[index_s2o] = role2duieH[ent2[3]]["OH2SH"]
+
+                        if (ent1[2] < ent2[2]):
+                            index_s2o = convertrowcol2index(ent1[2]-1, ent2[2]-1, seq_len)
+                            relT_tags[index_s2o] = role2duieT[ent2[3]]["ST2OT"]
+
+                        else:
+                            index_s2o = convertrowcol2index(ent2[2]-1, ent1[2]-1, seq_len)
+                            relT_tags[index_s2o] = role2duieT[ent2[3]]["OT2ST"]
             # if(num):
             #     print(ans)
             #     print(rel_tag_decode(relH_tags, relT_tags, mask))
@@ -296,24 +316,50 @@ def collate_fn1(batch):
     return nbatch
 def convertrowcol2index(row,col,collength):
     return (collength+collength-row+1)*row//2+(col-row)
+count = 0
 def get_inputs(context, q, tokenizer, title="", max_len=200, ans=[], type="ent"):
     query = tokenizer.tokenize(q)
 
 
     txt_len = len(query) + len(title) + len(context) + \
               4 if title else len(query) + len(context) + 3
-    if txt_len > max_len:
-        context = context[:max_len -
-                           len(query) - 3] if not title else context[:max_len - len(query) - len(title) - 4]
+    # print(txt_len, max_len)
     # print(len(context))
-    tags = [tag_idxs["O"]] * (len(context))
+    context_len = len(context)
+    beg = 0
+    if txt_len > max_len:
+        context_len = max_len - len(query) - 3 if not title else max_len - len(query) - len(title) - 4
+        if(type == "ent" and len(ans)!=0):
+            ans.sort(key=lambda x:x[1])
+            # print(ans)
+            beg = min(ans[0][1], ans[-1][2] - context_len)
+            # print(beg, context_len, ans)
+            beg = max(0, beg)
+
+        # beg = 0 if len(ans) == 0 else ans[0][1]
+
+        context = context[beg: beg + context_len]
+
+    # print(len(context))
+
+    tags = [tag_idxs["O"]] * (context_len)
     if(type=='ent'):
         # print(len(context))
         for i, an in enumerate(ans):
             # print(an)
-            start, end = an[1:-1]
-            end = end - 1
+            start, end = an[1:3]
+            end = end - 1 - beg
+            start -= beg
+
+            if(start >= context_len or end >= context_len):
+                # beg = ans[0][1]
+                # print(context_len, beg, an, start, end)
+                continue
+            if ("".join(context[start:end + 1]) != an[-1]):
+                print(an)
+                continue
             if start != end:
+                # print(len(context), context_len, beg, an)
                 tags[start] = tag_idxs['B']
                 tags[end] = tag_idxs['E']
                 for i in range(start + 1, end):
@@ -323,6 +369,7 @@ def get_inputs(context, q, tokenizer, title="", max_len=200, ans=[], type="ent")
             # print(tags[start:end+1])
             # print(an,tags[start:end+1],context[start:end+1])
         # print(tags)
+    # context = context[beg: beg+context_len]
     if title:
         txt = ['[CLS]'] + query + ['[SEP]'] + \
               title + ['[SEP]'] + context + ['[SEP]']
@@ -465,14 +512,18 @@ class MyDataset:
                 question_templates = ace2005_mq_question_templates
             else:
                 question_templates = ace2005_question_templates
+        elif self.dataset_tag.lower() == "duie":
+            pass
         else:
             raise Exception("this dataset is not yet supported")
 
 
-        for p_id,d in enumerate(tqdm(self.data, desc="dataset")):
-
+        for p_id, d in enumerate(tqdm(self.data, desc="dataset")):
             context = d['context']
-            title = d['title']
+            if('title' in d):
+                title = d['title']
+            else:
+                title = None
             qa_pairs = d['qa_pairs']
             t1 = qa_pairs[0]
             t2 = qa_pairs[1]
@@ -483,7 +534,7 @@ class MyDataset:
             if(self.train_ent):#未改动
                 for i, (q, ans) in enumerate(t1.items()):
                     txt_ids, tags, context_mask, token_type_ids = get_inputs(
-                        context, q, self.tokenizer, title, self.max_len, ans,type="ent")
+                        context, q, self.tokenizer, title, self.max_len, ans, type="ent")
                     # print(tags,ans)
                     # print(len(tags), tags)
                     t1_qas.append(
@@ -596,7 +647,7 @@ class MyDatasetT2:
             #对关系提问
             for i,(q,ans) in enumerate(t2.items()):
                 # print(context)
-                
+
                 txt_ids, tags, context_mask, token_type_ids = get_inputs(
                     context, q, self.tokenizer, title, self.max_len, ans,type="rel")
                 # print(context,q)
@@ -889,6 +940,7 @@ class T2Dataset:
 
 
 def load_data(dataset_tag, file_path, batch_size, max_len, pretrained_model_path, dist=False, shuffle=False, threshold=5,num_questions=1, train_ent=False, train_rel=False):
+    # print(dist)
     tokenizer = BertTokenizer.from_pretrained(pretrained_model_path)
     dataset = MyDataset(dataset_tag, file_path, tokenizer,
                         max_len, threshold,num_questions=num_questions,train_ent=train_ent, train_rel=train_rel)
@@ -913,7 +965,7 @@ def reload_data(old_dataloader, batch_size, max_len, threshold, local_rank, shuf
 
 
 def load_eval_data(dataset_tag, test_path, pretrained_model_path,  batch_size=10, max_len=512,threshold=5,num_questions=1,train_ent=False):
-    t1_dataloader=load_t1_data(dataset_tag, test_path, pretrained_model_path, threshold,num_questions, batch_size, max_len)
+    t1_dataloader= load_t1_data(dataset_tag, test_path, pretrained_model_path, threshold,num_questions, batch_size, max_len)
     t2_dataloader = load_t2_data(dataset_tag, test_path, pretrained_model_path, threshold, num_questions, batch_size,
                                  max_len,train_ent=train_ent)
     return t1_dataloader,t2_dataloader
