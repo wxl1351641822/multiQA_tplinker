@@ -217,8 +217,8 @@ def collate_fn(batch):
                     for ent2 in an[2:]:#[type, start, end, role, entity]
                         if (ent1[1] < ent2[1]):
                             index_s2o = convertrowcol2index(ent1[1], ent2[1], seq_len)
-                            if(relT_tags[index_s2o] != 0):
-                                print(ans)
+                            # if(relT_tags[index_s2o] != 0):
+                            #     print(ans)
                             relH_tags[index_s2o] = role2duieH[ent2[3]]["SH2OH"]
                         else:#ent1=ent2=[type, s, e, role, entity]
                             index_s2o = convertrowcol2index(ent2[1], ent1[1], seq_len)
@@ -317,7 +317,7 @@ def collate_fn1(batch):
 def convertrowcol2index(row,col,collength):
     return (collength+collength-row+1)*row//2+(col-row)
 count = 0
-def get_inputs(context, q, tokenizer, title="", max_len=200, ans=[], type="ent"):
+def get_inputs(context, q, tokenizer, title="", max_len=200, ans=[], type="ent", la="en"):
     query = tokenizer.tokenize(q)
 
 
@@ -355,8 +355,14 @@ def get_inputs(context, q, tokenizer, title="", max_len=200, ans=[], type="ent")
                 # beg = ans[0][1]
                 # print(context_len, beg, an, start, end)
                 continue
-            if ("".join(context[start:end + 1]) != an[-1]):
-                print(an)
+            if(la == "en"):
+                now_ent = " ".join(context[start:end + 1])
+            else:
+                #chinese
+                now_ent = "".join(context[start:end + 1])
+            now_ent = now_ent.replace(" ##", "")
+            if (now_ent != an[-1]):
+                print(start, end, an, "".join(context[start:end + 1]), now_ent, an[-1])
                 continue
             if start != end:
                 # print(len(context), context_len, beg, an)
@@ -480,6 +486,7 @@ class MyDataset:
         """
         with open(path, encoding='utf-8') as f:
             data = json.load(f)
+        self.la = "ch" if dataset_tag == "duie" else "en"
         self.data = data
         self.tokenizer = tokenizer
         self.max_len = max_len
@@ -534,7 +541,7 @@ class MyDataset:
             if(self.train_ent):#未改动
                 for i, (q, ans) in enumerate(t1.items()):
                     txt_ids, tags, context_mask, token_type_ids = get_inputs(
-                        context, q, self.tokenizer, title, self.max_len, ans, type="ent")
+                        context, q, self.tokenizer, title, self.max_len, ans, type="ent", la=self.la)
                     # print(tags,ans)
                     # print(len(tags), tags)
                     t1_qas.append(
@@ -548,7 +555,7 @@ class MyDataset:
                 for i,(q,ans) in enumerate(t2.items()):
                     # print(context)
                     txt_ids, tags, context_mask, token_type_ids = get_inputs(
-                        context, q, self.tokenizer, title, self.max_len, ans,type="rel")
+                        context, q, self.tokenizer, title, self.max_len, ans,type="rel", la=self.la)
                     # print(tags)
                     t2_qas.append(
                         {"txt_ids": txt_ids, "batch_ans":tags[1], "context_mask": context_mask, "token_type_ids": token_type_ids,
@@ -649,7 +656,7 @@ class MyDatasetT2:
                 # print(context)
 
                 txt_ids, tags, context_mask, token_type_ids = get_inputs(
-                    context, q, self.tokenizer, title, self.max_len, ans,type="rel")
+                    context, q, self.tokenizer, title, self.max_len, ans, type="rel", la=self.la)
                 # print(context,q)
                 t2_qas.append(
                     {"txt_ids": txt_ids,  "context_mask": context_mask, "token_type_ids": token_type_ids,
@@ -757,7 +764,7 @@ class MyDatasetT1:
             if(self.train_ent):#未改动
                 for i, (q, ans) in enumerate(t1.items()):
                     txt_ids, tags, context_mask, token_type_ids = get_inputs(
-                        context, q, self.tokenizer, title, self.max_len, ans,type="ent")
+                        context, q, self.tokenizer, title, self.max_len, ans, type="ent", la=self.la)
                     t1_qas.append(
                         {"txt_ids": txt_ids,  "context_mask": context_mask, "token_type_ids": token_type_ids, 'turn_mask': 0, 'p_id': p_id, "type": ace2005_q2type["qa_turn1"][q]})
                     if(self.is_test):
