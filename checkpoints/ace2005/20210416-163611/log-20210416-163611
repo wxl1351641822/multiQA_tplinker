@@ -1,0 +1,1853 @@
+2021Apr16-16:36:11 - reload training data from data/cleaned_data/ACE2005/bert-base-uncased_overlap_15_window_100_threshold_1_max_distance_45_is_mq_False/ace2005_train_bert-base-uncased
+2021Apr16-16:36:18 - 加载模型失败...
+2021Apr16-16:36:18 - id:20210416-163611
+2021Apr16-16:36:18 - log_path:./log/run_log
+2021Apr16-16:36:18 - model:MRCTPLinker
+2021Apr16-16:36:18 - dataset_tag:ace2005
+2021Apr16-16:36:18 - train_path:data/cleaned_data/ACE2005/bert-base-uncased_overlap_15_window_100_threshold_1_max_distance_45_is_mq_False/train.json
+2021Apr16-16:36:18 - train_batch:24
+2021Apr16-16:36:18 - test_path:data/cleaned_data/ACE2005/bert-base-uncased_overlap_15_window_100_threshold_1_max_distance_45_is_mq_False/test.json
+2021Apr16-16:36:18 - test_batch:24
+2021Apr16-16:36:18 - dev_path:data/cleaned_data/ACE2005/bert-base-uncased_overlap_15_window_100_threshold_1_max_distance_45_is_mq_False/dev.json
+2021Apr16-16:36:18 - dev_batch:24
+2021Apr16-16:36:18 - max_len:120
+2021Apr16-16:36:18 - pretrained_model_path:../pretrained_models/bert-base-uncased
+2021Apr16-16:36:18 - max_epochs:100
+2021Apr16-16:36:18 - warmup_ratio:-1
+2021Apr16-16:36:18 - lr:2e-05
+2021Apr16-16:36:18 - dropout_prob:0.1
+2021Apr16-16:36:18 - weight_decay:0.01
+2021Apr16-16:36:18 - theta:0.2
+2021Apr16-16:36:18 - window_size:100
+2021Apr16-16:36:18 - overlap:50
+2021Apr16-16:36:18 - threshold:5
+2021Apr16-16:36:18 - local_rank:-1
+2021Apr16-16:36:18 - max_grad_norm:1
+2021Apr16-16:36:18 - seed:0
+2021Apr16-16:36:18 - amp:False
+2021Apr16-16:36:18 - not_save:False
+2021Apr16-16:36:18 - reload:False
+2021Apr16-16:36:18 - train:True
+2021Apr16-16:36:18 - dev_eval:True
+2021Apr16-16:36:18 - test_eval:True
+2021Apr16-16:36:18 - load_checkpoint_dir:-
+2021Apr16-16:36:18 - checkpoint_start:0
+2021Apr16-16:36:18 - num_questions:1
+2021Apr16-16:36:18 - train_ent:True
+2021Apr16-16:36:18 - train_rel:True
+2021Apr16-16:36:18 - cuda:0
+2021Apr16-16:36:18 - shaking_type:cat
+2021Apr16-16:36:18 - inner_enc_type:lstm
+2021Apr16-16:36:18 - relH_theta:0.4
+2021Apr16-16:36:18 - relT_theta:0.4
+2021Apr16-16:36:18 - rel_loss_weight:0.1
+2021Apr16-16:46:31 - norm:0.06,lr:2.0e-05,loss:4.79e-03,t1:1.84e-02,relh:1.31e-03,relt:1.45e-03,acc:[10, 0, 0]
+2021Apr16-16:46:32 - model saved at:./checkpoints/ace2005/20210416-163611/checkpoint_1.cpt
+2021Apr16-16:46:32 - ****************************************Train Eval1******************************
+2021Apr16-16:48:30 - Turn 1: precision:0.8665 recall:0.9206 f1:0.8927
+2021Apr16-16:48:30 - Turn 2: precision:0.3824 recall:0.0049 f1:0.0097
+2021Apr16-16:48:30 - ****************************************DEV1******************************
+2021Apr16-16:49:01 - Turn 1: precision:0.8272 recall:0.8762 f1:0.8510
+2021Apr16-16:49:01 - Turn 2: precision:0.2222 recall:0.0015 f1:0.0030
+2021Apr16-16:59:02 - norm:0.04,lr:2.0e-05,loss:2.42e-03,t1:6.10e-04,relh:2.75e-03,relt:2.99e-03,acc:[2, 1, 1]
+2021Apr16-16:59:03 - model saved at:./checkpoints/ace2005/20210416-163611/checkpoint_2.cpt
+2021Apr16-16:59:03 - ****************************************Train Eval2******************************
+2021Apr16-17:01:07 - Turn 1: precision:0.9376 recall:0.9524 f1:0.9449
+2021Apr16-17:01:07 - Turn 2: precision:0.2894 recall:0.2863 f1:0.2879
+2021Apr16-17:01:07 - ****************************************DEV2******************************
+2021Apr16-17:01:32 - Turn 1: precision:0.8731 recall:0.8658 f1:0.8694
+2021Apr16-17:01:32 - Turn 2: precision:0.2864 recall:0.2357 f1:0.2586
+2021Apr16-17:11:32 - norm:0.15,lr:2.0e-05,loss:4.39e-03,t1:1.46e-02,relh:1.66e-03,relt:2.02e-03,acc:[8, 1, 0]
+2021Apr16-17:11:33 - model saved at:./checkpoints/ace2005/20210416-163611/checkpoint_3.cpt
+2021Apr16-17:11:33 - ****************************************Train Eval3******************************
+2021Apr16-17:13:27 - Turn 1: precision:0.9725 recall:0.9671 f1:0.9698
+2021Apr16-17:13:27 - Turn 2: precision:0.3907 recall:0.5300 f1:0.4498
+2021Apr16-17:13:27 - ****************************************DEV3******************************
+2021Apr16-17:13:59 - Turn 1: precision:0.8908 recall:0.8456 f1:0.8676
+2021Apr16-17:13:59 - Turn 2: precision:0.3511 recall:0.3814 f1:0.3656
+2021Apr16-17:23:47 - norm:0.07,lr:2.0e-05,loss:1.89e-03,t1:6.34e-03,relh:6.33e-04,relt:9.23e-04,acc:[24, 2, 1]
+2021Apr16-17:23:48 - model saved at:./checkpoints/ace2005/20210416-163611/checkpoint_4.cpt
+2021Apr16-17:23:48 - ****************************************Train Eval4******************************
+2021Apr16-17:25:43 - Turn 1: precision:0.9810 recall:0.9851 f1:0.9830
+2021Apr16-17:25:43 - Turn 2: precision:0.5187 recall:0.5710 f1:0.5436
+2021Apr16-17:25:43 - ****************************************DEV4******************************
+2021Apr16-17:26:08 - Turn 1: precision:0.8802 recall:0.8659 f1:0.8730
+2021Apr16-17:26:08 - Turn 2: precision:0.4391 recall:0.3959 f1:0.4164
+2021Apr16-17:35:29 - norm:0.02,lr:2.0e-05,loss:8.48e-04,t1:5.30e-04,relh:8.03e-04,relt:1.05e-03,acc:[9, 6, 6]
+2021Apr16-17:35:30 - model saved at:./checkpoints/ace2005/20210416-163611/checkpoint_5.cpt
+2021Apr16-17:35:30 - ****************************************Train Eval5******************************
+2021Apr16-17:37:23 - Turn 1: precision:0.9912 recall:0.9897 f1:0.9904
+2021Apr16-17:37:23 - Turn 2: precision:0.4736 recall:0.7856 f1:0.5909
+2021Apr16-17:37:23 - ****************************************DEV5******************************
+2021Apr16-17:37:54 - Turn 1: precision:0.8935 recall:0.8595 f1:0.8761
+2021Apr16-17:37:54 - Turn 2: precision:0.3922 recall:0.5355 f1:0.4528
+2021Apr16-17:47:36 - norm:0.01,lr:2.0e-05,loss:2.54e-04,t1:2.48e-04,relh:2.66e-04,relt:2.46e-04,acc:[2, 1, 1]
+2021Apr16-17:47:37 - model saved at:./checkpoints/ace2005/20210416-163611/checkpoint_6.cpt
+2021Apr16-17:47:37 - ****************************************Train Eval6******************************
+2021Apr16-17:49:31 - Turn 1: precision:0.9943 recall:0.9933 f1:0.9938
+2021Apr16-17:49:31 - Turn 2: precision:0.4876 recall:0.8439 f1:0.6181
+2021Apr16-17:49:31 - ****************************************DEV6******************************
+2021Apr16-17:50:02 - Turn 1: precision:0.8875 recall:0.8613 f1:0.8742
+2021Apr16-17:50:02 - Turn 2: precision:0.3802 recall:0.5385 f1:0.4457
+2021Apr16-17:59:56 - norm:0.01,lr:2.0e-05,loss:7.32e-05,t1:2.46e-04,relh:3.56e-05,relt:2.45e-05,acc:[5, 0, 0]
+2021Apr16-17:59:57 - model saved at:./checkpoints/ace2005/20210416-163611/checkpoint_7.cpt
+2021Apr16-17:59:57 - ****************************************Train Eval7******************************
+2021Apr16-18:01:52 - Turn 1: precision:0.9936 recall:0.9974 f1:0.9955
+2021Apr16-18:01:52 - Turn 2: precision:0.4658 recall:0.9126 f1:0.6168
+2021Apr16-18:01:52 - ****************************************DEV7******************************
+2021Apr16-18:02:17 - Turn 1: precision:0.8754 recall:0.8730 f1:0.8742
+2021Apr16-18:02:17 - Turn 2: precision:0.3682 recall:0.5934 f1:0.4544
+2021Apr16-18:12:10 - norm:0.03,lr:2.0e-05,loss:1.02e-03,t1:1.47e-04,relh:1.85e-03,relt:6.27e-04,acc:[0, 2, 2]
+2021Apr16-18:12:11 - model saved at:./checkpoints/ace2005/20210416-163611/checkpoint_8.cpt
+2021Apr16-18:12:11 - ****************************************Train Eval8******************************
+2021Apr16-18:14:06 - Turn 1: precision:0.9954 recall:0.9967 f1:0.9960
+2021Apr16-18:14:06 - Turn 2: precision:0.4817 recall:0.9430 f1:0.6377
+2021Apr16-18:14:06 - ****************************************DEV8******************************
+2021Apr16-18:14:37 - Turn 1: precision:0.8776 recall:0.8701 f1:0.8738
+2021Apr16-18:14:37 - Turn 2: precision:0.3497 recall:0.6178 f1:0.4466
+2021Apr16-18:24:21 - norm:0.03,lr:2.0e-05,loss:1.21e-03,t1:1.79e-04,relh:1.15e-03,relt:1.79e-03,acc:[4, 5, 7]
+2021Apr16-18:24:22 - model saved at:./checkpoints/ace2005/20210416-163611/checkpoint_9.cpt
+2021Apr16-18:24:22 - ****************************************Train Eval9******************************
+2021Apr16-18:26:16 - Turn 1: precision:0.9974 recall:0.9984 f1:0.9979
+2021Apr16-18:26:16 - Turn 2: precision:0.4806 recall:0.9683 f1:0.6424
+2021Apr16-18:26:16 - ****************************************DEV9******************************
+2021Apr16-18:26:46 - Turn 1: precision:0.8804 recall:0.8665 f1:0.8734
+2021Apr16-18:26:46 - Turn 2: precision:0.3491 recall:0.6247 f1:0.4479
+2021Apr16-18:36:21 - norm:0.01,lr:2.0e-05,loss:7.42e-05,t1:9.51e-05,relh:6.67e-05,relt:7.13e-05,acc:[14, 1, 1]
+2021Apr16-18:36:22 - model saved at:./checkpoints/ace2005/20210416-163611/checkpoint_10.cpt
+2021Apr16-18:36:22 - ****************************************Train Eval10******************************
+2021Apr16-18:38:17 - Turn 1: precision:0.9969 recall:0.9976 f1:0.9973
+2021Apr16-18:38:17 - Turn 2: precision:0.5289 recall:0.9689 f1:0.6843
+2021Apr16-18:38:17 - ****************************************DEV10******************************
+2021Apr16-18:38:48 - Turn 1: precision:0.8806 recall:0.8657 f1:0.8731
+2021Apr16-18:38:48 - Turn 2: precision:0.3851 recall:0.6018 f1:0.4696
+2021Apr16-18:48:17 - norm:1.00,lr:2.0e-05,loss:8.86e-03,t1:4.21e-02,relh:4.70e-04,relt:6.34e-04,acc:[13, 1, 1]
+2021Apr16-18:48:18 - model saved at:./checkpoints/ace2005/20210416-163611/checkpoint_11.cpt
+2021Apr16-18:48:18 - ****************************************Train Eval11******************************
+2021Apr16-18:50:12 - Turn 1: precision:0.9980 recall:0.9985 f1:0.9982
+2021Apr16-18:50:12 - Turn 2: precision:0.6186 recall:0.9757 f1:0.7571
+2021Apr16-18:50:12 - ****************************************DEV11******************************
+2021Apr16-18:50:43 - Turn 1: precision:0.8851 recall:0.8684 f1:0.8767
+2021Apr16-18:50:43 - Turn 2: precision:0.4377 recall:0.5789 f1:0.4985
+2021Apr16-19:00:40 - norm:0.01,lr:2.0e-05,loss:1.49e-04,t1:2.29e-04,relh:1.27e-04,relt:1.30e-04,acc:[4, 1, 1]
+2021Apr16-19:00:41 - model saved at:./checkpoints/ace2005/20210416-163611/checkpoint_12.cpt
+2021Apr16-19:00:41 - ****************************************Train Eval12******************************
+2021Apr16-19:02:35 - Turn 1: precision:0.9981 recall:0.9987 f1:0.9984
+2021Apr16-19:02:35 - Turn 2: precision:0.5181 recall:0.9881 f1:0.6798
+2021Apr16-19:02:35 - ****************************************DEV12******************************
+2021Apr16-19:03:06 - Turn 1: precision:0.8787 recall:0.8676 f1:0.8731
+2021Apr16-19:03:06 - Turn 2: precision:0.3681 recall:0.6079 f1:0.4586
+2021Apr16-19:12:53 - norm:0.00,lr:2.0e-05,loss:1.42e-05,t1:6.90e-05,relh:4.42e-07,relt:5.65e-07,acc:[6, 0, 0]
+2021Apr16-19:12:54 - model saved at:./checkpoints/ace2005/20210416-163611/checkpoint_13.cpt
+2021Apr16-19:12:54 - ****************************************Train Eval13******************************
+2021Apr16-19:14:48 - Turn 1: precision:0.9991 recall:0.9975 f1:0.9983
+2021Apr16-19:14:48 - Turn 2: precision:0.6713 recall:0.9753 f1:0.7952
+2021Apr16-19:14:48 - ****************************************DEV13******************************
+2021Apr16-19:15:12 - Turn 1: precision:0.8928 recall:0.8531 f1:0.8725
+2021Apr16-19:15:12 - Turn 2: precision:0.4762 recall:0.5728 f1:0.5201
+2021Apr16-19:25:06 - norm:0.01,lr:2.0e-05,loss:1.36e-04,t1:7.34e-05,relh:1.48e-04,relt:1.55e-04,acc:[4, 1, 1]
+2021Apr16-19:25:07 - model saved at:./checkpoints/ace2005/20210416-163611/checkpoint_14.cpt
+2021Apr16-19:25:07 - ****************************************Train Eval14******************************
+2021Apr16-19:27:02 - Turn 1: precision:0.9990 recall:0.9984 f1:0.9987
+2021Apr16-19:27:02 - Turn 2: precision:0.6258 recall:0.9881 f1:0.7663
+2021Apr16-19:27:02 - ****************************************DEV14******************************
+2021Apr16-19:27:33 - Turn 1: precision:0.8755 recall:0.8665 f1:0.8709
+2021Apr16-19:27:33 - Turn 2: precision:0.4236 recall:0.5858 f1:0.4917
+2021Apr16-19:37:23 - norm:0.00,lr:2.0e-05,loss:8.46e-06,t1:3.98e-05,relh:3.54e-07,relt:9.05e-07,acc:[26, 0, 0]
+2021Apr16-19:37:24 - model saved at:./checkpoints/ace2005/20210416-163611/checkpoint_15.cpt
+2021Apr16-19:37:24 - ****************************************Train Eval15******************************
+2021Apr16-19:39:19 - Turn 1: precision:0.9994 recall:0.9979 f1:0.9987
+2021Apr16-19:39:19 - Turn 2: precision:0.6595 recall:0.9909 f1:0.7920
+2021Apr16-19:39:19 - ****************************************DEV15******************************
+2021Apr16-19:39:50 - Turn 1: precision:0.8879 recall:0.8573 f1:0.8723
+2021Apr16-19:39:50 - Turn 2: precision:0.4542 recall:0.5980 f1:0.5163
+2021Apr16-19:49:39 - norm:0.01,lr:2.0e-05,loss:1.87e-04,t1:2.83e-05,relh:2.21e-04,relt:2.33e-04,acc:[9, 7, 8]
+2021Apr16-19:49:40 - model saved at:./checkpoints/ace2005/20210416-163611/checkpoint_16.cpt
+2021Apr16-19:49:40 - ****************************************Train Eval16******************************
+2021Apr16-19:51:34 - Turn 1: precision:0.9988 recall:0.9992 f1:0.9990
+2021Apr16-19:51:34 - Turn 2: precision:0.5972 recall:0.9941 f1:0.7462
+2021Apr16-19:51:34 - ****************************************DEV16******************************
+2021Apr16-19:52:05 - Turn 1: precision:0.8704 recall:0.8728 f1:0.8716
+2021Apr16-19:52:05 - Turn 2: precision:0.4038 recall:0.6278 f1:0.4915
+2021Apr16-20:02:00 - norm:0.02,lr:2.0e-05,loss:2.00e-04,t1:3.65e-05,relh:1.38e-04,relt:3.45e-04,acc:[1, 4, 2]
+2021Apr16-20:02:01 - model saved at:./checkpoints/ace2005/20210416-163611/checkpoint_17.cpt
+2021Apr16-20:02:01 - ****************************************Train Eval17******************************
+2021Apr16-20:03:55 - Turn 1: precision:0.9985 recall:0.9992 f1:0.9988
+2021Apr16-20:03:55 - Turn 2: precision:0.6532 recall:0.9875 f1:0.7863
+2021Apr16-20:03:55 - ****************************************DEV17******************************
+2021Apr16-20:04:20 - Turn 1: precision:0.8716 recall:0.8731 f1:0.8723
+2021Apr16-20:04:20 - Turn 2: precision:0.4277 recall:0.5934 f1:0.4971
+2021Apr16-20:14:06 - norm:0.03,lr:2.0e-05,loss:3.42e-04,t1:2.09e-05,relh:4.03e-04,relt:4.40e-04,acc:[0, 1, 1]
+2021Apr16-20:14:07 - model saved at:./checkpoints/ace2005/20210416-163611/checkpoint_18.cpt
+2021Apr16-20:14:07 - ****************************************Train Eval18******************************
+2021Apr16-20:16:02 - Turn 1: precision:0.9990 recall:0.9996 f1:0.9993
+2021Apr16-20:16:02 - Turn 2: precision:0.6404 recall:0.9964 f1:0.7797
+2021Apr16-20:16:02 - ****************************************DEV18******************************
+2021Apr16-20:16:33 - Turn 1: precision:0.8749 recall:0.8785 f1:0.8767
+2021Apr16-20:16:33 - Turn 2: precision:0.4205 recall:0.6270 f1:0.5034
+2021Apr16-20:26:14 - norm:0.00,lr:2.0e-05,loss:4.28e-06,t1:1.87e-05,relh:7.11e-07,relt:6.41e-07,acc:[13, 0, 0]
+2021Apr16-20:26:15 - model saved at:./checkpoints/ace2005/20210416-163611/checkpoint_19.cpt
+2021Apr16-20:26:15 - ****************************************Train Eval19******************************
+2021Apr16-20:28:10 - Turn 1: precision:0.9996 recall:0.9995 f1:0.9995
+2021Apr16-20:28:10 - Turn 2: precision:0.6320 recall:0.9972 f1:0.7737
+2021Apr16-20:28:10 - ****************************************DEV19******************************
+2021Apr16-20:28:40 - Turn 1: precision:0.8868 recall:0.8673 f1:0.8769
+2021Apr16-20:28:40 - Turn 2: precision:0.4198 recall:0.6346 f1:0.5053
+2021Apr16-20:38:36 - norm:0.00,lr:2.0e-05,loss:7.33e-06,t1:2.00e-05,relh:5.41e-06,relt:2.92e-06,acc:[17, 0, 0]
+2021Apr16-20:38:37 - model saved at:./checkpoints/ace2005/20210416-163611/checkpoint_20.cpt
+2021Apr16-20:38:37 - ****************************************Train Eval20******************************
+2021Apr16-20:40:32 - Turn 1: precision:0.9992 recall:0.9984 f1:0.9988
+2021Apr16-20:40:32 - Turn 2: precision:0.6578 recall:0.9966 f1:0.7925
+2021Apr16-20:40:32 - ****************************************DEV20******************************
+2021Apr16-20:41:02 - Turn 1: precision:0.8890 recall:0.8605 f1:0.8745
+2021Apr16-20:41:02 - Turn 2: precision:0.4271 recall:0.6163 f1:0.5045
+2021Apr16-20:50:44 - norm:0.00,lr:2.0e-05,loss:7.21e-07,t1:2.18e-06,relh:6.91e-08,relt:6.42e-07,acc:[0, 0, 0]
+2021Apr16-20:50:45 - model saved at:./checkpoints/ace2005/20210416-163611/checkpoint_21.cpt
+2021Apr16-20:50:45 - ****************************************Train Eval21******************************
+2021Apr16-20:52:39 - Turn 1: precision:0.9986 recall:0.9993 f1:0.9990
+2021Apr16-20:52:39 - Turn 2: precision:0.7092 recall:0.9979 f1:0.8291
+2021Apr16-20:52:39 - ****************************************DEV21******************************
+2021Apr16-20:53:05 - Turn 1: precision:0.8838 recall:0.8681 f1:0.8759
+2021Apr16-20:53:05 - Turn 2: precision:0.4535 recall:0.6056 f1:0.5186
+2021Apr16-21:03:06 - norm:0.07,lr:2.0e-05,loss:4.15e-04,t1:1.75e-04,relh:3.28e-04,relt:6.23e-04,acc:[32, 2, 1]
+2021Apr16-21:03:01 - model saved at:./checkpoints/ace2005/20210416-163611/checkpoint_22.cpt
+2021Apr16-21:03:01 - ****************************************Train Eval22******************************
+2021Apr16-21:05:01 - Turn 1: precision:0.9987 recall:0.9992 f1:0.9990
+2021Apr16-21:05:01 - Turn 2: precision:0.7576 recall:0.9945 f1:0.8600
+2021Apr16-21:05:01 - ****************************************DEV22******************************
+2021Apr16-21:05:26 - Turn 1: precision:0.8773 recall:0.8738 f1:0.8755
+2021Apr16-21:05:26 - Turn 2: precision:0.4745 recall:0.5675 f1:0.5168
+2021Apr16-21:15:16 - norm:0.02,lr:2.0e-05,loss:4.25e-04,t1:1.37e-04,relh:5.69e-04,relt:4.26e-04,acc:[42, 4, 4]
+2021Apr16-21:15:17 - model saved at:./checkpoints/ace2005/20210416-163611/checkpoint_23.cpt
+2021Apr16-21:15:17 - ****************************************Train Eval23******************************
+2021Apr16-21:17:13 - Turn 1: precision:0.9997 recall:0.9994 f1:0.9996
+2021Apr16-21:17:13 - Turn 2: precision:0.7982 recall:0.9960 f1:0.8862
+2021Apr16-21:17:13 - ****************************************DEV23******************************
+2021Apr16-21:17:43 - Turn 1: precision:0.8787 recall:0.8673 f1:0.8729
+2021Apr16-21:17:43 - Turn 2: precision:0.4881 recall:0.5782 f1:0.5293
+2021Apr16-21:27:38 - norm:0.02,lr:2.0e-05,loss:2.14e-04,t1:2.08e-05,relh:2.76e-04,relt:2.48e-04,acc:[12, 5, 4]
+2021Apr16-21:27:39 - model saved at:./checkpoints/ace2005/20210416-163611/checkpoint_24.cpt
+2021Apr16-21:27:39 - ****************************************Train Eval24******************************
+2021Apr16-21:29:34 - Turn 1: precision:0.9995 recall:0.9993 f1:0.9994
+2021Apr16-21:29:34 - Turn 2: precision:0.7414 recall:0.9968 f1:0.8503
+2021Apr16-21:29:34 - ****************************************DEV24******************************
+2021Apr16-21:30:05 - Turn 1: precision:0.8743 recall:0.8723 f1:0.8733
+2021Apr16-21:30:05 - Turn 2: precision:0.4366 recall:0.6041 f1:0.5069
+2021Apr16-21:40:02 - norm:0.00,lr:2.0e-05,loss:4.86e-06,t1:2.41e-05,relh:6.73e-08,relt:4.37e-08,acc:[12, 0, 0]
+2021Apr16-21:40:03 - model saved at:./checkpoints/ace2005/20210416-163611/checkpoint_25.cpt
+2021Apr16-21:40:03 - ****************************************Train Eval25******************************
+2021Apr16-21:41:58 - Turn 1: precision:0.9993 recall:0.9991 f1:0.9992
+2021Apr16-21:41:58 - Turn 2: precision:0.7356 recall:0.9968 f1:0.8465
+2021Apr16-21:41:58 - ****************************************DEV25******************************
+2021Apr16-21:42:22 - Turn 1: precision:0.8735 recall:0.8705 f1:0.8720
+2021Apr16-21:42:22 - Turn 2: precision:0.4300 recall:0.5858 f1:0.4960
+2021Apr16-21:52:13 - norm:0.02,lr:2.0e-05,loss:2.01e-04,t1:1.66e-04,relh:1.71e-04,relt:2.50e-04,acc:[20, 2, 1]
+2021Apr16-21:52:14 - model saved at:./checkpoints/ace2005/20210416-163611/checkpoint_26.cpt
+2021Apr16-21:52:14 - ****************************************Train Eval26******************************
+2021Apr16-21:54:09 - Turn 1: precision:0.9982 recall:0.9987 f1:0.9985
+2021Apr16-21:54:09 - Turn 2: precision:0.8485 recall:0.9930 f1:0.9151
+2021Apr16-21:54:09 - ****************************************DEV26******************************
+2021Apr16-21:54:39 - Turn 1: precision:0.8736 recall:0.8746 f1:0.8741
+2021Apr16-21:54:39 - Turn 2: precision:0.5148 recall:0.5690 f1:0.5406
+2021Apr16-22:04:37 - norm:0.01,lr:2.0e-05,loss:1.62e-04,t1:1.01e-05,relh:2.02e-04,relt:1.98e-04,acc:[8, 8, 6]
+2021Apr16-22:04:38 - model saved at:./checkpoints/ace2005/20210416-163611/checkpoint_27.cpt
+2021Apr16-22:04:38 - ****************************************Train Eval27******************************
+2021Apr16-22:06:32 - Turn 1: precision:0.9993 recall:0.9997 f1:0.9995
+2021Apr16-22:06:32 - Turn 2: precision:0.8069 recall:0.9977 f1:0.8922
+2021Apr16-22:06:32 - ****************************************DEV27******************************
+2021Apr16-22:07:03 - Turn 1: precision:0.8787 recall:0.8757 f1:0.8772
+2021Apr16-22:07:03 - Turn 2: precision:0.4748 recall:0.5820 f1:0.5230
+2021Apr16-22:16:54 - norm:0.01,lr:2.0e-05,loss:7.39e-05,t1:1.08e-04,relh:6.07e-05,relt:7.02e-05,acc:[18, 1, 1]
+2021Apr16-22:16:55 - model saved at:./checkpoints/ace2005/20210416-163611/checkpoint_28.cpt
+2021Apr16-22:16:55 - ****************************************Train Eval28******************************
+2021Apr16-22:18:49 - Turn 1: precision:0.9997 recall:0.9996 f1:0.9997
+2021Apr16-22:18:49 - Turn 2: precision:0.8245 recall:0.9975 f1:0.9028
+2021Apr16-22:18:49 - ****************************************DEV28******************************
+2021Apr16-22:19:15 - Turn 1: precision:0.8822 recall:0.8746 f1:0.8784
+2021Apr16-22:19:15 - Turn 2: precision:0.4933 recall:0.5896 f1:0.5372
+2021Apr16-22:29:02 - norm:0.00,lr:2.0e-05,loss:9.25e-06,t1:3.78e-05,relh:3.38e-06,relt:8.56e-07,acc:[19, 0, 0]
+2021Apr16-22:29:03 - model saved at:./checkpoints/ace2005/20210416-163611/checkpoint_29.cpt
+2021Apr16-22:29:03 - ****************************************Train Eval29******************************
+2021Apr16-22:31:03 - Turn 1: precision:0.9993 recall:0.9953 f1:0.9973
+2021Apr16-22:31:03 - Turn 2: precision:0.8288 recall:0.9941 f1:0.9040
+2021Apr16-22:31:03 - ****************************************DEV29******************************
+2021Apr16-22:31:28 - Turn 1: precision:0.8829 recall:0.8659 f1:0.8743
+2021Apr16-22:31:28 - Turn 2: precision:0.4920 recall:0.5866 f1:0.5351
+2021Apr16-22:41:21 - norm:0.02,lr:2.0e-05,loss:1.45e-04,t1:1.87e-04,relh:1.43e-04,relt:1.25e-04,acc:[13, 1, 1]
+2021Apr16-22:41:22 - model saved at:./checkpoints/ace2005/20210416-163611/checkpoint_30.cpt
+2021Apr16-22:41:22 - ****************************************Train Eval30******************************
+2021Apr16-22:43:18 - Turn 1: precision:0.9993 recall:0.9996 f1:0.9994
+2021Apr16-22:43:18 - Turn 2: precision:0.8918 recall:0.9955 f1:0.9408
+2021Apr16-22:43:18 - ****************************************DEV30******************************
+2021Apr16-22:43:49 - Turn 1: precision:0.8804 recall:0.8649 f1:0.8726
+2021Apr16-22:43:49 - Turn 2: precision:0.5261 recall:0.5538 f1:0.5396
+2021Apr16-22:53:52 - norm:0.08,lr:2.0e-05,loss:1.89e-04,t1:8.34e-04,relh:3.28e-05,relt:2.15e-05,acc:[32, 3, 3]
+2021Apr16-22:53:53 - model saved at:./checkpoints/ace2005/20210416-163611/checkpoint_31.cpt
+2021Apr16-22:53:53 - ****************************************Train Eval31******************************
+2021Apr16-22:55:48 - Turn 1: precision:0.9997 recall:0.9994 f1:0.9996
+2021Apr16-22:55:48 - Turn 2: precision:0.8163 recall:0.9974 f1:0.8978
+2021Apr16-22:55:48 - ****************************************DEV31******************************
+2021Apr16-22:56:13 - Turn 1: precision:0.8849 recall:0.8686 f1:0.8767
+2021Apr16-22:56:13 - Turn 2: precision:0.4693 recall:0.6011 f1:0.5271
+2021Apr18-19:35:19 - reload training data from data/cleaned_data/ACE2005/bert-base-uncased_overlap_15_window_100_threshold_1_max_distance_45_is_mq_False/ace2005_train_bert-base-uncased
+2021Apr18-19:35:26 - 加载./checkpoints/ace2005/20210416-163611/checkpoint_1.cpt
+2021Apr18-19:35:26 - id:20210416-163611
+2021Apr18-19:35:26 - log_path:./log/run_log
+2021Apr18-19:35:26 - model:MRCTPLinker
+2021Apr18-19:35:26 - dataset_tag:ace2005
+2021Apr18-19:35:26 - train_path:data/cleaned_data/ACE2005/bert-base-uncased_overlap_15_window_100_threshold_1_max_distance_45_is_mq_False/train.json
+2021Apr18-19:35:26 - train_batch:24
+2021Apr18-19:35:26 - test_path:data/cleaned_data/ACE2005/bert-base-uncased_overlap_15_window_100_threshold_1_max_distance_45_is_mq_False/test.json
+2021Apr18-19:35:26 - test_batch:24
+2021Apr18-19:35:26 - dev_path:data/cleaned_data/ACE2005/bert-base-uncased_overlap_15_window_100_threshold_1_max_distance_45_is_mq_False/dev.json
+2021Apr18-19:35:26 - dev_batch:24
+2021Apr18-19:35:26 - max_len:120
+2021Apr18-19:35:26 - pretrained_model_path:../pretrained_models/bert-base-uncased
+2021Apr18-19:35:26 - max_epochs:100
+2021Apr18-19:35:26 - warmup_ratio:-1
+2021Apr18-19:35:26 - lr:2e-05
+2021Apr18-19:35:26 - dropout_prob:0.1
+2021Apr18-19:35:26 - weight_decay:0.01
+2021Apr18-19:35:26 - theta:0.2
+2021Apr18-19:35:26 - window_size:100
+2021Apr18-19:35:26 - overlap:50
+2021Apr18-19:35:26 - threshold:5
+2021Apr18-19:35:26 - local_rank:-1
+2021Apr18-19:35:26 - max_grad_norm:1
+2021Apr18-19:35:26 - seed:0
+2021Apr18-19:35:26 - amp:False
+2021Apr18-19:35:26 - not_save:False
+2021Apr18-19:35:26 - reload:False
+2021Apr18-19:35:26 - train:False
+2021Apr18-19:35:26 - dev_eval:False
+2021Apr18-19:35:26 - test_eval:True
+2021Apr18-19:35:26 - load_checkpoint_dir:-
+2021Apr18-19:35:26 - checkpoint_start:0
+2021Apr18-19:35:26 - num_questions:1
+2021Apr18-19:35:26 - train_ent:True
+2021Apr18-19:35:26 - train_rel:True
+2021Apr18-19:35:26 - cuda:0
+2021Apr18-19:35:26 - shaking_type:cat
+2021Apr18-19:35:26 - inner_enc_type:lstm
+2021Apr18-19:35:26 - relH_theta:0.4
+2021Apr18-19:35:26 - relT_theta:0.4
+2021Apr18-19:35:26 - rel_loss_weight:0.1
+2021Apr18-19:35:26 - ******************************DEV BEST******************************
+2021Apr18-19:35:26 - Turn 1: [epoch,p,r,f]:[-1, (0, 0, 0)]
+2021Apr18-19:35:26 - Turn 2: [epoch,p,r,f]:[-1, (0, 0, 0)]
+2021Apr18-19:35:26 - all: [epoch,p1,r1,f1;p2,r2,f2]:[-1, (0, 0, 0), (0, 0, 0)]
+2021Apr18-19:35:26 - ****************************************TEST******************************
+2021Apr18-19:35:53 - Turn 1: precision:0.8262 recall:0.8883 f1:0.8561
+2021Apr18-19:35:53 - Turn 2: precision:0.6250 recall:0.0080 f1:0.0157
+2021Apr18-19:35:56 - 加载./checkpoints/ace2005/20210416-163611/checkpoint_2.cpt
+2021Apr18-19:35:56 - id:20210416-163611
+2021Apr18-19:35:56 - log_path:./log/run_log
+2021Apr18-19:35:56 - model:MRCTPLinker
+2021Apr18-19:35:56 - dataset_tag:ace2005
+2021Apr18-19:35:56 - train_path:data/cleaned_data/ACE2005/bert-base-uncased_overlap_15_window_100_threshold_1_max_distance_45_is_mq_False/train.json
+2021Apr18-19:35:56 - train_batch:24
+2021Apr18-19:35:56 - test_path:data/cleaned_data/ACE2005/bert-base-uncased_overlap_15_window_100_threshold_1_max_distance_45_is_mq_False/test.json
+2021Apr18-19:35:56 - test_batch:24
+2021Apr18-19:35:56 - dev_path:data/cleaned_data/ACE2005/bert-base-uncased_overlap_15_window_100_threshold_1_max_distance_45_is_mq_False/dev.json
+2021Apr18-19:35:56 - dev_batch:24
+2021Apr18-19:35:56 - max_len:120
+2021Apr18-19:35:56 - pretrained_model_path:../pretrained_models/bert-base-uncased
+2021Apr18-19:35:56 - max_epochs:100
+2021Apr18-19:35:56 - warmup_ratio:-1
+2021Apr18-19:35:56 - lr:2e-05
+2021Apr18-19:35:56 - dropout_prob:0.1
+2021Apr18-19:35:56 - weight_decay:0.01
+2021Apr18-19:35:56 - theta:0.2
+2021Apr18-19:35:56 - window_size:100
+2021Apr18-19:35:56 - overlap:50
+2021Apr18-19:35:56 - threshold:5
+2021Apr18-19:35:56 - local_rank:-1
+2021Apr18-19:35:56 - max_grad_norm:1
+2021Apr18-19:35:56 - seed:0
+2021Apr18-19:35:56 - amp:False
+2021Apr18-19:35:56 - not_save:False
+2021Apr18-19:35:56 - reload:False
+2021Apr18-19:35:56 - train:False
+2021Apr18-19:35:56 - dev_eval:False
+2021Apr18-19:35:56 - test_eval:True
+2021Apr18-19:35:56 - load_checkpoint_dir:-
+2021Apr18-19:35:56 - checkpoint_start:0
+2021Apr18-19:35:56 - num_questions:1
+2021Apr18-19:35:56 - train_ent:True
+2021Apr18-19:35:56 - train_rel:True
+2021Apr18-19:35:56 - cuda:0
+2021Apr18-19:35:56 - shaking_type:cat
+2021Apr18-19:35:56 - inner_enc_type:lstm
+2021Apr18-19:35:56 - relH_theta:0.4
+2021Apr18-19:35:56 - relT_theta:0.4
+2021Apr18-19:35:56 - rel_loss_weight:0.1
+2021Apr18-19:35:56 - ******************************DEV BEST******************************
+2021Apr18-19:35:56 - Turn 1: [epoch,p,r,f]:[-1, (0, 0, 0)]
+2021Apr18-19:35:56 - Turn 2: [epoch,p,r,f]:[-1, (0, 0, 0)]
+2021Apr18-19:35:56 - all: [epoch,p1,r1,f1;p2,r2,f2]:[-1, (0, 0, 0), (0, 0, 0)]
+2021Apr18-19:35:56 - ****************************************TEST******************************
+2021Apr18-19:36:16 - Turn 1: precision:0.8745 recall:0.8824 f1:0.8784
+2021Apr18-19:36:16 - Turn 2: precision:0.2906 recall:0.2552 f1:0.2718
+2021Apr18-19:36:19 - 加载./checkpoints/ace2005/20210416-163611/checkpoint_3.cpt
+2021Apr18-19:36:19 - id:20210416-163611
+2021Apr18-19:36:19 - log_path:./log/run_log
+2021Apr18-19:36:19 - model:MRCTPLinker
+2021Apr18-19:36:19 - dataset_tag:ace2005
+2021Apr18-19:36:19 - train_path:data/cleaned_data/ACE2005/bert-base-uncased_overlap_15_window_100_threshold_1_max_distance_45_is_mq_False/train.json
+2021Apr18-19:36:19 - train_batch:24
+2021Apr18-19:36:19 - test_path:data/cleaned_data/ACE2005/bert-base-uncased_overlap_15_window_100_threshold_1_max_distance_45_is_mq_False/test.json
+2021Apr18-19:36:19 - test_batch:24
+2021Apr18-19:36:19 - dev_path:data/cleaned_data/ACE2005/bert-base-uncased_overlap_15_window_100_threshold_1_max_distance_45_is_mq_False/dev.json
+2021Apr18-19:36:19 - dev_batch:24
+2021Apr18-19:36:19 - max_len:120
+2021Apr18-19:36:19 - pretrained_model_path:../pretrained_models/bert-base-uncased
+2021Apr18-19:36:19 - max_epochs:100
+2021Apr18-19:36:19 - warmup_ratio:-1
+2021Apr18-19:36:19 - lr:2e-05
+2021Apr18-19:36:19 - dropout_prob:0.1
+2021Apr18-19:36:19 - weight_decay:0.01
+2021Apr18-19:36:19 - theta:0.2
+2021Apr18-19:36:19 - window_size:100
+2021Apr18-19:36:19 - overlap:50
+2021Apr18-19:36:19 - threshold:5
+2021Apr18-19:36:19 - local_rank:-1
+2021Apr18-19:36:19 - max_grad_norm:1
+2021Apr18-19:36:19 - seed:0
+2021Apr18-19:36:19 - amp:False
+2021Apr18-19:36:19 - not_save:False
+2021Apr18-19:36:19 - reload:False
+2021Apr18-19:36:19 - train:False
+2021Apr18-19:36:19 - dev_eval:False
+2021Apr18-19:36:19 - test_eval:True
+2021Apr18-19:36:19 - load_checkpoint_dir:-
+2021Apr18-19:36:19 - checkpoint_start:0
+2021Apr18-19:36:19 - num_questions:1
+2021Apr18-19:36:19 - train_ent:True
+2021Apr18-19:36:19 - train_rel:True
+2021Apr18-19:36:19 - cuda:0
+2021Apr18-19:36:19 - shaking_type:cat
+2021Apr18-19:36:19 - inner_enc_type:lstm
+2021Apr18-19:36:19 - relH_theta:0.4
+2021Apr18-19:36:19 - relT_theta:0.4
+2021Apr18-19:36:19 - rel_loss_weight:0.1
+2021Apr18-19:36:19 - ******************************DEV BEST******************************
+2021Apr18-19:36:19 - Turn 1: [epoch,p,r,f]:[-1, (0, 0, 0)]
+2021Apr18-19:36:19 - Turn 2: [epoch,p,r,f]:[-1, (0, 0, 0)]
+2021Apr18-19:36:19 - all: [epoch,p1,r1,f1;p2,r2,f2]:[-1, (0, 0, 0), (0, 0, 0)]
+2021Apr18-19:36:19 - ****************************************TEST******************************
+2021Apr18-19:36:46 - Turn 1: precision:0.8975 recall:0.8682 f1:0.8826
+2021Apr18-19:36:46 - Turn 2: precision:0.3606 recall:0.4219 f1:0.3888
+2021Apr18-19:36:49 - 加载./checkpoints/ace2005/20210416-163611/checkpoint_4.cpt
+2021Apr18-19:36:49 - id:20210416-163611
+2021Apr18-19:36:49 - log_path:./log/run_log
+2021Apr18-19:36:49 - model:MRCTPLinker
+2021Apr18-19:36:49 - dataset_tag:ace2005
+2021Apr18-19:36:49 - train_path:data/cleaned_data/ACE2005/bert-base-uncased_overlap_15_window_100_threshold_1_max_distance_45_is_mq_False/train.json
+2021Apr18-19:36:49 - train_batch:24
+2021Apr18-19:36:49 - test_path:data/cleaned_data/ACE2005/bert-base-uncased_overlap_15_window_100_threshold_1_max_distance_45_is_mq_False/test.json
+2021Apr18-19:36:49 - test_batch:24
+2021Apr18-19:36:49 - dev_path:data/cleaned_data/ACE2005/bert-base-uncased_overlap_15_window_100_threshold_1_max_distance_45_is_mq_False/dev.json
+2021Apr18-19:36:49 - dev_batch:24
+2021Apr18-19:36:49 - max_len:120
+2021Apr18-19:36:49 - pretrained_model_path:../pretrained_models/bert-base-uncased
+2021Apr18-19:36:49 - max_epochs:100
+2021Apr18-19:36:49 - warmup_ratio:-1
+2021Apr18-19:36:49 - lr:2e-05
+2021Apr18-19:36:49 - dropout_prob:0.1
+2021Apr18-19:36:49 - weight_decay:0.01
+2021Apr18-19:36:49 - theta:0.2
+2021Apr18-19:36:49 - window_size:100
+2021Apr18-19:36:49 - overlap:50
+2021Apr18-19:36:49 - threshold:5
+2021Apr18-19:36:49 - local_rank:-1
+2021Apr18-19:36:49 - max_grad_norm:1
+2021Apr18-19:36:49 - seed:0
+2021Apr18-19:36:49 - amp:False
+2021Apr18-19:36:49 - not_save:False
+2021Apr18-19:36:49 - reload:False
+2021Apr18-19:36:49 - train:False
+2021Apr18-19:36:49 - dev_eval:False
+2021Apr18-19:36:49 - test_eval:True
+2021Apr18-19:36:49 - load_checkpoint_dir:-
+2021Apr18-19:36:49 - checkpoint_start:0
+2021Apr18-19:36:49 - num_questions:1
+2021Apr18-19:36:49 - train_ent:True
+2021Apr18-19:36:49 - train_rel:True
+2021Apr18-19:36:49 - cuda:0
+2021Apr18-19:36:49 - shaking_type:cat
+2021Apr18-19:36:49 - inner_enc_type:lstm
+2021Apr18-19:36:49 - relH_theta:0.4
+2021Apr18-19:36:49 - relT_theta:0.4
+2021Apr18-19:36:49 - rel_loss_weight:0.1
+2021Apr18-19:36:49 - ******************************DEV BEST******************************
+2021Apr18-19:36:49 - Turn 1: [epoch,p,r,f]:[-1, (0, 0, 0)]
+2021Apr18-19:36:49 - Turn 2: [epoch,p,r,f]:[-1, (0, 0, 0)]
+2021Apr18-19:36:49 - all: [epoch,p1,r1,f1;p2,r2,f2]:[-1, (0, 0, 0), (0, 0, 0)]
+2021Apr18-19:36:49 - ****************************************TEST******************************
+2021Apr18-19:37:09 - Turn 1: precision:0.8904 recall:0.8834 f1:0.8869
+2021Apr18-19:37:09 - Turn 2: precision:0.4518 recall:0.4258 f1:0.4384
+2021Apr18-19:37:11 - 加载./checkpoints/ace2005/20210416-163611/checkpoint_5.cpt
+2021Apr18-19:37:11 - id:20210416-163611
+2021Apr18-19:37:11 - log_path:./log/run_log
+2021Apr18-19:37:11 - model:MRCTPLinker
+2021Apr18-19:37:11 - dataset_tag:ace2005
+2021Apr18-19:37:11 - train_path:data/cleaned_data/ACE2005/bert-base-uncased_overlap_15_window_100_threshold_1_max_distance_45_is_mq_False/train.json
+2021Apr18-19:37:11 - train_batch:24
+2021Apr18-19:37:11 - test_path:data/cleaned_data/ACE2005/bert-base-uncased_overlap_15_window_100_threshold_1_max_distance_45_is_mq_False/test.json
+2021Apr18-19:37:11 - test_batch:24
+2021Apr18-19:37:11 - dev_path:data/cleaned_data/ACE2005/bert-base-uncased_overlap_15_window_100_threshold_1_max_distance_45_is_mq_False/dev.json
+2021Apr18-19:37:11 - dev_batch:24
+2021Apr18-19:37:11 - max_len:120
+2021Apr18-19:37:11 - pretrained_model_path:../pretrained_models/bert-base-uncased
+2021Apr18-19:37:11 - max_epochs:100
+2021Apr18-19:37:11 - warmup_ratio:-1
+2021Apr18-19:37:11 - lr:2e-05
+2021Apr18-19:37:11 - dropout_prob:0.1
+2021Apr18-19:37:11 - weight_decay:0.01
+2021Apr18-19:37:11 - theta:0.2
+2021Apr18-19:37:11 - window_size:100
+2021Apr18-19:37:11 - overlap:50
+2021Apr18-19:37:11 - threshold:5
+2021Apr18-19:37:11 - local_rank:-1
+2021Apr18-19:37:11 - max_grad_norm:1
+2021Apr18-19:37:11 - seed:0
+2021Apr18-19:37:11 - amp:False
+2021Apr18-19:37:11 - not_save:False
+2021Apr18-19:37:11 - reload:False
+2021Apr18-19:37:11 - train:False
+2021Apr18-19:37:11 - dev_eval:False
+2021Apr18-19:37:11 - test_eval:True
+2021Apr18-19:37:11 - load_checkpoint_dir:-
+2021Apr18-19:37:11 - checkpoint_start:0
+2021Apr18-19:37:11 - num_questions:1
+2021Apr18-19:37:11 - train_ent:True
+2021Apr18-19:37:11 - train_rel:True
+2021Apr18-19:37:11 - cuda:0
+2021Apr18-19:37:11 - shaking_type:cat
+2021Apr18-19:37:11 - inner_enc_type:lstm
+2021Apr18-19:37:11 - relH_theta:0.4
+2021Apr18-19:37:11 - relT_theta:0.4
+2021Apr18-19:37:11 - rel_loss_weight:0.1
+2021Apr18-19:37:11 - ******************************DEV BEST******************************
+2021Apr18-19:37:11 - Turn 1: [epoch,p,r,f]:[-1, (0, 0, 0)]
+2021Apr18-19:37:11 - Turn 2: [epoch,p,r,f]:[-1, (0, 0, 0)]
+2021Apr18-19:37:11 - all: [epoch,p1,r1,f1;p2,r2,f2]:[-1, (0, 0, 0), (0, 0, 0)]
+2021Apr18-19:37:11 - ****************************************TEST******************************
+2021Apr18-19:37:38 - Turn 1: precision:0.8968 recall:0.8764 f1:0.8864
+2021Apr18-19:37:38 - Turn 2: precision:0.4049 recall:0.5534 f1:0.4677
+2021Apr18-19:37:41 - 加载./checkpoints/ace2005/20210416-163611/checkpoint_6.cpt
+2021Apr18-19:37:41 - id:20210416-163611
+2021Apr18-19:37:41 - log_path:./log/run_log
+2021Apr18-19:37:41 - model:MRCTPLinker
+2021Apr18-19:37:41 - dataset_tag:ace2005
+2021Apr18-19:37:41 - train_path:data/cleaned_data/ACE2005/bert-base-uncased_overlap_15_window_100_threshold_1_max_distance_45_is_mq_False/train.json
+2021Apr18-19:37:41 - train_batch:24
+2021Apr18-19:37:41 - test_path:data/cleaned_data/ACE2005/bert-base-uncased_overlap_15_window_100_threshold_1_max_distance_45_is_mq_False/test.json
+2021Apr18-19:37:41 - test_batch:24
+2021Apr18-19:37:41 - dev_path:data/cleaned_data/ACE2005/bert-base-uncased_overlap_15_window_100_threshold_1_max_distance_45_is_mq_False/dev.json
+2021Apr18-19:37:41 - dev_batch:24
+2021Apr18-19:37:41 - max_len:120
+2021Apr18-19:37:41 - pretrained_model_path:../pretrained_models/bert-base-uncased
+2021Apr18-19:37:41 - max_epochs:100
+2021Apr18-19:37:41 - warmup_ratio:-1
+2021Apr18-19:37:41 - lr:2e-05
+2021Apr18-19:37:41 - dropout_prob:0.1
+2021Apr18-19:37:41 - weight_decay:0.01
+2021Apr18-19:37:41 - theta:0.2
+2021Apr18-19:37:41 - window_size:100
+2021Apr18-19:37:41 - overlap:50
+2021Apr18-19:37:41 - threshold:5
+2021Apr18-19:37:41 - local_rank:-1
+2021Apr18-19:37:41 - max_grad_norm:1
+2021Apr18-19:37:41 - seed:0
+2021Apr18-19:37:41 - amp:False
+2021Apr18-19:37:41 - not_save:False
+2021Apr18-19:37:41 - reload:False
+2021Apr18-19:37:41 - train:False
+2021Apr18-19:37:41 - dev_eval:False
+2021Apr18-19:37:41 - test_eval:True
+2021Apr18-19:37:41 - load_checkpoint_dir:-
+2021Apr18-19:37:41 - checkpoint_start:0
+2021Apr18-19:37:41 - num_questions:1
+2021Apr18-19:37:41 - train_ent:True
+2021Apr18-19:37:41 - train_rel:True
+2021Apr18-19:37:41 - cuda:0
+2021Apr18-19:37:41 - shaking_type:cat
+2021Apr18-19:37:41 - inner_enc_type:lstm
+2021Apr18-19:37:41 - relH_theta:0.4
+2021Apr18-19:37:41 - relT_theta:0.4
+2021Apr18-19:37:41 - rel_loss_weight:0.1
+2021Apr18-19:37:41 - ******************************DEV BEST******************************
+2021Apr18-19:37:41 - Turn 1: [epoch,p,r,f]:[-1, (0, 0, 0)]
+2021Apr18-19:37:41 - Turn 2: [epoch,p,r,f]:[-1, (0, 0, 0)]
+2021Apr18-19:37:41 - all: [epoch,p1,r1,f1;p2,r2,f2]:[-1, (0, 0, 0), (0, 0, 0)]
+2021Apr18-19:37:41 - ****************************************TEST******************************
+2021Apr18-19:38:02 - Turn 1: precision:0.8946 recall:0.8741 f1:0.8843
+2021Apr18-19:38:02 - Turn 2: precision:0.3939 recall:0.5845 f1:0.4706
+2021Apr18-19:38:04 - 加载./checkpoints/ace2005/20210416-163611/checkpoint_7.cpt
+2021Apr18-19:38:04 - id:20210416-163611
+2021Apr18-19:38:04 - log_path:./log/run_log
+2021Apr18-19:38:04 - model:MRCTPLinker
+2021Apr18-19:38:04 - dataset_tag:ace2005
+2021Apr18-19:38:04 - train_path:data/cleaned_data/ACE2005/bert-base-uncased_overlap_15_window_100_threshold_1_max_distance_45_is_mq_False/train.json
+2021Apr18-19:38:04 - train_batch:24
+2021Apr18-19:38:04 - test_path:data/cleaned_data/ACE2005/bert-base-uncased_overlap_15_window_100_threshold_1_max_distance_45_is_mq_False/test.json
+2021Apr18-19:38:04 - test_batch:24
+2021Apr18-19:38:04 - dev_path:data/cleaned_data/ACE2005/bert-base-uncased_overlap_15_window_100_threshold_1_max_distance_45_is_mq_False/dev.json
+2021Apr18-19:38:04 - dev_batch:24
+2021Apr18-19:38:04 - max_len:120
+2021Apr18-19:38:04 - pretrained_model_path:../pretrained_models/bert-base-uncased
+2021Apr18-19:38:04 - max_epochs:100
+2021Apr18-19:38:04 - warmup_ratio:-1
+2021Apr18-19:38:04 - lr:2e-05
+2021Apr18-19:38:04 - dropout_prob:0.1
+2021Apr18-19:38:04 - weight_decay:0.01
+2021Apr18-19:38:04 - theta:0.2
+2021Apr18-19:38:04 - window_size:100
+2021Apr18-19:38:04 - overlap:50
+2021Apr18-19:38:04 - threshold:5
+2021Apr18-19:38:04 - local_rank:-1
+2021Apr18-19:38:04 - max_grad_norm:1
+2021Apr18-19:38:04 - seed:0
+2021Apr18-19:38:04 - amp:False
+2021Apr18-19:38:04 - not_save:False
+2021Apr18-19:38:04 - reload:False
+2021Apr18-19:38:04 - train:False
+2021Apr18-19:38:04 - dev_eval:False
+2021Apr18-19:38:04 - test_eval:True
+2021Apr18-19:38:04 - load_checkpoint_dir:-
+2021Apr18-19:38:04 - checkpoint_start:0
+2021Apr18-19:38:04 - num_questions:1
+2021Apr18-19:38:04 - train_ent:True
+2021Apr18-19:38:04 - train_rel:True
+2021Apr18-19:38:04 - cuda:0
+2021Apr18-19:38:04 - shaking_type:cat
+2021Apr18-19:38:04 - inner_enc_type:lstm
+2021Apr18-19:38:04 - relH_theta:0.4
+2021Apr18-19:38:04 - relT_theta:0.4
+2021Apr18-19:38:04 - rel_loss_weight:0.1
+2021Apr18-19:38:04 - ******************************DEV BEST******************************
+2021Apr18-19:38:04 - Turn 1: [epoch,p,r,f]:[-1, (0, 0, 0)]
+2021Apr18-19:38:04 - Turn 2: [epoch,p,r,f]:[-1, (0, 0, 0)]
+2021Apr18-19:38:04 - all: [epoch,p1,r1,f1;p2,r2,f2]:[-1, (0, 0, 0), (0, 0, 0)]
+2021Apr18-19:38:04 - ****************************************TEST******************************
+2021Apr18-19:38:31 - Turn 1: precision:0.8843 recall:0.8878 f1:0.8860
+2021Apr18-19:38:31 - Turn 2: precision:0.3749 recall:0.6276 f1:0.4694
+2021Apr18-19:38:34 - 加载./checkpoints/ace2005/20210416-163611/checkpoint_8.cpt
+2021Apr18-19:38:34 - id:20210416-163611
+2021Apr18-19:38:34 - log_path:./log/run_log
+2021Apr18-19:38:34 - model:MRCTPLinker
+2021Apr18-19:38:34 - dataset_tag:ace2005
+2021Apr18-19:38:34 - train_path:data/cleaned_data/ACE2005/bert-base-uncased_overlap_15_window_100_threshold_1_max_distance_45_is_mq_False/train.json
+2021Apr18-19:38:34 - train_batch:24
+2021Apr18-19:38:34 - test_path:data/cleaned_data/ACE2005/bert-base-uncased_overlap_15_window_100_threshold_1_max_distance_45_is_mq_False/test.json
+2021Apr18-19:38:34 - test_batch:24
+2021Apr18-19:38:34 - dev_path:data/cleaned_data/ACE2005/bert-base-uncased_overlap_15_window_100_threshold_1_max_distance_45_is_mq_False/dev.json
+2021Apr18-19:38:34 - dev_batch:24
+2021Apr18-19:38:34 - max_len:120
+2021Apr18-19:38:34 - pretrained_model_path:../pretrained_models/bert-base-uncased
+2021Apr18-19:38:34 - max_epochs:100
+2021Apr18-19:38:34 - warmup_ratio:-1
+2021Apr18-19:38:34 - lr:2e-05
+2021Apr18-19:38:34 - dropout_prob:0.1
+2021Apr18-19:38:34 - weight_decay:0.01
+2021Apr18-19:38:34 - theta:0.2
+2021Apr18-19:38:34 - window_size:100
+2021Apr18-19:38:34 - overlap:50
+2021Apr18-19:38:34 - threshold:5
+2021Apr18-19:38:34 - local_rank:-1
+2021Apr18-19:38:34 - max_grad_norm:1
+2021Apr18-19:38:34 - seed:0
+2021Apr18-19:38:34 - amp:False
+2021Apr18-19:38:34 - not_save:False
+2021Apr18-19:38:34 - reload:False
+2021Apr18-19:38:34 - train:False
+2021Apr18-19:38:34 - dev_eval:False
+2021Apr18-19:38:34 - test_eval:True
+2021Apr18-19:38:34 - load_checkpoint_dir:-
+2021Apr18-19:38:34 - checkpoint_start:0
+2021Apr18-19:38:34 - num_questions:1
+2021Apr18-19:38:34 - train_ent:True
+2021Apr18-19:38:34 - train_rel:True
+2021Apr18-19:38:34 - cuda:0
+2021Apr18-19:38:34 - shaking_type:cat
+2021Apr18-19:38:34 - inner_enc_type:lstm
+2021Apr18-19:38:34 - relH_theta:0.4
+2021Apr18-19:38:34 - relT_theta:0.4
+2021Apr18-19:38:34 - rel_loss_weight:0.1
+2021Apr18-19:38:34 - ******************************DEV BEST******************************
+2021Apr18-19:38:34 - Turn 1: [epoch,p,r,f]:[-1, (0, 0, 0)]
+2021Apr18-19:38:34 - Turn 2: [epoch,p,r,f]:[-1, (0, 0, 0)]
+2021Apr18-19:38:34 - all: [epoch,p1,r1,f1;p2,r2,f2]:[-1, (0, 0, 0), (0, 0, 0)]
+2021Apr18-19:38:34 - ****************************************TEST******************************
+2021Apr18-19:39:00 - Turn 1: precision:0.8864 recall:0.8891 f1:0.8877
+2021Apr18-19:39:00 - Turn 2: precision:0.3880 recall:0.6435 f1:0.4841
+2021Apr18-19:39:03 - 加载./checkpoints/ace2005/20210416-163611/checkpoint_9.cpt
+2021Apr18-19:39:03 - id:20210416-163611
+2021Apr18-19:39:03 - log_path:./log/run_log
+2021Apr18-19:39:03 - model:MRCTPLinker
+2021Apr18-19:39:03 - dataset_tag:ace2005
+2021Apr18-19:39:03 - train_path:data/cleaned_data/ACE2005/bert-base-uncased_overlap_15_window_100_threshold_1_max_distance_45_is_mq_False/train.json
+2021Apr18-19:39:03 - train_batch:24
+2021Apr18-19:39:03 - test_path:data/cleaned_data/ACE2005/bert-base-uncased_overlap_15_window_100_threshold_1_max_distance_45_is_mq_False/test.json
+2021Apr18-19:39:03 - test_batch:24
+2021Apr18-19:39:03 - dev_path:data/cleaned_data/ACE2005/bert-base-uncased_overlap_15_window_100_threshold_1_max_distance_45_is_mq_False/dev.json
+2021Apr18-19:39:03 - dev_batch:24
+2021Apr18-19:39:03 - max_len:120
+2021Apr18-19:39:03 - pretrained_model_path:../pretrained_models/bert-base-uncased
+2021Apr18-19:39:03 - max_epochs:100
+2021Apr18-19:39:03 - warmup_ratio:-1
+2021Apr18-19:39:03 - lr:2e-05
+2021Apr18-19:39:03 - dropout_prob:0.1
+2021Apr18-19:39:03 - weight_decay:0.01
+2021Apr18-19:39:03 - theta:0.2
+2021Apr18-19:39:03 - window_size:100
+2021Apr18-19:39:03 - overlap:50
+2021Apr18-19:39:03 - threshold:5
+2021Apr18-19:39:03 - local_rank:-1
+2021Apr18-19:39:03 - max_grad_norm:1
+2021Apr18-19:39:03 - seed:0
+2021Apr18-19:39:03 - amp:False
+2021Apr18-19:39:03 - not_save:False
+2021Apr18-19:39:03 - reload:False
+2021Apr18-19:39:03 - train:False
+2021Apr18-19:39:03 - dev_eval:False
+2021Apr18-19:39:03 - test_eval:True
+2021Apr18-19:39:03 - load_checkpoint_dir:-
+2021Apr18-19:39:03 - checkpoint_start:0
+2021Apr18-19:39:03 - num_questions:1
+2021Apr18-19:39:03 - train_ent:True
+2021Apr18-19:39:03 - train_rel:True
+2021Apr18-19:39:03 - cuda:0
+2021Apr18-19:39:03 - shaking_type:cat
+2021Apr18-19:39:03 - inner_enc_type:lstm
+2021Apr18-19:39:03 - relH_theta:0.4
+2021Apr18-19:39:03 - relT_theta:0.4
+2021Apr18-19:39:03 - rel_loss_weight:0.1
+2021Apr18-19:39:03 - ******************************DEV BEST******************************
+2021Apr18-19:39:03 - Turn 1: [epoch,p,r,f]:[-1, (0, 0, 0)]
+2021Apr18-19:39:03 - Turn 2: [epoch,p,r,f]:[-1, (0, 0, 0)]
+2021Apr18-19:39:03 - all: [epoch,p1,r1,f1;p2,r2,f2]:[-1, (0, 0, 0), (0, 0, 0)]
+2021Apr18-19:39:03 - ****************************************TEST******************************
+2021Apr18-19:39:24 - Turn 1: precision:0.8904 recall:0.8907 f1:0.8905
+2021Apr18-19:39:24 - Turn 2: precision:0.3765 recall:0.6810 f1:0.4850
+2021Apr18-19:39:26 - 加载./checkpoints/ace2005/20210416-163611/checkpoint_10.cpt
+2021Apr18-19:39:26 - id:20210416-163611
+2021Apr18-19:39:26 - log_path:./log/run_log
+2021Apr18-19:39:26 - model:MRCTPLinker
+2021Apr18-19:39:26 - dataset_tag:ace2005
+2021Apr18-19:39:26 - train_path:data/cleaned_data/ACE2005/bert-base-uncased_overlap_15_window_100_threshold_1_max_distance_45_is_mq_False/train.json
+2021Apr18-19:39:26 - train_batch:24
+2021Apr18-19:39:26 - test_path:data/cleaned_data/ACE2005/bert-base-uncased_overlap_15_window_100_threshold_1_max_distance_45_is_mq_False/test.json
+2021Apr18-19:39:26 - test_batch:24
+2021Apr18-19:39:26 - dev_path:data/cleaned_data/ACE2005/bert-base-uncased_overlap_15_window_100_threshold_1_max_distance_45_is_mq_False/dev.json
+2021Apr18-19:39:26 - dev_batch:24
+2021Apr18-19:39:26 - max_len:120
+2021Apr18-19:39:26 - pretrained_model_path:../pretrained_models/bert-base-uncased
+2021Apr18-19:39:26 - max_epochs:100
+2021Apr18-19:39:26 - warmup_ratio:-1
+2021Apr18-19:39:26 - lr:2e-05
+2021Apr18-19:39:26 - dropout_prob:0.1
+2021Apr18-19:39:26 - weight_decay:0.01
+2021Apr18-19:39:26 - theta:0.2
+2021Apr18-19:39:26 - window_size:100
+2021Apr18-19:39:26 - overlap:50
+2021Apr18-19:39:26 - threshold:5
+2021Apr18-19:39:26 - local_rank:-1
+2021Apr18-19:39:26 - max_grad_norm:1
+2021Apr18-19:39:26 - seed:0
+2021Apr18-19:39:26 - amp:False
+2021Apr18-19:39:26 - not_save:False
+2021Apr18-19:39:26 - reload:False
+2021Apr18-19:39:26 - train:False
+2021Apr18-19:39:26 - dev_eval:False
+2021Apr18-19:39:26 - test_eval:True
+2021Apr18-19:39:26 - load_checkpoint_dir:-
+2021Apr18-19:39:26 - checkpoint_start:0
+2021Apr18-19:39:26 - num_questions:1
+2021Apr18-19:39:26 - train_ent:True
+2021Apr18-19:39:26 - train_rel:True
+2021Apr18-19:39:26 - cuda:0
+2021Apr18-19:39:26 - shaking_type:cat
+2021Apr18-19:39:26 - inner_enc_type:lstm
+2021Apr18-19:39:26 - relH_theta:0.4
+2021Apr18-19:39:26 - relT_theta:0.4
+2021Apr18-19:39:26 - rel_loss_weight:0.1
+2021Apr18-19:39:26 - ******************************DEV BEST******************************
+2021Apr18-19:39:26 - Turn 1: [epoch,p,r,f]:[-1, (0, 0, 0)]
+2021Apr18-19:39:26 - Turn 2: [epoch,p,r,f]:[-1, (0, 0, 0)]
+2021Apr18-19:39:26 - all: [epoch,p1,r1,f1;p2,r2,f2]:[-1, (0, 0, 0), (0, 0, 0)]
+2021Apr18-19:39:26 - ****************************************TEST******************************
+2021Apr18-19:39:53 - Turn 1: precision:0.8812 recall:0.8838 f1:0.8825
+2021Apr18-19:39:53 - Turn 2: precision:0.3921 recall:0.6459 f1:0.4880
+2021Apr18-19:39:56 - 加载./checkpoints/ace2005/20210416-163611/checkpoint_11.cpt
+2021Apr18-19:39:56 - id:20210416-163611
+2021Apr18-19:39:56 - log_path:./log/run_log
+2021Apr18-19:39:56 - model:MRCTPLinker
+2021Apr18-19:39:56 - dataset_tag:ace2005
+2021Apr18-19:39:56 - train_path:data/cleaned_data/ACE2005/bert-base-uncased_overlap_15_window_100_threshold_1_max_distance_45_is_mq_False/train.json
+2021Apr18-19:39:56 - train_batch:24
+2021Apr18-19:39:56 - test_path:data/cleaned_data/ACE2005/bert-base-uncased_overlap_15_window_100_threshold_1_max_distance_45_is_mq_False/test.json
+2021Apr18-19:39:56 - test_batch:24
+2021Apr18-19:39:56 - dev_path:data/cleaned_data/ACE2005/bert-base-uncased_overlap_15_window_100_threshold_1_max_distance_45_is_mq_False/dev.json
+2021Apr18-19:39:56 - dev_batch:24
+2021Apr18-19:39:56 - max_len:120
+2021Apr18-19:39:56 - pretrained_model_path:../pretrained_models/bert-base-uncased
+2021Apr18-19:39:56 - max_epochs:100
+2021Apr18-19:39:56 - warmup_ratio:-1
+2021Apr18-19:39:56 - lr:2e-05
+2021Apr18-19:39:56 - dropout_prob:0.1
+2021Apr18-19:39:56 - weight_decay:0.01
+2021Apr18-19:39:56 - theta:0.2
+2021Apr18-19:39:56 - window_size:100
+2021Apr18-19:39:56 - overlap:50
+2021Apr18-19:39:56 - threshold:5
+2021Apr18-19:39:56 - local_rank:-1
+2021Apr18-19:39:56 - max_grad_norm:1
+2021Apr18-19:39:56 - seed:0
+2021Apr18-19:39:56 - amp:False
+2021Apr18-19:39:56 - not_save:False
+2021Apr18-19:39:56 - reload:False
+2021Apr18-19:39:56 - train:False
+2021Apr18-19:39:56 - dev_eval:False
+2021Apr18-19:39:56 - test_eval:True
+2021Apr18-19:39:56 - load_checkpoint_dir:-
+2021Apr18-19:39:56 - checkpoint_start:0
+2021Apr18-19:39:56 - num_questions:1
+2021Apr18-19:39:56 - train_ent:True
+2021Apr18-19:39:56 - train_rel:True
+2021Apr18-19:39:56 - cuda:0
+2021Apr18-19:39:56 - shaking_type:cat
+2021Apr18-19:39:56 - inner_enc_type:lstm
+2021Apr18-19:39:56 - relH_theta:0.4
+2021Apr18-19:39:56 - relT_theta:0.4
+2021Apr18-19:39:56 - rel_loss_weight:0.1
+2021Apr18-19:39:56 - ******************************DEV BEST******************************
+2021Apr18-19:39:56 - Turn 1: [epoch,p,r,f]:[-1, (0, 0, 0)]
+2021Apr18-19:39:56 - Turn 2: [epoch,p,r,f]:[-1, (0, 0, 0)]
+2021Apr18-19:39:56 - all: [epoch,p1,r1,f1;p2,r2,f2]:[-1, (0, 0, 0), (0, 0, 0)]
+2021Apr18-19:39:56 - ****************************************TEST******************************
+2021Apr18-19:40:17 - Turn 1: precision:0.8913 recall:0.8822 f1:0.8868
+2021Apr18-19:40:17 - Turn 2: precision:0.4560 recall:0.6156 f1:0.5239
+2021Apr18-19:40:19 - 加载./checkpoints/ace2005/20210416-163611/checkpoint_12.cpt
+2021Apr18-19:40:19 - id:20210416-163611
+2021Apr18-19:40:19 - log_path:./log/run_log
+2021Apr18-19:40:19 - model:MRCTPLinker
+2021Apr18-19:40:19 - dataset_tag:ace2005
+2021Apr18-19:40:19 - train_path:data/cleaned_data/ACE2005/bert-base-uncased_overlap_15_window_100_threshold_1_max_distance_45_is_mq_False/train.json
+2021Apr18-19:40:19 - train_batch:24
+2021Apr18-19:40:19 - test_path:data/cleaned_data/ACE2005/bert-base-uncased_overlap_15_window_100_threshold_1_max_distance_45_is_mq_False/test.json
+2021Apr18-19:40:19 - test_batch:24
+2021Apr18-19:40:19 - dev_path:data/cleaned_data/ACE2005/bert-base-uncased_overlap_15_window_100_threshold_1_max_distance_45_is_mq_False/dev.json
+2021Apr18-19:40:19 - dev_batch:24
+2021Apr18-19:40:19 - max_len:120
+2021Apr18-19:40:19 - pretrained_model_path:../pretrained_models/bert-base-uncased
+2021Apr18-19:40:19 - max_epochs:100
+2021Apr18-19:40:19 - warmup_ratio:-1
+2021Apr18-19:40:19 - lr:2e-05
+2021Apr18-19:40:19 - dropout_prob:0.1
+2021Apr18-19:40:19 - weight_decay:0.01
+2021Apr18-19:40:19 - theta:0.2
+2021Apr18-19:40:19 - window_size:100
+2021Apr18-19:40:19 - overlap:50
+2021Apr18-19:40:19 - threshold:5
+2021Apr18-19:40:19 - local_rank:-1
+2021Apr18-19:40:19 - max_grad_norm:1
+2021Apr18-19:40:19 - seed:0
+2021Apr18-19:40:19 - amp:False
+2021Apr18-19:40:19 - not_save:False
+2021Apr18-19:40:19 - reload:False
+2021Apr18-19:40:19 - train:False
+2021Apr18-19:40:19 - dev_eval:False
+2021Apr18-19:40:19 - test_eval:True
+2021Apr18-19:40:19 - load_checkpoint_dir:-
+2021Apr18-19:40:19 - checkpoint_start:0
+2021Apr18-19:40:19 - num_questions:1
+2021Apr18-19:40:19 - train_ent:True
+2021Apr18-19:40:19 - train_rel:True
+2021Apr18-19:40:19 - cuda:0
+2021Apr18-19:40:19 - shaking_type:cat
+2021Apr18-19:40:19 - inner_enc_type:lstm
+2021Apr18-19:40:19 - relH_theta:0.4
+2021Apr18-19:40:19 - relT_theta:0.4
+2021Apr18-19:40:19 - rel_loss_weight:0.1
+2021Apr18-19:40:19 - ******************************DEV BEST******************************
+2021Apr18-19:40:19 - Turn 1: [epoch,p,r,f]:[-1, (0, 0, 0)]
+2021Apr18-19:40:19 - Turn 2: [epoch,p,r,f]:[-1, (0, 0, 0)]
+2021Apr18-19:40:19 - all: [epoch,p1,r1,f1;p2,r2,f2]:[-1, (0, 0, 0), (0, 0, 0)]
+2021Apr18-19:40:19 - ****************************************TEST******************************
+2021Apr18-19:40:46 - Turn 1: precision:0.8829 recall:0.8857 f1:0.8843
+2021Apr18-19:40:46 - Turn 2: precision:0.3861 recall:0.6691 f1:0.4896
+2021Apr18-19:40:49 - 加载./checkpoints/ace2005/20210416-163611/checkpoint_13.cpt
+2021Apr18-19:40:49 - id:20210416-163611
+2021Apr18-19:40:49 - log_path:./log/run_log
+2021Apr18-19:40:49 - model:MRCTPLinker
+2021Apr18-19:40:49 - dataset_tag:ace2005
+2021Apr18-19:40:49 - train_path:data/cleaned_data/ACE2005/bert-base-uncased_overlap_15_window_100_threshold_1_max_distance_45_is_mq_False/train.json
+2021Apr18-19:40:49 - train_batch:24
+2021Apr18-19:40:49 - test_path:data/cleaned_data/ACE2005/bert-base-uncased_overlap_15_window_100_threshold_1_max_distance_45_is_mq_False/test.json
+2021Apr18-19:40:49 - test_batch:24
+2021Apr18-19:40:49 - dev_path:data/cleaned_data/ACE2005/bert-base-uncased_overlap_15_window_100_threshold_1_max_distance_45_is_mq_False/dev.json
+2021Apr18-19:40:49 - dev_batch:24
+2021Apr18-19:40:49 - max_len:120
+2021Apr18-19:40:49 - pretrained_model_path:../pretrained_models/bert-base-uncased
+2021Apr18-19:40:49 - max_epochs:100
+2021Apr18-19:40:49 - warmup_ratio:-1
+2021Apr18-19:40:49 - lr:2e-05
+2021Apr18-19:40:49 - dropout_prob:0.1
+2021Apr18-19:40:49 - weight_decay:0.01
+2021Apr18-19:40:49 - theta:0.2
+2021Apr18-19:40:49 - window_size:100
+2021Apr18-19:40:49 - overlap:50
+2021Apr18-19:40:49 - threshold:5
+2021Apr18-19:40:49 - local_rank:-1
+2021Apr18-19:40:49 - max_grad_norm:1
+2021Apr18-19:40:49 - seed:0
+2021Apr18-19:40:49 - amp:False
+2021Apr18-19:40:49 - not_save:False
+2021Apr18-19:40:49 - reload:False
+2021Apr18-19:40:49 - train:False
+2021Apr18-19:40:49 - dev_eval:False
+2021Apr18-19:40:49 - test_eval:True
+2021Apr18-19:40:49 - load_checkpoint_dir:-
+2021Apr18-19:40:49 - checkpoint_start:0
+2021Apr18-19:40:49 - num_questions:1
+2021Apr18-19:40:49 - train_ent:True
+2021Apr18-19:40:49 - train_rel:True
+2021Apr18-19:40:49 - cuda:0
+2021Apr18-19:40:49 - shaking_type:cat
+2021Apr18-19:40:49 - inner_enc_type:lstm
+2021Apr18-19:40:49 - relH_theta:0.4
+2021Apr18-19:40:49 - relT_theta:0.4
+2021Apr18-19:40:49 - rel_loss_weight:0.1
+2021Apr18-19:40:49 - ******************************DEV BEST******************************
+2021Apr18-19:40:49 - Turn 1: [epoch,p,r,f]:[-1, (0, 0, 0)]
+2021Apr18-19:40:49 - Turn 2: [epoch,p,r,f]:[-1, (0, 0, 0)]
+2021Apr18-19:40:49 - all: [epoch,p1,r1,f1;p2,r2,f2]:[-1, (0, 0, 0), (0, 0, 0)]
+2021Apr18-19:40:49 - ****************************************TEST******************************
+2021Apr18-19:41:10 - Turn 1: precision:0.9045 recall:0.8709 f1:0.8874
+2021Apr18-19:41:10 - Turn 2: precision:0.4813 recall:0.5941 f1:0.5318
+2021Apr18-19:41:12 - 加载./checkpoints/ace2005/20210416-163611/checkpoint_14.cpt
+2021Apr18-19:41:12 - id:20210416-163611
+2021Apr18-19:41:12 - log_path:./log/run_log
+2021Apr18-19:41:12 - model:MRCTPLinker
+2021Apr18-19:41:12 - dataset_tag:ace2005
+2021Apr18-19:41:12 - train_path:data/cleaned_data/ACE2005/bert-base-uncased_overlap_15_window_100_threshold_1_max_distance_45_is_mq_False/train.json
+2021Apr18-19:41:12 - train_batch:24
+2021Apr18-19:41:12 - test_path:data/cleaned_data/ACE2005/bert-base-uncased_overlap_15_window_100_threshold_1_max_distance_45_is_mq_False/test.json
+2021Apr18-19:41:12 - test_batch:24
+2021Apr18-19:41:12 - dev_path:data/cleaned_data/ACE2005/bert-base-uncased_overlap_15_window_100_threshold_1_max_distance_45_is_mq_False/dev.json
+2021Apr18-19:41:12 - dev_batch:24
+2021Apr18-19:41:12 - max_len:120
+2021Apr18-19:41:12 - pretrained_model_path:../pretrained_models/bert-base-uncased
+2021Apr18-19:41:12 - max_epochs:100
+2021Apr18-19:41:12 - warmup_ratio:-1
+2021Apr18-19:41:12 - lr:2e-05
+2021Apr18-19:41:12 - dropout_prob:0.1
+2021Apr18-19:41:12 - weight_decay:0.01
+2021Apr18-19:41:12 - theta:0.2
+2021Apr18-19:41:12 - window_size:100
+2021Apr18-19:41:12 - overlap:50
+2021Apr18-19:41:12 - threshold:5
+2021Apr18-19:41:12 - local_rank:-1
+2021Apr18-19:41:12 - max_grad_norm:1
+2021Apr18-19:41:12 - seed:0
+2021Apr18-19:41:12 - amp:False
+2021Apr18-19:41:12 - not_save:False
+2021Apr18-19:41:12 - reload:False
+2021Apr18-19:41:12 - train:False
+2021Apr18-19:41:12 - dev_eval:False
+2021Apr18-19:41:12 - test_eval:True
+2021Apr18-19:41:12 - load_checkpoint_dir:-
+2021Apr18-19:41:12 - checkpoint_start:0
+2021Apr18-19:41:12 - num_questions:1
+2021Apr18-19:41:12 - train_ent:True
+2021Apr18-19:41:12 - train_rel:True
+2021Apr18-19:41:12 - cuda:0
+2021Apr18-19:41:12 - shaking_type:cat
+2021Apr18-19:41:12 - inner_enc_type:lstm
+2021Apr18-19:41:12 - relH_theta:0.4
+2021Apr18-19:41:12 - relT_theta:0.4
+2021Apr18-19:41:12 - rel_loss_weight:0.1
+2021Apr18-19:41:12 - ******************************DEV BEST******************************
+2021Apr18-19:41:12 - Turn 1: [epoch,p,r,f]:[-1, (0, 0, 0)]
+2021Apr18-19:41:12 - Turn 2: [epoch,p,r,f]:[-1, (0, 0, 0)]
+2021Apr18-19:41:12 - all: [epoch,p1,r1,f1;p2,r2,f2]:[-1, (0, 0, 0), (0, 0, 0)]
+2021Apr18-19:41:12 - ****************************************TEST******************************
+2021Apr18-19:41:39 - Turn 1: precision:0.8864 recall:0.8840 f1:0.8852
+2021Apr18-19:41:39 - Turn 2: precision:0.4318 recall:0.6316 f1:0.5130
+2021Apr18-19:41:41 - 加载./checkpoints/ace2005/20210416-163611/checkpoint_15.cpt
+2021Apr18-19:41:41 - id:20210416-163611
+2021Apr18-19:41:41 - log_path:./log/run_log
+2021Apr18-19:41:41 - model:MRCTPLinker
+2021Apr18-19:41:41 - dataset_tag:ace2005
+2021Apr18-19:41:41 - train_path:data/cleaned_data/ACE2005/bert-base-uncased_overlap_15_window_100_threshold_1_max_distance_45_is_mq_False/train.json
+2021Apr18-19:41:41 - train_batch:24
+2021Apr18-19:41:41 - test_path:data/cleaned_data/ACE2005/bert-base-uncased_overlap_15_window_100_threshold_1_max_distance_45_is_mq_False/test.json
+2021Apr18-19:41:41 - test_batch:24
+2021Apr18-19:41:41 - dev_path:data/cleaned_data/ACE2005/bert-base-uncased_overlap_15_window_100_threshold_1_max_distance_45_is_mq_False/dev.json
+2021Apr18-19:41:41 - dev_batch:24
+2021Apr18-19:41:41 - max_len:120
+2021Apr18-19:41:41 - pretrained_model_path:../pretrained_models/bert-base-uncased
+2021Apr18-19:41:41 - max_epochs:100
+2021Apr18-19:41:41 - warmup_ratio:-1
+2021Apr18-19:41:41 - lr:2e-05
+2021Apr18-19:41:41 - dropout_prob:0.1
+2021Apr18-19:41:41 - weight_decay:0.01
+2021Apr18-19:41:41 - theta:0.2
+2021Apr18-19:41:41 - window_size:100
+2021Apr18-19:41:41 - overlap:50
+2021Apr18-19:41:41 - threshold:5
+2021Apr18-19:41:41 - local_rank:-1
+2021Apr18-19:41:41 - max_grad_norm:1
+2021Apr18-19:41:41 - seed:0
+2021Apr18-19:41:41 - amp:False
+2021Apr18-19:41:41 - not_save:False
+2021Apr18-19:41:41 - reload:False
+2021Apr18-19:41:41 - train:False
+2021Apr18-19:41:41 - dev_eval:False
+2021Apr18-19:41:41 - test_eval:True
+2021Apr18-19:41:41 - load_checkpoint_dir:-
+2021Apr18-19:41:41 - checkpoint_start:0
+2021Apr18-19:41:41 - num_questions:1
+2021Apr18-19:41:41 - train_ent:True
+2021Apr18-19:41:41 - train_rel:True
+2021Apr18-19:41:41 - cuda:0
+2021Apr18-19:41:41 - shaking_type:cat
+2021Apr18-19:41:41 - inner_enc_type:lstm
+2021Apr18-19:41:41 - relH_theta:0.4
+2021Apr18-19:41:41 - relT_theta:0.4
+2021Apr18-19:41:41 - rel_loss_weight:0.1
+2021Apr18-19:41:41 - ******************************DEV BEST******************************
+2021Apr18-19:41:41 - Turn 1: [epoch,p,r,f]:[-1, (0, 0, 0)]
+2021Apr18-19:41:41 - Turn 2: [epoch,p,r,f]:[-1, (0, 0, 0)]
+2021Apr18-19:41:41 - all: [epoch,p1,r1,f1;p2,r2,f2]:[-1, (0, 0, 0), (0, 0, 0)]
+2021Apr18-19:41:41 - ****************************************TEST******************************
+2021Apr18-19:42:02 - Turn 1: precision:0.8938 recall:0.8719 f1:0.8827
+2021Apr18-19:42:02 - Turn 2: precision:0.4684 recall:0.6212 f1:0.5341
+2021Apr18-19:42:05 - 加载./checkpoints/ace2005/20210416-163611/checkpoint_16.cpt
+2021Apr18-19:42:05 - id:20210416-163611
+2021Apr18-19:42:05 - log_path:./log/run_log
+2021Apr18-19:42:05 - model:MRCTPLinker
+2021Apr18-19:42:05 - dataset_tag:ace2005
+2021Apr18-19:42:05 - train_path:data/cleaned_data/ACE2005/bert-base-uncased_overlap_15_window_100_threshold_1_max_distance_45_is_mq_False/train.json
+2021Apr18-19:42:05 - train_batch:24
+2021Apr18-19:42:05 - test_path:data/cleaned_data/ACE2005/bert-base-uncased_overlap_15_window_100_threshold_1_max_distance_45_is_mq_False/test.json
+2021Apr18-19:42:05 - test_batch:24
+2021Apr18-19:42:05 - dev_path:data/cleaned_data/ACE2005/bert-base-uncased_overlap_15_window_100_threshold_1_max_distance_45_is_mq_False/dev.json
+2021Apr18-19:42:05 - dev_batch:24
+2021Apr18-19:42:05 - max_len:120
+2021Apr18-19:42:05 - pretrained_model_path:../pretrained_models/bert-base-uncased
+2021Apr18-19:42:05 - max_epochs:100
+2021Apr18-19:42:05 - warmup_ratio:-1
+2021Apr18-19:42:05 - lr:2e-05
+2021Apr18-19:42:05 - dropout_prob:0.1
+2021Apr18-19:42:05 - weight_decay:0.01
+2021Apr18-19:42:05 - theta:0.2
+2021Apr18-19:42:05 - window_size:100
+2021Apr18-19:42:05 - overlap:50
+2021Apr18-19:42:05 - threshold:5
+2021Apr18-19:42:05 - local_rank:-1
+2021Apr18-19:42:05 - max_grad_norm:1
+2021Apr18-19:42:05 - seed:0
+2021Apr18-19:42:05 - amp:False
+2021Apr18-19:42:05 - not_save:False
+2021Apr18-19:42:05 - reload:False
+2021Apr18-19:42:05 - train:False
+2021Apr18-19:42:05 - dev_eval:False
+2021Apr18-19:42:05 - test_eval:True
+2021Apr18-19:42:05 - load_checkpoint_dir:-
+2021Apr18-19:42:05 - checkpoint_start:0
+2021Apr18-19:42:05 - num_questions:1
+2021Apr18-19:42:05 - train_ent:True
+2021Apr18-19:42:05 - train_rel:True
+2021Apr18-19:42:05 - cuda:0
+2021Apr18-19:42:05 - shaking_type:cat
+2021Apr18-19:42:05 - inner_enc_type:lstm
+2021Apr18-19:42:05 - relH_theta:0.4
+2021Apr18-19:42:05 - relT_theta:0.4
+2021Apr18-19:42:05 - rel_loss_weight:0.1
+2021Apr18-19:42:05 - ******************************DEV BEST******************************
+2021Apr18-19:42:05 - Turn 1: [epoch,p,r,f]:[-1, (0, 0, 0)]
+2021Apr18-19:42:05 - Turn 2: [epoch,p,r,f]:[-1, (0, 0, 0)]
+2021Apr18-19:42:05 - all: [epoch,p1,r1,f1;p2,r2,f2]:[-1, (0, 0, 0), (0, 0, 0)]
+2021Apr18-19:42:05 - ****************************************TEST******************************
+2021Apr18-19:42:31 - Turn 1: precision:0.8787 recall:0.8924 f1:0.8855
+2021Apr18-19:42:31 - Turn 2: precision:0.4203 recall:0.6499 f1:0.5105
+2021Apr18-19:42:34 - 加载./checkpoints/ace2005/20210416-163611/checkpoint_17.cpt
+2021Apr18-19:42:34 - id:20210416-163611
+2021Apr18-19:42:34 - log_path:./log/run_log
+2021Apr18-19:42:34 - model:MRCTPLinker
+2021Apr18-19:42:34 - dataset_tag:ace2005
+2021Apr18-19:42:34 - train_path:data/cleaned_data/ACE2005/bert-base-uncased_overlap_15_window_100_threshold_1_max_distance_45_is_mq_False/train.json
+2021Apr18-19:42:34 - train_batch:24
+2021Apr18-19:42:34 - test_path:data/cleaned_data/ACE2005/bert-base-uncased_overlap_15_window_100_threshold_1_max_distance_45_is_mq_False/test.json
+2021Apr18-19:42:34 - test_batch:24
+2021Apr18-19:42:34 - dev_path:data/cleaned_data/ACE2005/bert-base-uncased_overlap_15_window_100_threshold_1_max_distance_45_is_mq_False/dev.json
+2021Apr18-19:42:34 - dev_batch:24
+2021Apr18-19:42:34 - max_len:120
+2021Apr18-19:42:34 - pretrained_model_path:../pretrained_models/bert-base-uncased
+2021Apr18-19:42:34 - max_epochs:100
+2021Apr18-19:42:34 - warmup_ratio:-1
+2021Apr18-19:42:34 - lr:2e-05
+2021Apr18-19:42:34 - dropout_prob:0.1
+2021Apr18-19:42:34 - weight_decay:0.01
+2021Apr18-19:42:34 - theta:0.2
+2021Apr18-19:42:34 - window_size:100
+2021Apr18-19:42:34 - overlap:50
+2021Apr18-19:42:34 - threshold:5
+2021Apr18-19:42:34 - local_rank:-1
+2021Apr18-19:42:34 - max_grad_norm:1
+2021Apr18-19:42:34 - seed:0
+2021Apr18-19:42:34 - amp:False
+2021Apr18-19:42:34 - not_save:False
+2021Apr18-19:42:34 - reload:False
+2021Apr18-19:42:34 - train:False
+2021Apr18-19:42:34 - dev_eval:False
+2021Apr18-19:42:34 - test_eval:True
+2021Apr18-19:42:34 - load_checkpoint_dir:-
+2021Apr18-19:42:34 - checkpoint_start:0
+2021Apr18-19:42:34 - num_questions:1
+2021Apr18-19:42:34 - train_ent:True
+2021Apr18-19:42:34 - train_rel:True
+2021Apr18-19:42:34 - cuda:0
+2021Apr18-19:42:34 - shaking_type:cat
+2021Apr18-19:42:34 - inner_enc_type:lstm
+2021Apr18-19:42:34 - relH_theta:0.4
+2021Apr18-19:42:34 - relT_theta:0.4
+2021Apr18-19:42:34 - rel_loss_weight:0.1
+2021Apr18-19:42:34 - ******************************DEV BEST******************************
+2021Apr18-19:42:34 - Turn 1: [epoch,p,r,f]:[-1, (0, 0, 0)]
+2021Apr18-19:42:34 - Turn 2: [epoch,p,r,f]:[-1, (0, 0, 0)]
+2021Apr18-19:42:34 - all: [epoch,p1,r1,f1;p2,r2,f2]:[-1, (0, 0, 0), (0, 0, 0)]
+2021Apr18-19:42:34 - ****************************************TEST******************************
+2021Apr18-19:43:01 - Turn 1: precision:0.8813 recall:0.8881 f1:0.8847
+2021Apr18-19:43:01 - Turn 2: precision:0.4697 recall:0.6180 f1:0.5337
+2021Apr18-19:43:03 - 加载./checkpoints/ace2005/20210416-163611/checkpoint_18.cpt
+2021Apr18-19:43:03 - id:20210416-163611
+2021Apr18-19:43:03 - log_path:./log/run_log
+2021Apr18-19:43:03 - model:MRCTPLinker
+2021Apr18-19:43:03 - dataset_tag:ace2005
+2021Apr18-19:43:03 - train_path:data/cleaned_data/ACE2005/bert-base-uncased_overlap_15_window_100_threshold_1_max_distance_45_is_mq_False/train.json
+2021Apr18-19:43:03 - train_batch:24
+2021Apr18-19:43:03 - test_path:data/cleaned_data/ACE2005/bert-base-uncased_overlap_15_window_100_threshold_1_max_distance_45_is_mq_False/test.json
+2021Apr18-19:43:03 - test_batch:24
+2021Apr18-19:43:03 - dev_path:data/cleaned_data/ACE2005/bert-base-uncased_overlap_15_window_100_threshold_1_max_distance_45_is_mq_False/dev.json
+2021Apr18-19:43:03 - dev_batch:24
+2021Apr18-19:43:03 - max_len:120
+2021Apr18-19:43:03 - pretrained_model_path:../pretrained_models/bert-base-uncased
+2021Apr18-19:43:03 - max_epochs:100
+2021Apr18-19:43:03 - warmup_ratio:-1
+2021Apr18-19:43:03 - lr:2e-05
+2021Apr18-19:43:03 - dropout_prob:0.1
+2021Apr18-19:43:03 - weight_decay:0.01
+2021Apr18-19:43:03 - theta:0.2
+2021Apr18-19:43:03 - window_size:100
+2021Apr18-19:43:03 - overlap:50
+2021Apr18-19:43:03 - threshold:5
+2021Apr18-19:43:03 - local_rank:-1
+2021Apr18-19:43:03 - max_grad_norm:1
+2021Apr18-19:43:03 - seed:0
+2021Apr18-19:43:03 - amp:False
+2021Apr18-19:43:03 - not_save:False
+2021Apr18-19:43:03 - reload:False
+2021Apr18-19:43:03 - train:False
+2021Apr18-19:43:03 - dev_eval:False
+2021Apr18-19:43:03 - test_eval:True
+2021Apr18-19:43:03 - load_checkpoint_dir:-
+2021Apr18-19:43:03 - checkpoint_start:0
+2021Apr18-19:43:03 - num_questions:1
+2021Apr18-19:43:03 - train_ent:True
+2021Apr18-19:43:03 - train_rel:True
+2021Apr18-19:43:03 - cuda:0
+2021Apr18-19:43:03 - shaking_type:cat
+2021Apr18-19:43:03 - inner_enc_type:lstm
+2021Apr18-19:43:03 - relH_theta:0.4
+2021Apr18-19:43:03 - relT_theta:0.4
+2021Apr18-19:43:03 - rel_loss_weight:0.1
+2021Apr18-19:43:03 - ******************************DEV BEST******************************
+2021Apr18-19:43:03 - Turn 1: [epoch,p,r,f]:[-1, (0, 0, 0)]
+2021Apr18-19:43:03 - Turn 2: [epoch,p,r,f]:[-1, (0, 0, 0)]
+2021Apr18-19:43:03 - all: [epoch,p1,r1,f1;p2,r2,f2]:[-1, (0, 0, 0), (0, 0, 0)]
+2021Apr18-19:43:03 - ****************************************TEST******************************
+2021Apr18-19:43:24 - Turn 1: precision:0.8758 recall:0.8919 f1:0.8838
+2021Apr18-19:43:24 - Turn 2: precision:0.4315 recall:0.6579 f1:0.5212
+2021Apr18-19:43:27 - 加载./checkpoints/ace2005/20210416-163611/checkpoint_19.cpt
+2021Apr18-19:43:27 - id:20210416-163611
+2021Apr18-19:43:27 - log_path:./log/run_log
+2021Apr18-19:43:27 - model:MRCTPLinker
+2021Apr18-19:43:27 - dataset_tag:ace2005
+2021Apr18-19:43:27 - train_path:data/cleaned_data/ACE2005/bert-base-uncased_overlap_15_window_100_threshold_1_max_distance_45_is_mq_False/train.json
+2021Apr18-19:43:27 - train_batch:24
+2021Apr18-19:43:27 - test_path:data/cleaned_data/ACE2005/bert-base-uncased_overlap_15_window_100_threshold_1_max_distance_45_is_mq_False/test.json
+2021Apr18-19:43:27 - test_batch:24
+2021Apr18-19:43:27 - dev_path:data/cleaned_data/ACE2005/bert-base-uncased_overlap_15_window_100_threshold_1_max_distance_45_is_mq_False/dev.json
+2021Apr18-19:43:27 - dev_batch:24
+2021Apr18-19:43:27 - max_len:120
+2021Apr18-19:43:27 - pretrained_model_path:../pretrained_models/bert-base-uncased
+2021Apr18-19:43:27 - max_epochs:100
+2021Apr18-19:43:27 - warmup_ratio:-1
+2021Apr18-19:43:27 - lr:2e-05
+2021Apr18-19:43:27 - dropout_prob:0.1
+2021Apr18-19:43:27 - weight_decay:0.01
+2021Apr18-19:43:27 - theta:0.2
+2021Apr18-19:43:27 - window_size:100
+2021Apr18-19:43:27 - overlap:50
+2021Apr18-19:43:27 - threshold:5
+2021Apr18-19:43:27 - local_rank:-1
+2021Apr18-19:43:27 - max_grad_norm:1
+2021Apr18-19:43:27 - seed:0
+2021Apr18-19:43:27 - amp:False
+2021Apr18-19:43:27 - not_save:False
+2021Apr18-19:43:27 - reload:False
+2021Apr18-19:43:27 - train:False
+2021Apr18-19:43:27 - dev_eval:False
+2021Apr18-19:43:27 - test_eval:True
+2021Apr18-19:43:27 - load_checkpoint_dir:-
+2021Apr18-19:43:27 - checkpoint_start:0
+2021Apr18-19:43:27 - num_questions:1
+2021Apr18-19:43:27 - train_ent:True
+2021Apr18-19:43:27 - train_rel:True
+2021Apr18-19:43:27 - cuda:0
+2021Apr18-19:43:27 - shaking_type:cat
+2021Apr18-19:43:27 - inner_enc_type:lstm
+2021Apr18-19:43:27 - relH_theta:0.4
+2021Apr18-19:43:27 - relT_theta:0.4
+2021Apr18-19:43:27 - rel_loss_weight:0.1
+2021Apr18-19:43:27 - ******************************DEV BEST******************************
+2021Apr18-19:43:27 - Turn 1: [epoch,p,r,f]:[-1, (0, 0, 0)]
+2021Apr18-19:43:27 - Turn 2: [epoch,p,r,f]:[-1, (0, 0, 0)]
+2021Apr18-19:43:27 - all: [epoch,p1,r1,f1;p2,r2,f2]:[-1, (0, 0, 0), (0, 0, 0)]
+2021Apr18-19:43:27 - ****************************************TEST******************************
+2021Apr18-19:43:53 - Turn 1: precision:0.8943 recall:0.8861 f1:0.8902
+2021Apr18-19:43:53 - Turn 2: precision:0.4275 recall:0.6539 f1:0.5170
+2021Apr18-19:43:56 - 加载./checkpoints/ace2005/20210416-163611/checkpoint_20.cpt
+2021Apr18-19:43:56 - id:20210416-163611
+2021Apr18-19:43:56 - log_path:./log/run_log
+2021Apr18-19:43:56 - model:MRCTPLinker
+2021Apr18-19:43:56 - dataset_tag:ace2005
+2021Apr18-19:43:56 - train_path:data/cleaned_data/ACE2005/bert-base-uncased_overlap_15_window_100_threshold_1_max_distance_45_is_mq_False/train.json
+2021Apr18-19:43:56 - train_batch:24
+2021Apr18-19:43:56 - test_path:data/cleaned_data/ACE2005/bert-base-uncased_overlap_15_window_100_threshold_1_max_distance_45_is_mq_False/test.json
+2021Apr18-19:43:56 - test_batch:24
+2021Apr18-19:43:56 - dev_path:data/cleaned_data/ACE2005/bert-base-uncased_overlap_15_window_100_threshold_1_max_distance_45_is_mq_False/dev.json
+2021Apr18-19:43:56 - dev_batch:24
+2021Apr18-19:43:56 - max_len:120
+2021Apr18-19:43:56 - pretrained_model_path:../pretrained_models/bert-base-uncased
+2021Apr18-19:43:56 - max_epochs:100
+2021Apr18-19:43:56 - warmup_ratio:-1
+2021Apr18-19:43:56 - lr:2e-05
+2021Apr18-19:43:56 - dropout_prob:0.1
+2021Apr18-19:43:56 - weight_decay:0.01
+2021Apr18-19:43:56 - theta:0.2
+2021Apr18-19:43:56 - window_size:100
+2021Apr18-19:43:56 - overlap:50
+2021Apr18-19:43:56 - threshold:5
+2021Apr18-19:43:56 - local_rank:-1
+2021Apr18-19:43:56 - max_grad_norm:1
+2021Apr18-19:43:56 - seed:0
+2021Apr18-19:43:56 - amp:False
+2021Apr18-19:43:56 - not_save:False
+2021Apr18-19:43:56 - reload:False
+2021Apr18-19:43:56 - train:False
+2021Apr18-19:43:56 - dev_eval:False
+2021Apr18-19:43:56 - test_eval:True
+2021Apr18-19:43:56 - load_checkpoint_dir:-
+2021Apr18-19:43:56 - checkpoint_start:0
+2021Apr18-19:43:56 - num_questions:1
+2021Apr18-19:43:56 - train_ent:True
+2021Apr18-19:43:56 - train_rel:True
+2021Apr18-19:43:56 - cuda:0
+2021Apr18-19:43:56 - shaking_type:cat
+2021Apr18-19:43:56 - inner_enc_type:lstm
+2021Apr18-19:43:56 - relH_theta:0.4
+2021Apr18-19:43:56 - relT_theta:0.4
+2021Apr18-19:43:56 - rel_loss_weight:0.1
+2021Apr18-19:43:56 - ******************************DEV BEST******************************
+2021Apr18-19:43:56 - Turn 1: [epoch,p,r,f]:[-1, (0, 0, 0)]
+2021Apr18-19:43:56 - Turn 2: [epoch,p,r,f]:[-1, (0, 0, 0)]
+2021Apr18-19:43:56 - all: [epoch,p1,r1,f1;p2,r2,f2]:[-1, (0, 0, 0), (0, 0, 0)]
+2021Apr18-19:43:56 - ****************************************TEST******************************
+2021Apr18-19:44:17 - Turn 1: precision:0.8970 recall:0.8799 f1:0.8883
+2021Apr18-19:44:17 - Turn 2: precision:0.4488 recall:0.6435 f1:0.5288
+2021Apr18-19:44:20 - 加载./checkpoints/ace2005/20210416-163611/checkpoint_21.cpt
+2021Apr18-19:44:20 - id:20210416-163611
+2021Apr18-19:44:20 - log_path:./log/run_log
+2021Apr18-19:44:20 - model:MRCTPLinker
+2021Apr18-19:44:20 - dataset_tag:ace2005
+2021Apr18-19:44:20 - train_path:data/cleaned_data/ACE2005/bert-base-uncased_overlap_15_window_100_threshold_1_max_distance_45_is_mq_False/train.json
+2021Apr18-19:44:20 - train_batch:24
+2021Apr18-19:44:20 - test_path:data/cleaned_data/ACE2005/bert-base-uncased_overlap_15_window_100_threshold_1_max_distance_45_is_mq_False/test.json
+2021Apr18-19:44:20 - test_batch:24
+2021Apr18-19:44:20 - dev_path:data/cleaned_data/ACE2005/bert-base-uncased_overlap_15_window_100_threshold_1_max_distance_45_is_mq_False/dev.json
+2021Apr18-19:44:20 - dev_batch:24
+2021Apr18-19:44:20 - max_len:120
+2021Apr18-19:44:20 - pretrained_model_path:../pretrained_models/bert-base-uncased
+2021Apr18-19:44:20 - max_epochs:100
+2021Apr18-19:44:20 - warmup_ratio:-1
+2021Apr18-19:44:20 - lr:2e-05
+2021Apr18-19:44:20 - dropout_prob:0.1
+2021Apr18-19:44:20 - weight_decay:0.01
+2021Apr18-19:44:20 - theta:0.2
+2021Apr18-19:44:20 - window_size:100
+2021Apr18-19:44:20 - overlap:50
+2021Apr18-19:44:20 - threshold:5
+2021Apr18-19:44:20 - local_rank:-1
+2021Apr18-19:44:20 - max_grad_norm:1
+2021Apr18-19:44:20 - seed:0
+2021Apr18-19:44:20 - amp:False
+2021Apr18-19:44:20 - not_save:False
+2021Apr18-19:44:20 - reload:False
+2021Apr18-19:44:20 - train:False
+2021Apr18-19:44:20 - dev_eval:False
+2021Apr18-19:44:20 - test_eval:True
+2021Apr18-19:44:20 - load_checkpoint_dir:-
+2021Apr18-19:44:20 - checkpoint_start:0
+2021Apr18-19:44:20 - num_questions:1
+2021Apr18-19:44:20 - train_ent:True
+2021Apr18-19:44:20 - train_rel:True
+2021Apr18-19:44:20 - cuda:0
+2021Apr18-19:44:20 - shaking_type:cat
+2021Apr18-19:44:20 - inner_enc_type:lstm
+2021Apr18-19:44:20 - relH_theta:0.4
+2021Apr18-19:44:20 - relT_theta:0.4
+2021Apr18-19:44:20 - rel_loss_weight:0.1
+2021Apr18-19:44:20 - ******************************DEV BEST******************************
+2021Apr18-19:44:20 - Turn 1: [epoch,p,r,f]:[-1, (0, 0, 0)]
+2021Apr18-19:44:20 - Turn 2: [epoch,p,r,f]:[-1, (0, 0, 0)]
+2021Apr18-19:44:20 - all: [epoch,p1,r1,f1;p2,r2,f2]:[-1, (0, 0, 0), (0, 0, 0)]
+2021Apr18-19:44:20 - ****************************************TEST******************************
+2021Apr18-19:44:47 - Turn 1: precision:0.8926 recall:0.8862 f1:0.8894
+2021Apr18-19:44:47 - Turn 2: precision:0.4633 recall:0.6188 f1:0.5299
+2021Apr18-19:44:49 - 加载./checkpoints/ace2005/20210416-163611/checkpoint_22.cpt
+2021Apr18-19:44:49 - id:20210416-163611
+2021Apr18-19:44:49 - log_path:./log/run_log
+2021Apr18-19:44:49 - model:MRCTPLinker
+2021Apr18-19:44:49 - dataset_tag:ace2005
+2021Apr18-19:44:49 - train_path:data/cleaned_data/ACE2005/bert-base-uncased_overlap_15_window_100_threshold_1_max_distance_45_is_mq_False/train.json
+2021Apr18-19:44:49 - train_batch:24
+2021Apr18-19:44:49 - test_path:data/cleaned_data/ACE2005/bert-base-uncased_overlap_15_window_100_threshold_1_max_distance_45_is_mq_False/test.json
+2021Apr18-19:44:49 - test_batch:24
+2021Apr18-19:44:49 - dev_path:data/cleaned_data/ACE2005/bert-base-uncased_overlap_15_window_100_threshold_1_max_distance_45_is_mq_False/dev.json
+2021Apr18-19:44:49 - dev_batch:24
+2021Apr18-19:44:49 - max_len:120
+2021Apr18-19:44:49 - pretrained_model_path:../pretrained_models/bert-base-uncased
+2021Apr18-19:44:49 - max_epochs:100
+2021Apr18-19:44:49 - warmup_ratio:-1
+2021Apr18-19:44:49 - lr:2e-05
+2021Apr18-19:44:49 - dropout_prob:0.1
+2021Apr18-19:44:49 - weight_decay:0.01
+2021Apr18-19:44:49 - theta:0.2
+2021Apr18-19:44:49 - window_size:100
+2021Apr18-19:44:49 - overlap:50
+2021Apr18-19:44:49 - threshold:5
+2021Apr18-19:44:49 - local_rank:-1
+2021Apr18-19:44:49 - max_grad_norm:1
+2021Apr18-19:44:49 - seed:0
+2021Apr18-19:44:49 - amp:False
+2021Apr18-19:44:49 - not_save:False
+2021Apr18-19:44:49 - reload:False
+2021Apr18-19:44:49 - train:False
+2021Apr18-19:44:49 - dev_eval:False
+2021Apr18-19:44:49 - test_eval:True
+2021Apr18-19:44:49 - load_checkpoint_dir:-
+2021Apr18-19:44:49 - checkpoint_start:0
+2021Apr18-19:44:49 - num_questions:1
+2021Apr18-19:44:49 - train_ent:True
+2021Apr18-19:44:49 - train_rel:True
+2021Apr18-19:44:49 - cuda:0
+2021Apr18-19:44:49 - shaking_type:cat
+2021Apr18-19:44:49 - inner_enc_type:lstm
+2021Apr18-19:44:49 - relH_theta:0.4
+2021Apr18-19:44:49 - relT_theta:0.4
+2021Apr18-19:44:49 - rel_loss_weight:0.1
+2021Apr18-19:44:49 - ******************************DEV BEST******************************
+2021Apr18-19:44:49 - Turn 1: [epoch,p,r,f]:[-1, (0, 0, 0)]
+2021Apr18-19:44:49 - Turn 2: [epoch,p,r,f]:[-1, (0, 0, 0)]
+2021Apr18-19:44:49 - all: [epoch,p1,r1,f1;p2,r2,f2]:[-1, (0, 0, 0), (0, 0, 0)]
+2021Apr18-19:44:49 - ****************************************TEST******************************
+2021Apr18-19:45:10 - Turn 1: precision:0.8804 recall:0.8905 f1:0.8854
+2021Apr18-19:45:10 - Turn 2: precision:0.4906 recall:0.6013 f1:0.5403
+2021Apr18-19:45:13 - 加载./checkpoints/ace2005/20210416-163611/checkpoint_23.cpt
+2021Apr18-19:45:13 - id:20210416-163611
+2021Apr18-19:45:13 - log_path:./log/run_log
+2021Apr18-19:45:13 - model:MRCTPLinker
+2021Apr18-19:45:13 - dataset_tag:ace2005
+2021Apr18-19:45:13 - train_path:data/cleaned_data/ACE2005/bert-base-uncased_overlap_15_window_100_threshold_1_max_distance_45_is_mq_False/train.json
+2021Apr18-19:45:13 - train_batch:24
+2021Apr18-19:45:13 - test_path:data/cleaned_data/ACE2005/bert-base-uncased_overlap_15_window_100_threshold_1_max_distance_45_is_mq_False/test.json
+2021Apr18-19:45:13 - test_batch:24
+2021Apr18-19:45:13 - dev_path:data/cleaned_data/ACE2005/bert-base-uncased_overlap_15_window_100_threshold_1_max_distance_45_is_mq_False/dev.json
+2021Apr18-19:45:13 - dev_batch:24
+2021Apr18-19:45:13 - max_len:120
+2021Apr18-19:45:13 - pretrained_model_path:../pretrained_models/bert-base-uncased
+2021Apr18-19:45:13 - max_epochs:100
+2021Apr18-19:45:13 - warmup_ratio:-1
+2021Apr18-19:45:13 - lr:2e-05
+2021Apr18-19:45:13 - dropout_prob:0.1
+2021Apr18-19:45:13 - weight_decay:0.01
+2021Apr18-19:45:13 - theta:0.2
+2021Apr18-19:45:13 - window_size:100
+2021Apr18-19:45:13 - overlap:50
+2021Apr18-19:45:13 - threshold:5
+2021Apr18-19:45:13 - local_rank:-1
+2021Apr18-19:45:13 - max_grad_norm:1
+2021Apr18-19:45:13 - seed:0
+2021Apr18-19:45:13 - amp:False
+2021Apr18-19:45:13 - not_save:False
+2021Apr18-19:45:13 - reload:False
+2021Apr18-19:45:13 - train:False
+2021Apr18-19:45:13 - dev_eval:False
+2021Apr18-19:45:13 - test_eval:True
+2021Apr18-19:45:13 - load_checkpoint_dir:-
+2021Apr18-19:45:13 - checkpoint_start:0
+2021Apr18-19:45:13 - num_questions:1
+2021Apr18-19:45:13 - train_ent:True
+2021Apr18-19:45:13 - train_rel:True
+2021Apr18-19:45:13 - cuda:0
+2021Apr18-19:45:13 - shaking_type:cat
+2021Apr18-19:45:13 - inner_enc_type:lstm
+2021Apr18-19:45:13 - relH_theta:0.4
+2021Apr18-19:45:13 - relT_theta:0.4
+2021Apr18-19:45:13 - rel_loss_weight:0.1
+2021Apr18-19:45:13 - ******************************DEV BEST******************************
+2021Apr18-19:45:13 - Turn 1: [epoch,p,r,f]:[-1, (0, 0, 0)]
+2021Apr18-19:45:13 - Turn 2: [epoch,p,r,f]:[-1, (0, 0, 0)]
+2021Apr18-19:45:13 - all: [epoch,p1,r1,f1;p2,r2,f2]:[-1, (0, 0, 0), (0, 0, 0)]
+2021Apr18-19:45:13 - ****************************************TEST******************************
+2021Apr18-19:45:40 - Turn 1: precision:0.8857 recall:0.8857 f1:0.8857
+2021Apr18-19:45:40 - Turn 2: precision:0.5039 recall:0.6156 f1:0.5542
+2021Apr18-19:45:43 - 加载./checkpoints/ace2005/20210416-163611/checkpoint_24.cpt
+2021Apr18-19:45:43 - id:20210416-163611
+2021Apr18-19:45:43 - log_path:./log/run_log
+2021Apr18-19:45:43 - model:MRCTPLinker
+2021Apr18-19:45:43 - dataset_tag:ace2005
+2021Apr18-19:45:43 - train_path:data/cleaned_data/ACE2005/bert-base-uncased_overlap_15_window_100_threshold_1_max_distance_45_is_mq_False/train.json
+2021Apr18-19:45:43 - train_batch:24
+2021Apr18-19:45:43 - test_path:data/cleaned_data/ACE2005/bert-base-uncased_overlap_15_window_100_threshold_1_max_distance_45_is_mq_False/test.json
+2021Apr18-19:45:43 - test_batch:24
+2021Apr18-19:45:43 - dev_path:data/cleaned_data/ACE2005/bert-base-uncased_overlap_15_window_100_threshold_1_max_distance_45_is_mq_False/dev.json
+2021Apr18-19:45:43 - dev_batch:24
+2021Apr18-19:45:43 - max_len:120
+2021Apr18-19:45:43 - pretrained_model_path:../pretrained_models/bert-base-uncased
+2021Apr18-19:45:43 - max_epochs:100
+2021Apr18-19:45:43 - warmup_ratio:-1
+2021Apr18-19:45:43 - lr:2e-05
+2021Apr18-19:45:43 - dropout_prob:0.1
+2021Apr18-19:45:43 - weight_decay:0.01
+2021Apr18-19:45:43 - theta:0.2
+2021Apr18-19:45:43 - window_size:100
+2021Apr18-19:45:43 - overlap:50
+2021Apr18-19:45:43 - threshold:5
+2021Apr18-19:45:43 - local_rank:-1
+2021Apr18-19:45:43 - max_grad_norm:1
+2021Apr18-19:45:43 - seed:0
+2021Apr18-19:45:43 - amp:False
+2021Apr18-19:45:43 - not_save:False
+2021Apr18-19:45:43 - reload:False
+2021Apr18-19:45:43 - train:False
+2021Apr18-19:45:43 - dev_eval:False
+2021Apr18-19:45:43 - test_eval:True
+2021Apr18-19:45:43 - load_checkpoint_dir:-
+2021Apr18-19:45:43 - checkpoint_start:0
+2021Apr18-19:45:43 - num_questions:1
+2021Apr18-19:45:43 - train_ent:True
+2021Apr18-19:45:43 - train_rel:True
+2021Apr18-19:45:43 - cuda:0
+2021Apr18-19:45:43 - shaking_type:cat
+2021Apr18-19:45:43 - inner_enc_type:lstm
+2021Apr18-19:45:43 - relH_theta:0.4
+2021Apr18-19:45:43 - relT_theta:0.4
+2021Apr18-19:45:43 - rel_loss_weight:0.1
+2021Apr18-19:45:43 - ******************************DEV BEST******************************
+2021Apr18-19:45:43 - Turn 1: [epoch,p,r,f]:[-1, (0, 0, 0)]
+2021Apr18-19:45:43 - Turn 2: [epoch,p,r,f]:[-1, (0, 0, 0)]
+2021Apr18-19:45:43 - all: [epoch,p1,r1,f1;p2,r2,f2]:[-1, (0, 0, 0), (0, 0, 0)]
+2021Apr18-19:45:43 - ****************************************TEST******************************
+2021Apr18-19:46:03 - Turn 1: precision:0.8823 recall:0.8902 f1:0.8862
+2021Apr18-19:46:03 - Turn 2: precision:0.4501 recall:0.6396 f1:0.5283
+2021Apr18-19:46:06 - 加载./checkpoints/ace2005/20210416-163611/checkpoint_25.cpt
+2021Apr18-19:46:06 - id:20210416-163611
+2021Apr18-19:46:06 - log_path:./log/run_log
+2021Apr18-19:46:06 - model:MRCTPLinker
+2021Apr18-19:46:06 - dataset_tag:ace2005
+2021Apr18-19:46:06 - train_path:data/cleaned_data/ACE2005/bert-base-uncased_overlap_15_window_100_threshold_1_max_distance_45_is_mq_False/train.json
+2021Apr18-19:46:06 - train_batch:24
+2021Apr18-19:46:06 - test_path:data/cleaned_data/ACE2005/bert-base-uncased_overlap_15_window_100_threshold_1_max_distance_45_is_mq_False/test.json
+2021Apr18-19:46:06 - test_batch:24
+2021Apr18-19:46:06 - dev_path:data/cleaned_data/ACE2005/bert-base-uncased_overlap_15_window_100_threshold_1_max_distance_45_is_mq_False/dev.json
+2021Apr18-19:46:06 - dev_batch:24
+2021Apr18-19:46:06 - max_len:120
+2021Apr18-19:46:06 - pretrained_model_path:../pretrained_models/bert-base-uncased
+2021Apr18-19:46:06 - max_epochs:100
+2021Apr18-19:46:06 - warmup_ratio:-1
+2021Apr18-19:46:06 - lr:2e-05
+2021Apr18-19:46:06 - dropout_prob:0.1
+2021Apr18-19:46:06 - weight_decay:0.01
+2021Apr18-19:46:06 - theta:0.2
+2021Apr18-19:46:06 - window_size:100
+2021Apr18-19:46:06 - overlap:50
+2021Apr18-19:46:06 - threshold:5
+2021Apr18-19:46:06 - local_rank:-1
+2021Apr18-19:46:06 - max_grad_norm:1
+2021Apr18-19:46:06 - seed:0
+2021Apr18-19:46:06 - amp:False
+2021Apr18-19:46:06 - not_save:False
+2021Apr18-19:46:06 - reload:False
+2021Apr18-19:46:06 - train:False
+2021Apr18-19:46:06 - dev_eval:False
+2021Apr18-19:46:06 - test_eval:True
+2021Apr18-19:46:06 - load_checkpoint_dir:-
+2021Apr18-19:46:06 - checkpoint_start:0
+2021Apr18-19:46:06 - num_questions:1
+2021Apr18-19:46:06 - train_ent:True
+2021Apr18-19:46:06 - train_rel:True
+2021Apr18-19:46:06 - cuda:0
+2021Apr18-19:46:06 - shaking_type:cat
+2021Apr18-19:46:06 - inner_enc_type:lstm
+2021Apr18-19:46:06 - relH_theta:0.4
+2021Apr18-19:46:06 - relT_theta:0.4
+2021Apr18-19:46:06 - rel_loss_weight:0.1
+2021Apr18-19:46:06 - ******************************DEV BEST******************************
+2021Apr18-19:46:06 - Turn 1: [epoch,p,r,f]:[-1, (0, 0, 0)]
+2021Apr18-19:46:06 - Turn 2: [epoch,p,r,f]:[-1, (0, 0, 0)]
+2021Apr18-19:46:06 - all: [epoch,p1,r1,f1;p2,r2,f2]:[-1, (0, 0, 0), (0, 0, 0)]
+2021Apr18-19:46:06 - ****************************************TEST******************************
+2021Apr18-19:46:32 - Turn 1: precision:0.8786 recall:0.8894 f1:0.8840
+2021Apr18-19:46:32 - Turn 2: precision:0.4619 recall:0.6276 f1:0.5321
+2021Apr18-19:46:35 - 加载./checkpoints/ace2005/20210416-163611/checkpoint_26.cpt
+2021Apr18-19:46:35 - id:20210416-163611
+2021Apr18-19:46:35 - log_path:./log/run_log
+2021Apr18-19:46:35 - model:MRCTPLinker
+2021Apr18-19:46:35 - dataset_tag:ace2005
+2021Apr18-19:46:35 - train_path:data/cleaned_data/ACE2005/bert-base-uncased_overlap_15_window_100_threshold_1_max_distance_45_is_mq_False/train.json
+2021Apr18-19:46:35 - train_batch:24
+2021Apr18-19:46:35 - test_path:data/cleaned_data/ACE2005/bert-base-uncased_overlap_15_window_100_threshold_1_max_distance_45_is_mq_False/test.json
+2021Apr18-19:46:35 - test_batch:24
+2021Apr18-19:46:35 - dev_path:data/cleaned_data/ACE2005/bert-base-uncased_overlap_15_window_100_threshold_1_max_distance_45_is_mq_False/dev.json
+2021Apr18-19:46:35 - dev_batch:24
+2021Apr18-19:46:35 - max_len:120
+2021Apr18-19:46:35 - pretrained_model_path:../pretrained_models/bert-base-uncased
+2021Apr18-19:46:35 - max_epochs:100
+2021Apr18-19:46:35 - warmup_ratio:-1
+2021Apr18-19:46:35 - lr:2e-05
+2021Apr18-19:46:35 - dropout_prob:0.1
+2021Apr18-19:46:35 - weight_decay:0.01
+2021Apr18-19:46:35 - theta:0.2
+2021Apr18-19:46:35 - window_size:100
+2021Apr18-19:46:35 - overlap:50
+2021Apr18-19:46:35 - threshold:5
+2021Apr18-19:46:35 - local_rank:-1
+2021Apr18-19:46:35 - max_grad_norm:1
+2021Apr18-19:46:35 - seed:0
+2021Apr18-19:46:35 - amp:False
+2021Apr18-19:46:35 - not_save:False
+2021Apr18-19:46:35 - reload:False
+2021Apr18-19:46:35 - train:False
+2021Apr18-19:46:35 - dev_eval:False
+2021Apr18-19:46:35 - test_eval:True
+2021Apr18-19:46:35 - load_checkpoint_dir:-
+2021Apr18-19:46:35 - checkpoint_start:0
+2021Apr18-19:46:35 - num_questions:1
+2021Apr18-19:46:35 - train_ent:True
+2021Apr18-19:46:35 - train_rel:True
+2021Apr18-19:46:35 - cuda:0
+2021Apr18-19:46:35 - shaking_type:cat
+2021Apr18-19:46:35 - inner_enc_type:lstm
+2021Apr18-19:46:35 - relH_theta:0.4
+2021Apr18-19:46:35 - relT_theta:0.4
+2021Apr18-19:46:35 - rel_loss_weight:0.1
+2021Apr18-19:46:35 - ******************************DEV BEST******************************
+2021Apr18-19:46:35 - Turn 1: [epoch,p,r,f]:[-1, (0, 0, 0)]
+2021Apr18-19:46:35 - Turn 2: [epoch,p,r,f]:[-1, (0, 0, 0)]
+2021Apr18-19:46:35 - all: [epoch,p1,r1,f1;p2,r2,f2]:[-1, (0, 0, 0), (0, 0, 0)]
+2021Apr18-19:46:35 - ****************************************TEST******************************
+2021Apr18-19:47:02 - Turn 1: precision:0.8734 recall:0.8862 f1:0.8798
+2021Apr18-19:47:02 - Turn 2: precision:0.5207 recall:0.5829 f1:0.5500
+2021Apr18-19:47:04 - 加载./checkpoints/ace2005/20210416-163611/checkpoint_27.cpt
+2021Apr18-19:47:04 - id:20210416-163611
+2021Apr18-19:47:04 - log_path:./log/run_log
+2021Apr18-19:47:04 - model:MRCTPLinker
+2021Apr18-19:47:04 - dataset_tag:ace2005
+2021Apr18-19:47:04 - train_path:data/cleaned_data/ACE2005/bert-base-uncased_overlap_15_window_100_threshold_1_max_distance_45_is_mq_False/train.json
+2021Apr18-19:47:04 - train_batch:24
+2021Apr18-19:47:04 - test_path:data/cleaned_data/ACE2005/bert-base-uncased_overlap_15_window_100_threshold_1_max_distance_45_is_mq_False/test.json
+2021Apr18-19:47:04 - test_batch:24
+2021Apr18-19:47:04 - dev_path:data/cleaned_data/ACE2005/bert-base-uncased_overlap_15_window_100_threshold_1_max_distance_45_is_mq_False/dev.json
+2021Apr18-19:47:04 - dev_batch:24
+2021Apr18-19:47:04 - max_len:120
+2021Apr18-19:47:04 - pretrained_model_path:../pretrained_models/bert-base-uncased
+2021Apr18-19:47:04 - max_epochs:100
+2021Apr18-19:47:04 - warmup_ratio:-1
+2021Apr18-19:47:04 - lr:2e-05
+2021Apr18-19:47:04 - dropout_prob:0.1
+2021Apr18-19:47:04 - weight_decay:0.01
+2021Apr18-19:47:04 - theta:0.2
+2021Apr18-19:47:04 - window_size:100
+2021Apr18-19:47:04 - overlap:50
+2021Apr18-19:47:04 - threshold:5
+2021Apr18-19:47:04 - local_rank:-1
+2021Apr18-19:47:04 - max_grad_norm:1
+2021Apr18-19:47:04 - seed:0
+2021Apr18-19:47:04 - amp:False
+2021Apr18-19:47:04 - not_save:False
+2021Apr18-19:47:04 - reload:False
+2021Apr18-19:47:04 - train:False
+2021Apr18-19:47:04 - dev_eval:False
+2021Apr18-19:47:04 - test_eval:True
+2021Apr18-19:47:04 - load_checkpoint_dir:-
+2021Apr18-19:47:04 - checkpoint_start:0
+2021Apr18-19:47:04 - num_questions:1
+2021Apr18-19:47:04 - train_ent:True
+2021Apr18-19:47:04 - train_rel:True
+2021Apr18-19:47:04 - cuda:0
+2021Apr18-19:47:04 - shaking_type:cat
+2021Apr18-19:47:04 - inner_enc_type:lstm
+2021Apr18-19:47:04 - relH_theta:0.4
+2021Apr18-19:47:04 - relT_theta:0.4
+2021Apr18-19:47:04 - rel_loss_weight:0.1
+2021Apr18-19:47:04 - ******************************DEV BEST******************************
+2021Apr18-19:47:04 - Turn 1: [epoch,p,r,f]:[-1, (0, 0, 0)]
+2021Apr18-19:47:04 - Turn 2: [epoch,p,r,f]:[-1, (0, 0, 0)]
+2021Apr18-19:47:04 - all: [epoch,p1,r1,f1;p2,r2,f2]:[-1, (0, 0, 0), (0, 0, 0)]
+2021Apr18-19:47:04 - ****************************************TEST******************************
+2021Apr18-19:47:25 - Turn 1: precision:0.8773 recall:0.8877 f1:0.8825
+2021Apr18-19:47:25 - Turn 2: precision:0.4835 recall:0.6188 f1:0.5428
+2021Apr18-19:47:28 - 加载./checkpoints/ace2005/20210416-163611/checkpoint_28.cpt
+2021Apr18-19:47:28 - id:20210416-163611
+2021Apr18-19:47:28 - log_path:./log/run_log
+2021Apr18-19:47:28 - model:MRCTPLinker
+2021Apr18-19:47:28 - dataset_tag:ace2005
+2021Apr18-19:47:28 - train_path:data/cleaned_data/ACE2005/bert-base-uncased_overlap_15_window_100_threshold_1_max_distance_45_is_mq_False/train.json
+2021Apr18-19:47:28 - train_batch:24
+2021Apr18-19:47:28 - test_path:data/cleaned_data/ACE2005/bert-base-uncased_overlap_15_window_100_threshold_1_max_distance_45_is_mq_False/test.json
+2021Apr18-19:47:28 - test_batch:24
+2021Apr18-19:47:28 - dev_path:data/cleaned_data/ACE2005/bert-base-uncased_overlap_15_window_100_threshold_1_max_distance_45_is_mq_False/dev.json
+2021Apr18-19:47:28 - dev_batch:24
+2021Apr18-19:47:28 - max_len:120
+2021Apr18-19:47:28 - pretrained_model_path:../pretrained_models/bert-base-uncased
+2021Apr18-19:47:28 - max_epochs:100
+2021Apr18-19:47:28 - warmup_ratio:-1
+2021Apr18-19:47:28 - lr:2e-05
+2021Apr18-19:47:28 - dropout_prob:0.1
+2021Apr18-19:47:28 - weight_decay:0.01
+2021Apr18-19:47:28 - theta:0.2
+2021Apr18-19:47:28 - window_size:100
+2021Apr18-19:47:28 - overlap:50
+2021Apr18-19:47:28 - threshold:5
+2021Apr18-19:47:28 - local_rank:-1
+2021Apr18-19:47:28 - max_grad_norm:1
+2021Apr18-19:47:28 - seed:0
+2021Apr18-19:47:28 - amp:False
+2021Apr18-19:47:28 - not_save:False
+2021Apr18-19:47:28 - reload:False
+2021Apr18-19:47:28 - train:False
+2021Apr18-19:47:28 - dev_eval:False
+2021Apr18-19:47:28 - test_eval:True
+2021Apr18-19:47:28 - load_checkpoint_dir:-
+2021Apr18-19:47:28 - checkpoint_start:0
+2021Apr18-19:47:28 - num_questions:1
+2021Apr18-19:47:28 - train_ent:True
+2021Apr18-19:47:28 - train_rel:True
+2021Apr18-19:47:28 - cuda:0
+2021Apr18-19:47:28 - shaking_type:cat
+2021Apr18-19:47:28 - inner_enc_type:lstm
+2021Apr18-19:47:28 - relH_theta:0.4
+2021Apr18-19:47:28 - relT_theta:0.4
+2021Apr18-19:47:28 - rel_loss_weight:0.1
+2021Apr18-19:47:28 - ******************************DEV BEST******************************
+2021Apr18-19:47:28 - Turn 1: [epoch,p,r,f]:[-1, (0, 0, 0)]
+2021Apr18-19:47:28 - Turn 2: [epoch,p,r,f]:[-1, (0, 0, 0)]
+2021Apr18-19:47:28 - all: [epoch,p1,r1,f1;p2,r2,f2]:[-1, (0, 0, 0), (0, 0, 0)]
+2021Apr18-19:47:28 - ****************************************TEST******************************
+2021Apr18-19:47:55 - Turn 1: precision:0.8809 recall:0.8816 f1:0.8813
+2021Apr18-19:47:55 - Turn 2: precision:0.4967 recall:0.6029 f1:0.5447
+2021Apr18-19:47:58 - 加载./checkpoints/ace2005/20210416-163611/checkpoint_29.cpt
+2021Apr18-19:47:58 - id:20210416-163611
+2021Apr18-19:47:58 - log_path:./log/run_log
+2021Apr18-19:47:58 - model:MRCTPLinker
+2021Apr18-19:47:58 - dataset_tag:ace2005
+2021Apr18-19:47:58 - train_path:data/cleaned_data/ACE2005/bert-base-uncased_overlap_15_window_100_threshold_1_max_distance_45_is_mq_False/train.json
+2021Apr18-19:47:58 - train_batch:24
+2021Apr18-19:47:58 - test_path:data/cleaned_data/ACE2005/bert-base-uncased_overlap_15_window_100_threshold_1_max_distance_45_is_mq_False/test.json
+2021Apr18-19:47:58 - test_batch:24
+2021Apr18-19:47:58 - dev_path:data/cleaned_data/ACE2005/bert-base-uncased_overlap_15_window_100_threshold_1_max_distance_45_is_mq_False/dev.json
+2021Apr18-19:47:58 - dev_batch:24
+2021Apr18-19:47:58 - max_len:120
+2021Apr18-19:47:58 - pretrained_model_path:../pretrained_models/bert-base-uncased
+2021Apr18-19:47:58 - max_epochs:100
+2021Apr18-19:47:58 - warmup_ratio:-1
+2021Apr18-19:47:58 - lr:2e-05
+2021Apr18-19:47:58 - dropout_prob:0.1
+2021Apr18-19:47:58 - weight_decay:0.01
+2021Apr18-19:47:58 - theta:0.2
+2021Apr18-19:47:58 - window_size:100
+2021Apr18-19:47:58 - overlap:50
+2021Apr18-19:47:58 - threshold:5
+2021Apr18-19:47:58 - local_rank:-1
+2021Apr18-19:47:58 - max_grad_norm:1
+2021Apr18-19:47:58 - seed:0
+2021Apr18-19:47:58 - amp:False
+2021Apr18-19:47:58 - not_save:False
+2021Apr18-19:47:58 - reload:False
+2021Apr18-19:47:58 - train:False
+2021Apr18-19:47:58 - dev_eval:False
+2021Apr18-19:47:58 - test_eval:True
+2021Apr18-19:47:58 - load_checkpoint_dir:-
+2021Apr18-19:47:58 - checkpoint_start:0
+2021Apr18-19:47:58 - num_questions:1
+2021Apr18-19:47:58 - train_ent:True
+2021Apr18-19:47:58 - train_rel:True
+2021Apr18-19:47:58 - cuda:0
+2021Apr18-19:47:58 - shaking_type:cat
+2021Apr18-19:47:58 - inner_enc_type:lstm
+2021Apr18-19:47:58 - relH_theta:0.4
+2021Apr18-19:47:58 - relT_theta:0.4
+2021Apr18-19:47:58 - rel_loss_weight:0.1
+2021Apr18-19:47:58 - ******************************DEV BEST******************************
+2021Apr18-19:47:58 - Turn 1: [epoch,p,r,f]:[-1, (0, 0, 0)]
+2021Apr18-19:47:58 - Turn 2: [epoch,p,r,f]:[-1, (0, 0, 0)]
+2021Apr18-19:47:58 - all: [epoch,p1,r1,f1;p2,r2,f2]:[-1, (0, 0, 0), (0, 0, 0)]
+2021Apr18-19:47:58 - ****************************************TEST******************************
+2021Apr18-19:48:18 - Turn 1: precision:0.8843 recall:0.8757 f1:0.8800
+2021Apr18-19:48:18 - Turn 2: precision:0.5143 recall:0.6156 f1:0.5604
+2021Apr18-19:48:21 - 加载./checkpoints/ace2005/20210416-163611/checkpoint_30.cpt
+2021Apr18-19:48:21 - id:20210416-163611
+2021Apr18-19:48:21 - log_path:./log/run_log
+2021Apr18-19:48:21 - model:MRCTPLinker
+2021Apr18-19:48:21 - dataset_tag:ace2005
+2021Apr18-19:48:21 - train_path:data/cleaned_data/ACE2005/bert-base-uncased_overlap_15_window_100_threshold_1_max_distance_45_is_mq_False/train.json
+2021Apr18-19:48:21 - train_batch:24
+2021Apr18-19:48:21 - test_path:data/cleaned_data/ACE2005/bert-base-uncased_overlap_15_window_100_threshold_1_max_distance_45_is_mq_False/test.json
+2021Apr18-19:48:21 - test_batch:24
+2021Apr18-19:48:21 - dev_path:data/cleaned_data/ACE2005/bert-base-uncased_overlap_15_window_100_threshold_1_max_distance_45_is_mq_False/dev.json
+2021Apr18-19:48:21 - dev_batch:24
+2021Apr18-19:48:21 - max_len:120
+2021Apr18-19:48:21 - pretrained_model_path:../pretrained_models/bert-base-uncased
+2021Apr18-19:48:21 - max_epochs:100
+2021Apr18-19:48:21 - warmup_ratio:-1
+2021Apr18-19:48:21 - lr:2e-05
+2021Apr18-19:48:21 - dropout_prob:0.1
+2021Apr18-19:48:21 - weight_decay:0.01
+2021Apr18-19:48:21 - theta:0.2
+2021Apr18-19:48:21 - window_size:100
+2021Apr18-19:48:21 - overlap:50
+2021Apr18-19:48:21 - threshold:5
+2021Apr18-19:48:21 - local_rank:-1
+2021Apr18-19:48:21 - max_grad_norm:1
+2021Apr18-19:48:21 - seed:0
+2021Apr18-19:48:21 - amp:False
+2021Apr18-19:48:21 - not_save:False
+2021Apr18-19:48:21 - reload:False
+2021Apr18-19:48:21 - train:False
+2021Apr18-19:48:21 - dev_eval:False
+2021Apr18-19:48:21 - test_eval:True
+2021Apr18-19:48:21 - load_checkpoint_dir:-
+2021Apr18-19:48:21 - checkpoint_start:0
+2021Apr18-19:48:21 - num_questions:1
+2021Apr18-19:48:21 - train_ent:True
+2021Apr18-19:48:21 - train_rel:True
+2021Apr18-19:48:21 - cuda:0
+2021Apr18-19:48:21 - shaking_type:cat
+2021Apr18-19:48:21 - inner_enc_type:lstm
+2021Apr18-19:48:21 - relH_theta:0.4
+2021Apr18-19:48:21 - relT_theta:0.4
+2021Apr18-19:48:21 - rel_loss_weight:0.1
+2021Apr18-19:48:21 - ******************************DEV BEST******************************
+2021Apr18-19:48:21 - Turn 1: [epoch,p,r,f]:[-1, (0, 0, 0)]
+2021Apr18-19:48:21 - Turn 2: [epoch,p,r,f]:[-1, (0, 0, 0)]
+2021Apr18-19:48:21 - all: [epoch,p1,r1,f1;p2,r2,f2]:[-1, (0, 0, 0), (0, 0, 0)]
+2021Apr18-19:48:21 - ****************************************TEST******************************
+2021Apr18-19:48:48 - Turn 1: precision:0.8847 recall:0.8787 f1:0.8817
+2021Apr18-19:48:48 - Turn 2: precision:0.5657 recall:0.5837 f1:0.5746
+2021Apr18-19:48:51 - 加载./checkpoints/ace2005/20210416-163611/checkpoint_31.cpt
+2021Apr18-19:48:51 - id:20210416-163611
+2021Apr18-19:48:51 - log_path:./log/run_log
+2021Apr18-19:48:51 - model:MRCTPLinker
+2021Apr18-19:48:51 - dataset_tag:ace2005
+2021Apr18-19:48:51 - train_path:data/cleaned_data/ACE2005/bert-base-uncased_overlap_15_window_100_threshold_1_max_distance_45_is_mq_False/train.json
+2021Apr18-19:48:51 - train_batch:24
+2021Apr18-19:48:51 - test_path:data/cleaned_data/ACE2005/bert-base-uncased_overlap_15_window_100_threshold_1_max_distance_45_is_mq_False/test.json
+2021Apr18-19:48:51 - test_batch:24
+2021Apr18-19:48:51 - dev_path:data/cleaned_data/ACE2005/bert-base-uncased_overlap_15_window_100_threshold_1_max_distance_45_is_mq_False/dev.json
+2021Apr18-19:48:51 - dev_batch:24
+2021Apr18-19:48:51 - max_len:120
+2021Apr18-19:48:51 - pretrained_model_path:../pretrained_models/bert-base-uncased
+2021Apr18-19:48:51 - max_epochs:100
+2021Apr18-19:48:51 - warmup_ratio:-1
+2021Apr18-19:48:51 - lr:2e-05
+2021Apr18-19:48:51 - dropout_prob:0.1
+2021Apr18-19:48:51 - weight_decay:0.01
+2021Apr18-19:48:51 - theta:0.2
+2021Apr18-19:48:51 - window_size:100
+2021Apr18-19:48:51 - overlap:50
+2021Apr18-19:48:51 - threshold:5
+2021Apr18-19:48:51 - local_rank:-1
+2021Apr18-19:48:51 - max_grad_norm:1
+2021Apr18-19:48:51 - seed:0
+2021Apr18-19:48:51 - amp:False
+2021Apr18-19:48:51 - not_save:False
+2021Apr18-19:48:51 - reload:False
+2021Apr18-19:48:51 - train:False
+2021Apr18-19:48:51 - dev_eval:False
+2021Apr18-19:48:51 - test_eval:True
+2021Apr18-19:48:51 - load_checkpoint_dir:-
+2021Apr18-19:48:51 - checkpoint_start:0
+2021Apr18-19:48:51 - num_questions:1
+2021Apr18-19:48:51 - train_ent:True
+2021Apr18-19:48:51 - train_rel:True
+2021Apr18-19:48:51 - cuda:0
+2021Apr18-19:48:51 - shaking_type:cat
+2021Apr18-19:48:51 - inner_enc_type:lstm
+2021Apr18-19:48:51 - relH_theta:0.4
+2021Apr18-19:48:51 - relT_theta:0.4
+2021Apr18-19:48:51 - rel_loss_weight:0.1
+2021Apr18-19:48:51 - ******************************DEV BEST******************************
+2021Apr18-19:48:51 - Turn 1: [epoch,p,r,f]:[-1, (0, 0, 0)]
+2021Apr18-19:48:51 - Turn 2: [epoch,p,r,f]:[-1, (0, 0, 0)]
+2021Apr18-19:48:51 - all: [epoch,p1,r1,f1;p2,r2,f2]:[-1, (0, 0, 0), (0, 0, 0)]
+2021Apr18-19:48:51 - ****************************************TEST******************************
+2021Apr18-19:49:11 - Turn 1: precision:0.8888 recall:0.8803 f1:0.8846
+2021Apr18-19:49:11 - Turn 2: precision:0.4930 recall:0.6212 f1:0.5498
+2021Apr18-20:01:40 - id:20210416-163611
+2021Apr18-20:01:40 - log_path:./log/run_log
+2021Apr18-20:01:40 - model:MRCTPLinker
+2021Apr18-20:01:40 - dataset_tag:ace2005
+2021Apr18-20:01:40 - train_path:data/cleaned_data/ACE2005/bert-base-uncased_overlap_15_window_100_threshold_1_max_distance_45_is_mq_False/train.json
+2021Apr18-20:01:40 - train_batch:24
+2021Apr18-20:01:40 - test_path:data/cleaned_data/ACE2005/bert-base-uncased_overlap_15_window_100_threshold_1_max_distance_45_is_mq_False/test.json
+2021Apr18-20:01:40 - test_batch:24
+2021Apr18-20:01:40 - dev_path:data/cleaned_data/ACE2005/bert-base-uncased_overlap_15_window_100_threshold_1_max_distance_45_is_mq_False/dev.json
+2021Apr18-20:01:40 - dev_batch:24
+2021Apr18-20:01:40 - max_len:120
+2021Apr18-20:01:40 - pretrained_model_path:../pretrained_models/bert-base-uncased
+2021Apr18-20:01:40 - max_epochs:100
+2021Apr18-20:01:40 - warmup_ratio:-1
+2021Apr18-20:01:40 - lr:2e-05
+2021Apr18-20:01:40 - dropout_prob:0.1
+2021Apr18-20:01:40 - weight_decay:0.01
+2021Apr18-20:01:40 - theta:0.2
+2021Apr18-20:01:40 - window_size:100
+2021Apr18-20:01:40 - overlap:50
+2021Apr18-20:01:40 - threshold:5
+2021Apr18-20:01:40 - local_rank:-1
+2021Apr18-20:01:40 - max_grad_norm:1
+2021Apr18-20:01:40 - seed:0
+2021Apr18-20:01:40 - amp:False
+2021Apr18-20:01:40 - not_save:False
+2021Apr18-20:01:40 - reload:False
+2021Apr18-20:01:40 - train:False
+2021Apr18-20:01:40 - dev_eval:False
+2021Apr18-20:01:40 - test_eval:True
+2021Apr18-20:01:40 - load_checkpoint_dir:-
+2021Apr18-20:01:40 - checkpoint_start:2
+2021Apr18-20:01:40 - num_questions:1
+2021Apr18-20:01:40 - train_ent:True
+2021Apr18-20:01:40 - train_rel:True
+2021Apr18-20:01:40 - cuda:0
+2021Apr18-20:01:40 - shaking_type:cat
+2021Apr18-20:01:40 - inner_enc_type:lstm
+2021Apr18-20:01:40 - relH_theta:0.4
+2021Apr18-20:01:40 - relT_theta:0.4
+2021Apr18-20:01:40 - rel_loss_weight:0.1
+2021Apr18-20:01:41 - 加载./checkpoints/ace2005/20210416-163611/checkpoint_1.cpt
