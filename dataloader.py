@@ -232,6 +232,7 @@ def collate_fn(batch):
                         else:
                             index_s2o = convertrowcol2index(ent2[2]-1, ent1[2]-1, seq_len)
                             relT_tags[index_s2o] = role2duieT[ent2[3]]["OT2ST"]
+                            print(relT_tags[index_s2o])
             # if(num):
             #     print(ans)
             #     print(rel_tag_decode(relH_tags, relT_tags, mask))
@@ -384,19 +385,19 @@ def get_inputs(context, q, tokenizer, title="", max_len=200, ans=[], type="ent",
     txt_ids = tokenizer.convert_tokens_to_ids(txt)
     # [CLS] is used to judge whether there is an answe---是否有答案？
     if not title:
-        if(type=='ent'):
-            tags =[tag_idxs['O'] if len(
-            ans) > 0 else tag_idxs['S']] + [-1] * (len(query) + 1) + tags + [-1]
-            # print(len([tag_idxs['O'] if len(
-            # ans) > 0 else tag_idxs['S']] + [-1] * (len(query) + 1)),len(tags)-1)
+        # if(type=='ent'):
+        tags =[tag_idxs['O'] if len(
+        ans) > 0 else tag_idxs['S']] + [-1] * (len(query) + 1) + tags + [-1]
+        # print(len([tag_idxs['O'] if len(
+        # ans) > 0 else tag_idxs['S']] + [-1] * (len(query) + 1)),len(tags)-1)
         context_mask = [0] + [0] * (len(query) + 1) + [1] * len(context) + [0]
         token_type_ids = [0] * (len(query) + 2) + [1] * (len(context) + 1)
     else:
-        if (type == 'ent'):
-            tags = [tag_idxs['O'] if len(
-            ans) > 0 else tag_idxs['S']]+ [-1] * (len(query) + len(title) + 2) + tags + [-1]
-            # print(len([tag_idxs['O'] if len(
-            # ans) > 0 else tag_idxs['S']]+ [-1] * (len(query) + len(title) + 2)),len(tags)-1)
+        # if (type == 'ent'):
+        tags = [tag_idxs['O'] if len(
+        ans) > 0 else tag_idxs['S']]+ [-1] * (len(query) + len(title) + 2) + tags + [-1]
+        # print(len([tag_idxs['O'] if len(
+        # ans) > 0 else tag_idxs['S']]+ [-1] * (len(query) + len(title) + 2)),len(tags)-1)
         context_mask = [0] + [0] * \
                        (len(query) + len(title) + 2) + [1] * len(context) + [0]  # title-->question
         token_type_ids = [0] * (len(query) + len(title) + 3) + [1] * (len(context) + 1)
@@ -406,7 +407,9 @@ def get_inputs(context, q, tokenizer, title="", max_len=200, ans=[], type="ent",
     #     span = tag_decode(tags, context_mask)
     #     print(span)
     #     print(ans)
-
+    # if(len(tags) != len(context_mask)):
+    #     print(type)
+    #     print(len(tags), len(context_mask), sum(context_mask), context_len)
     return txt_ids, (tags,ans), context_mask, token_type_ids
 
 
@@ -525,7 +528,7 @@ class MyDataset:
             raise Exception("this dataset is not yet supported")
 
 
-        for p_id, d in enumerate(tqdm(self.data, desc="dataset")):
+        for p_id, d in enumerate(tqdm(self.data[:5000], desc="dataset")):
             context = d['context']
             if('title' in d):
                 title = d['title']
@@ -547,7 +550,7 @@ class MyDataset:
                     t1_qas.append(
                         {"txt_ids": txt_ids, "tags": tags[0], "context_mask": context_mask, "token_type_ids": token_type_ids, 'turn_mask': 0})
                     if(self.train_rel):
-                        t1_qas[-1]["batch_ans"]=tags[1]
+                        t1_qas[-1]["batch_ans"] = tags[1]
                 self.all_t1.extend(t1_qas)
             if(self.train_rel):
                 #对关系提问
@@ -600,6 +603,7 @@ class MyDatasetT2:
         """
         with open(path, encoding='utf-8') as f:
             data = json.load(f)
+        self.la = "ch" if dataset_tag == "duie" else "en"
         self.data = data
         self.tokenizer = tokenizer
         self.max_len = max_len
@@ -609,6 +613,7 @@ class MyDatasetT2:
         self.train_ent=train_ent
         self.is_test=is_test
         self.init_data()
+
 
     def init_data(self):
         # print(self.data[0])
@@ -625,6 +630,7 @@ class MyDatasetT2:
                 question_templates = ace2005_mq_question_templates
             else:
                 question_templates = ace2005_question_templates
+            q2type = ace2004_q2type
         elif self.dataset_tag.lower() == 'ace2005':
             idx1s = ace2005_idx1
             idx2s = ace2005_idx2
@@ -633,6 +639,10 @@ class MyDatasetT2:
                 question_templates = ace2005_mq_question_templates
             else:
                 question_templates = ace2005_question_templates
+            q2type = ace2005_q2type
+        elif self.dataset_tag.lower() == "duie":
+            q2type = duie_q2type
+            pass
         else:
             raise Exception("this dataset is not yet supported")
 
@@ -643,7 +653,10 @@ class MyDatasetT2:
         for p_id,d in enumerate(tqdm(self.data, desc="dataset")):
             start = len(self.t2_gold)
             context = d['context']
-            title = d['title']
+            if ('title' in d):
+                title = d['title']
+            else:
+                title = None
             qa_pairs = d['qa_pairs']
             t1 = qa_pairs[0]
             t2 = qa_pairs[1]
@@ -660,19 +673,18 @@ class MyDatasetT2:
                 # print(context,q)
                 t2_qas.append(
                     {"txt_ids": txt_ids,  "context_mask": context_mask, "token_type_ids": token_type_ids,
-                     'turn_mask': 1, "p_id": p_id, "type": ace2005_q2type["qa_turn2"][q]})
+                     'turn_mask': 1, "p_id": p_id, "type": q2type["qa_turn2"][q]})
 
                 if(self.is_test):
-                    self.t2_ids.append((p_id,ace2005_q2type["qa_turn2"][q]))
+                    self.t2_ids.append((p_id,q2type["qa_turn2"][q]))
                     # print(self.t2_ids[-1])
                     # t2_ids[-1]["type"] = ace2005_q2type["qa_turn2"][q]
                     # print(t2_qas[-1]["type"])
                     for an in ans:
-                        rel,head,tail=an
-                        if(self.train_ent):
-                            self.t2_gold.append((p_id,(tuple(head[:-1]),rel,tuple(tail[:-1]))))
-                        else:
-                            self.t2_gold.append((p_id,(tuple(head[1:-1]),rel,tuple(tail[1:-1]))))
+                        lis = [an[0]]
+                        for ent in an[1:]:
+                            lis.append(tuple(ent[:-1]))
+                        self.t2_gold.append((p_id, tuple(lis)))
             end = len(self.t2_gold)
             self.gold_dic[p_id] = self.t2_gold[start + 1:end]
 
@@ -712,6 +724,7 @@ class MyDatasetT1:
         """
         with open(path, encoding='utf-8') as f:
             data = json.load(f)
+        self.la = "ch" if dataset_tag == "duie" else "en"
         self.data = data
         self.tokenizer = tokenizer
         self.max_len = max_len
@@ -732,18 +745,23 @@ class MyDatasetT1:
             idx1s = ace2004_idx1
             idx2s = ace2004_idx2
             dist = ace2004_dist
-            if (self.num_questions==1):
+            if (self.num_questions == 1):
                 question_templates = ace2005_mq_question_templates
             else:
                 question_templates = ace2005_question_templates
+            q2type = ace2004_q2type
         elif self.dataset_tag.lower() == 'ace2005':
             idx1s = ace2005_idx1
             idx2s = ace2005_idx2
             dist = ace2005_dist
-            if (self.num_questions==1):
+            if (self.num_questions == 1):
                 question_templates = ace2005_mq_question_templates
             else:
                 question_templates = ace2005_question_templates
+            q2type = ace2005_q2type
+        elif self.dataset_tag.lower() == "duie":
+            q2type = duie_q2type
+            pass
         else:
             raise Exception("this dataset is not yet supported")
 
@@ -754,7 +772,10 @@ class MyDatasetT1:
         for p_id,d in enumerate(tqdm(self.data, desc="dataset")):
             start = len(self.t1_gold)
             context = d['context']
-            title = d['title']
+            if ('title' in d):
+                title = d['title']
+            else:
+                title = None
             qa_pairs = d['qa_pairs']
             t1 = qa_pairs[0]
             t2 = qa_pairs[1]
@@ -766,9 +787,9 @@ class MyDatasetT1:
                     txt_ids, tags, context_mask, token_type_ids = get_inputs(
                         context, q, self.tokenizer, title, self.max_len, ans, type="ent", la=self.la)
                     t1_qas.append(
-                        {"txt_ids": txt_ids,  "context_mask": context_mask, "token_type_ids": token_type_ids, 'turn_mask': 0, 'p_id': p_id, "type": ace2005_q2type["qa_turn1"][q]})
+                        {"txt_ids": txt_ids,  "context_mask": context_mask, "token_type_ids": token_type_ids, 'turn_mask': 0, 'p_id': p_id, "type": q2type["qa_turn1"][q]})
                     if(self.is_test):
-                        self.t1_ids.append((p_id,ace2005_q2type["qa_turn1"][q]))
+                        self.t1_ids.append((p_id, q2type["qa_turn1"][q]))
 
                         for ent in ans:
                             self.t1_gold.append((p_id,tuple(ent[:-1])))
