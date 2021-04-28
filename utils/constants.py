@@ -20,7 +20,8 @@ duie_entity2rel = {'人物': ['毕业院校', '父亲', '母亲', '妻子', '丈
                    '学科专业': ['专业代码', '修业年限'], '机构': ['占地面积', '成立日期', '简称'],
                    '行政区': ['邮政编码', '气候', '面积', '人口数量'], '企业': ['注册资本', '创始人', '总部地点', '董事长'],
                    '文学作品': ['主角'], '学校': ['校长'], '国家': ['首都', '官方语言'], '历史人物': ['朝代', '号'], '景点': ['所在城市'], '地点': ['海拔']}
-
+ace2004_q2type = {"qa_turn1":{v:k for k,v in ace2004_question_templates["qa_turn1"].items()},
+                "qa_turn2":{v:k for k,v in ace2004_question_templates["qa_turn2"].items()}}
 ace2005_q2type = {"qa_turn1":{v:k for k,v in ace2005_question_templates["qa_turn1"].items()},
                 "qa_turn2":{v:k for k,v in ace2005_question_templates["qa_turn2"].items()}}
 duie_q2type = {"qa_turn1":{v:k for k,v in duie_question_templates["qa_turn1"].items()},
