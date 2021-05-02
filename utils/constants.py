@@ -2,7 +2,9 @@ import json
 import os
 
 print(os.path.abspath(__file__))
+
 question_templates_path = "/data/home/wuyuming/wxl/multiQA_tplinker/data/query_templates/"
+# question_templates_path = "/home/megstudio/workspace/multiQA_tplinker/data/query_templates/"
 print(os.path.abspath(question_templates_path))
 ace2004_question_templates = json.load(
     open(question_templates_path+'ace2004.json'))
