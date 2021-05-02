@@ -148,9 +148,9 @@ def tag_decode(tags, context_mask=None, p_id=None, type=None, ans=None, gold_dic
     # print(p_id)
     total_predict = 0
     TP = 0
-    spans = [[]]*tags.shape[0]
+    spans = [[]]*tags[1].shape[0]
     # print(tags.shape)
-    tags = tags.tolist()
+    tags = tags[1].tolist()
     if not context_mask is None:
         context_mask = context_mask.tolist()
     has_answer = []
@@ -207,22 +207,25 @@ def tag_decode(tags, context_mask=None, p_id=None, type=None, ans=None, gold_dic
     return spans
 
 def rel_tag_decode(relH_tag_idx, relT_tag_idx, handshaking_context_mask,context_mask,overlap=15,ans = None, p_id=None, type=None,gold_dic=None,predict_dic=None):
-    ents_spans = [[]]*relH_tag_idx.shape[0]
+    ents_spans = [[]]*relH_tag_idx[1].shape[0]
     # print(ents_spans)
-    rels_spans=[[]]*relH_tag_idx.shape[0]
+    rels_spans=[[]]*relH_tag_idx[1].shape[0]
     total_ents=0
     total_rels=0
     # relH_tag_idx=relH_tag_idx.tolist()
     # relT_tag_idx=relT_tag_idx.tolist()
-    assert relH_tag_idx.shape[0]==relT_tag_idx.shape[0]==handshaking_context_mask.shape[0]
-    for ii,(now_p_id, now_type, H,T,mask,c_mask) in enumerate(zip(p_id, type, relH_tag_idx,relT_tag_idx, handshaking_context_mask, context_mask)):
+    print(relH_tag_idx[1].shape[0], relT_tag_idx[1].shape[0], handshaking_context_mask.shape[0])
+    assert relH_tag_idx[1].shape[0] == relT_tag_idx[1].shape[0] == handshaking_context_mask.shape[0]
+    for ii, (now_p_id, now_type, Hp, Tp, H, T, mask, c_mask) in enumerate(zip(p_id, type, relH_tag_idx[0], relT_tag_idx[0], relH_tag_idx[1], relT_tag_idx[1], handshaking_context_mask, context_mask)):
         now_p_id = now_p_id.item()
         gold = gold_dic[now_p_id]
         t1_predict = predict_dic[now_p_id]
         # H=H.reshape(-1,1)
         # T=T.reshape(-1,1)
-        H=H[mask==1].tolist()
-        T=T[mask==1].tolist()
+        H = H[mask==1].tolist()
+        T = T[mask==1].tolist()
+        Hp = Hp[mask == 1].tolist()
+        Tp = Tp[mask == 1].tolist()
         seqlen=sum(c_mask)
         # dic={}
         k=0
@@ -235,32 +238,31 @@ def rel_tag_decode(relH_tag_idx, relT_tag_idx, handshaking_context_mask,context_
         # import time
         # s=time.time()
         for row in range(seqlen.item()):
-            for col in range(row,seqlen.item()):
-                if(H[k]!=0):
+            for col in range(row, seqlen.item()):
+                if(H[k] != 0):
                     H_ent_id.append(row)
                     H_ent_id.append(col)
-                    if(H[k]==1):
-                        SH2OH.append((row,col))
-                    elif(H[k]==2):
-                        SH2OH.append((col,row))
+                    if(H[k] % 2 == 1):
+                        SH2OH.append((row, col, k))
+                    elif(H[k] % 2 == 0):
+                        SH2OH.append((col, row, k))
                 if(T[k]!=0):
                     # print(T[k])
                     T_ent_id.append(row+1)
                     T_ent_id.append(col+1)
-                    if (T[k] == 1):
-                        ST2OT.append((row+1, col+1))
-                    elif (T[k] == 2):
-                        ST2OT.append((col+1, row+1))
-                k+=1
+                    if (T[k] % 2 == 1):
+                        ST2OT.append((row+1, col+1, k))
+                    elif (T[k] % 2 == 0):
+                        ST2OT.append((col+1, row+1, k))
+                k += 1
         # e=time.time()
         # print(e-s)
         # s=e
-        SH2OH.sort()
-        ST2OT.sort()
+
         # print(ii)
         # print(gold)
-        # print(SH2OH)
-        # print(ST2OT)
+        print(SH2OH)
+        print(ST2OT)
         # if(t1_predict is not None):
         # print(t1_predict)
 
@@ -273,6 +275,8 @@ def rel_tag_decode(relH_tag_idx, relT_tag_idx, handshaking_context_mask,context_
         # print(len(SH2OH),len(ST2OT))
         ##这个再想一下
         if(len(t1_predict)==0):
+            SH2OH.sort()
+            ST2OT.sort()
             H_ent_id.sort()
             T_ent_id.sort()
             i,j=0,0
@@ -283,29 +287,29 @@ def rel_tag_decode(relH_tag_idx, relT_tag_idx, handshaking_context_mask,context_
                 # print(H_ent_id[i],T_ent_id[j])
                 if(H_ent_id[i]>T_ent_id[j] and H_ent_id[i]>T_ent_id[j]-overlap):
                     ents.add((H_ent_id[i],T_ent_id[j]))
-                    H_ents[H_ent_id[i]]=(H_ent_id[i],T_ent_id[j])
-                    T_ents[T_ent_id[j]] = (H_ent_id[i],T_ent_id[j])
+                    H_ents[H_ent_id[i]] = (H_ent_id[i], T_ent_id[j])
+                    T_ents[T_ent_id[j]] = (H_ent_id[i], T_ent_id[j])
                 i+=1
                 j+=1
         else:
             # ents=t1_predict[ii]
             for e in t1_predict:
-                H_ents[e[1][1]]=e[1]
-                T_ents[e[1][2]]=e[1]
+                H_ents[e[1][1]] = e[1]
+                T_ents[e[1][2]] = e[1]
             # print(H_ents)
         # e = time.time()
         # print(e - s)
         # s = e
-        rels=set()
+        rels = set()
         # print(len(SH2OH),len(ST2OT))
-        for s,o in SH2OH:
+        for s, o, k in SH2OH:
             try:
-                rels.add((now_p_id, (H_ents[s], now_type, H_ents[o])))
+                rels.add((now_p_id, (now_type, H_ents[s], H_ents[o])))
             except:
                 pass
-        for s,o in ST2OT:
+        for s, o, k in ST2OT:
             try:
-                rels.add((now_p_id, (T_ents[s], now_type, T_ents[o])))
+                rels.add((now_p_id, (now_type, T_ents[s], T_ents[o])))
             except:
                 pass
         # e = time.time()

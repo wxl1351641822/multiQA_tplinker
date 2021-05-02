@@ -117,10 +117,10 @@ class MrcTpLinkerModel(nn.Module):
             relH_tags_t2=relH_tags_t2[relH_tags_t2 != -1]
             loss_relH=self.loss_func2(relH_tag_logits,  relH_tags_t2) if len(
                 relH_tags_t2) != 0 else torch.tensor(0).type_as(input)
-            relH_tag_idx = torch.argmax(relH_tag_logits, dim=-1).squeeze(-1) if relH_tag_logits.shape[0] != 0 else torch.tensor(0.0)
+            # relH_tag_idx = torch.argmax(relH_tag_logits, dim=-1).squeeze(-1) if relH_tag_logits.shape[0] != 0 else torch.tensor(0.0)
             # relT_tag_idx = torch.argmax(relT_tag_logits, dim=-1).squeeze(-1)
             # print(torch.sum(torch.eq(relH_tag_idx,relH_tags_t2)).type_as(input))
-            acc[1]=torch.where(relH_tag_idx>0)[0].shape[0]
+            # acc[1]=torch.where(relH_tag_idx>0)[0].shape[0]
 
         if (relT_tags is not None):
             # print(torch.nonzero(relT_tag_logits>0))
@@ -130,11 +130,11 @@ class MrcTpLinkerModel(nn.Module):
             loss_relT = self.loss_func2(relT_tag_logits, relT_tags_t2) if len(
                 relT_tags_t2) != 0 else torch.tensor(0).type_as(input)
 
-            relT_tag_idx = torch.argmax(relT_tag_logits, dim=-1).squeeze(-1) if relT_tag_logits.shape[0] != 0 else torch.tensor(0.0)
+            # relT_tag_idx = torch.argmax(relT_tag_logits, dim=-1).squeeze(-1) if relT_tag_logits.shape[0] != 0 else torch.tensor(0.0)
 
             # print( torch.sum(torch.eq(relT_tag_idx, relT_tags_t2)).type_as(input))
             # print(torch.where(relT_tag_idx>0))
-            acc[2] = torch.where(relT_tag_idx>0)[0].shape[0]
+            # acc[2] = torch.where(relT_tag_idx>0)[0].shape[0]
 
         # tag_logits_t2 = tag_logits_t2[context_mask_t2 == 1]  # (N2,num_tag)
         # tag_logits = self.tag_linear(rep)  # (batch,seq_len,num_tag)
@@ -149,19 +149,22 @@ class MrcTpLinkerModel(nn.Module):
 
             loss_t1 = self.loss_func1(tag_logits_t1, target_tags_t1) if len(
                 target_tags_t1) != 0 else torch.tensor(0).type_as(input)
-            target_tags_idx=torch.argmax(tag_logits_t1, dim=-1).squeeze(-1) if tag_logits_t1.shape[0] != 0 else torch.tensor(0.0)
-            acc[0] = torch.where(target_tags_idx>0)[0].shape[0]
-        loss=self.relH_theta*loss_relH+self.relT_theta*loss_relT+self.theta*loss_t1
+            # target_tags_idx=torch.argmax(tag_logits_t1, dim=-1).squeeze(-1) if tag_logits_t1.shape[0] != 0 else torch.tensor(0.0)
+            # acc[0] = torch.where(target_tags_idx>0)[0].shape[0]
+        loss = self.relH_theta*loss_relH+self.relT_theta*loss_relT+self.theta*loss_t1
         if(relH_tags is not None or target_tags is not None):
             return loss,(loss_t1.item(),loss_relH.item(),loss_relT.item()),acc
         else:
             # print(tag_logits_t1.shape,relH_tag_logits.shape,relT_tag_logits.shape)
             # print(tag_logits_t1.shape)
-            tag_idx = torch.argmax(tag_logits_t1,dim=-1).squeeze(-1) if tag_logits_t1.shape[0]!=0 else torch.tensor(0.0)
-            relH_tag_idx = torch.argmax(relH_tag_logits,dim=-1).squeeze(-1) if relH_tag_logits.shape[0]!=0 else torch.tensor(0.0)
-            relT_tag_idx = torch.argmax(relT_tag_logits,dim=-1).squeeze(-1) if relT_tag_logits.shape[0]!=0 else torch.tensor(0.0)
+            tag_idx = torch.max(tag_logits_t1, dim=-1) if tag_logits_t1.shape[0] != 0 else torch.tensor(0.0)
+            relH_tag_idx = torch.max(relH_tag_logits, dim=-1) if relH_tag_logits.shape[0] != 0 else torch.tensor(0.0)
+            relT_tag_idx = torch.max(relT_tag_logits, dim=-1) if relT_tag_logits.shape[0] != 0 else torch.tensor(0.0)
             # print(tag_idx.shape,relH_tag_idx.shape,relT_tag_idx.shape)
-            return tag_idx,relH_tag_idx,relT_tag_idx,handshaking_context_mask
+            # print(torch.max(tag_logits_t1,dim=-1)[0].shape)
+            # print(tag_idx.shape)
+            # print(tag_idx)
+            return tag_idx, relH_tag_idx, relT_tag_idx, handshaking_context_mask
         #
         #     loss = self.theta*loss_t1+(1-self.theta)*loss_t2
         #     return loss, (loss_t1.item(), loss_t2.item())

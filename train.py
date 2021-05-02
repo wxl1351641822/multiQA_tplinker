@@ -37,6 +37,10 @@ def args_parser():
     # id = "20210418-205134"
     # id = "20210419-102443"
     # id = "20210419-102443"
+    # id = "20210421-102936"
+    # id = "20210423-184319"
+    # id = "20210426-200057"
+    id = "20210426-200057"
     parser = argparse.ArgumentParser()
     parser.add_argument("--id", default=id)
     parser.add_argument("--log_path", default="./log/run_log")
@@ -54,7 +58,7 @@ def args_parser():
                         help="maximum length of input")
     parser.add_argument("--pretrained_model_path",default='../pretrained_models/bert-base-uncased')
     parser.add_argument("--max_epochs", default=32, type=int)
-    parser.add_argument("--warmup_ratio", type=float, default=-1)
+    parser.add_argument("--warmup_ratio", type=float, default=0.1)
     parser.add_argument("--lr", type=float, default=2e-5)
     parser.add_argument("--dropout_prob", type=float, default=0.1)
     parser.add_argument("--weight_decay", type=float, default=0.01)
@@ -79,14 +83,15 @@ def args_parser():
     parser.add_argument("--dev_eval", action="store_true")
     parser.add_argument("--test_eval", action="store_true")
     parser.add_argument("--load_checkpoint_dir", type=str, default="-")
-    parser.add_argument("--checkpoint_start", type=int, default=0)
+    parser.add_argument("--checkpoint_start", type=int, default=1)
     parser.add_argument("--num_questions", type=int, default=1)
 
     ## mrc_tplinker参数
 
     parser.add_argument("--train_ent", type=bool, default=True)
     parser.add_argument("--train_rel", type=bool, default=True)
-    parser.add_argument("--cuda", type=int, default=1)
+    parser.add_argument("--cuda", type=int, default=0)
+    parser.add_argument("--cross_valid", type=int, default=10)
     parser.add_argument("--shaking_type", type=str, default="cat", choices=["cat","cat_plus", "cln", "cln_plus"])
     parser.add_argument("--inner_enc_type", type=str, default="lstm", choices=["lstm", "mean_pooling", "max_pooling",  "mean_pooling"])
     parser.add_argument("--relH_theta", type=float,
@@ -95,13 +100,22 @@ def args_parser():
                         help="weight of two tasks", default=0.4)
     parser.add_argument("--rel_loss_weight", type=float,
                        help="rel loss O's weight", default=0.25)
+
+    parser.add_argument("--use_meg", type=bool,
+                        help="megstudio?", default=False)
     args = parser.parse_args()
-    args.train = True
-    args.dev_eval = True
+
     args.test_eval = True
-    args.reload = True
+    # args.reload = True
+    # args.train = True
+    # args.dev_eval = True
     args.dataset_tag = "duie"
     if(args.dataset_tag == "duie"):
+        args.train_batch = 16
+        args.test_batch = 16
+        args.dev_batch = 16
+        args.lr = 5e-5
+        args.pretrain_model = "../pretrained_models/bert-base-chinese"
         args.train_path = "data/cleaned_data/Duie/bert-base-chinese_is_mq_False/train.json"
         args.dev_path = "data/cleaned_data/Duie/bert-base-chinese_is_mq_False/dev.json"
         args.test_path = "data/cleaned_data/Duie/bert-base-chinese_is_mq_False/test1.json"
@@ -113,7 +127,7 @@ def args_parser():
 
     return args,logger
 
-def get_logger(id,log_path="./log/run_log", only_predict=False):
+def get_logger(id, log_path="./log/run_log", only_predict=False):
     sys.path.append("..")
 
     logger = logging.getLogger(__name__)
@@ -313,7 +327,7 @@ def train(args, train_dataloader):
                 "Turn 2: [epoch,p,r,f]:{}".format(best_t2))
             logger.info(
                 "all: [epoch,p1,r1,f1;p2,r2,f2]:{}".format(best))
-    with open("ace2005dev.txt", "a", encoding="utf-8") as f:
+    with open(args.dataset_tag+"dev.txt", "a", encoding="utf-8") as f:
         lis = [[], []]
         lis[1] = [best[0], best[1][0], best[1][1], best[1][2], best[2][0], best[2][1], best[2][2]]
         for k, v in vars(args).items():
@@ -322,7 +336,7 @@ def train(args, train_dataloader):
             lis[0].append(k)
             lis[1].append(v)
         lis[1] = [str(s) for s in lis[1]]
-        f.write("id,epoch,p1,r1,f1,p2,r2,f2," + ",".join(lis[0])+"\n")
+        # f.write("id,epoch,p1,r1,f1,p2,r2,f2," + ",".join(lis[0])+"\n")
         f.write(str(args.id) + "," + ",".join(lis[1])+"\n")
 
     if args.test_eval and args.local_rank in [-1, 0]:
@@ -357,7 +371,7 @@ def predict(args, beg, end):
     model.to(device)
     for k, v in vars(args).items():
         logger.info("{}:{}".format(k, v))
-    dev_dataloader = load_eval_data(args.dataset_tag, args.test_path, args.pretrained_model_path,
+    dev_dataloader = load_eval_data(args.dataset_tag, args.dev_path, args.pretrained_model_path,
                                     batch_size=args.test_batch,
                                     max_len=args.max_len, threshold=args.threshold, num_questions=args.num_questions,
                                     train_ent=args.train_ent)  # test_dataloader是第一轮问答的dataloder
@@ -386,11 +400,7 @@ def predict(args, beg, end):
             logger.info("加载{}".format(save_path))
         else:
             logger.info("加载模型失败...")
-        # 转存预测日志
-        logname = "predict-log-{}".format(args.id)
-        with open(save_dir + logname, "w", encoding="utf-8") as fw:
-            with open("./log/run_log/" + logname, "r", encoding="utf-8") as fr:
-                fw.write(fr.read())
+
         if args.local_rank != -1:
             model = torch.nn.parallel.DistributedDataParallel(model, device_ids=[
                                                               args.local_rank], output_device=args.local_rank, find_unused_parameters=True)
@@ -419,7 +429,12 @@ def predict(args, beg, end):
             "Best Turn 2: [epoch,p,r,f]:{}".format(best_t2))
         logger.info(
             "Best all: [epoch,p1,r1,f1;p2,r2,f2]:{}".format(best))
-    with open("ace2005test.txt", "a", encoding="utf-8") as f:
+        # 转存预测日志
+        logname = "predict-log-{}".format(args.id)
+        with open(save_dir + logname, "w", encoding="utf-8") as fw:
+            with open("./log/run_log/" + logname, "r", encoding="utf-8") as fr:
+                fw.write(fr.read())
+    with open(args.dataset_tag+"test.txt", "a", encoding="utf-8") as f:
         lis = [[], []]
         lis[1] = [best[0], best[1][0], best[1][1], best[1][2], best[2][0], best[2][1], best[2][2]]
         for k, v in vars(args).items():
@@ -455,9 +470,12 @@ if __name__  ==  "__main__":
                                            args.threshold, args.local_rank, True)
             pickle.dump(train_dataloader, open(p1, 'wb'))
 
+            logger.info("reload success! " + p1)
+
             # args.checkpoint_start=i
         train(args, train_dataloader)
 
     if(not args.train and args.test_eval):
-        beg, end = 1, 32
+        beg, end = 1,31
         predict(args, beg, end)
+
