@@ -99,20 +99,20 @@ class MrcTpLinkerModel(nn.Module):
         # print(rep_t2.shape, context_mask_t2.shape)
         # 区分正文1和问题0
         #t1:普通序列标注
-        tag_logits_t1=self.tag_linear(rep_t1)
+        tag_logits_t1 = self.tag_linear(rep_t1)
         # print(tag_logits_t1.shape,rep_t1.shape)
 
         # target_tags_t1 = target_tags_t1[context_mask_t1 == 1]  # (N1)
         #t2:rel
         handshaking_rep_t2,handshaking_context_mask=self.handshaking_kernel(rep_t2,context_mask_t2)
-        relH_tag_logits=self.relH_linear(handshaking_rep_t2)
-        relT_tag_logits=self.relT_linear(handshaking_rep_t2)
-        loss_relH=torch.tensor(0).type_as(input)
-        loss_relT=torch.tensor(0).type_as(input)
+        relH_tag_logits = self.relH_linear(handshaking_rep_t2)
+        relT_tag_logits = self.relT_linear(handshaking_rep_t2)
+        loss_relH = torch.tensor(0).type_as(input)
+        loss_relT = torch.tensor(0).type_as(input)
         loss_t1=torch.tensor(0).type_as(input)
         acc=[0,0,0]
         if(relH_tags is not None):
-            relH_tag_logits=relH_tag_logits[handshaking_context_mask==1]
+            relH_tag_logits = relH_tag_logits[handshaking_context_mask==1]
             relH_tags_t2 = relH_tags[turn_mask == 1]  # (n2,seq_len)
             relH_tags_t2=relH_tags_t2[relH_tags_t2 != -1]
             loss_relH=self.loss_func2(relH_tag_logits,  relH_tags_t2) if len(
@@ -157,6 +157,9 @@ class MrcTpLinkerModel(nn.Module):
         else:
             # print(tag_logits_t1.shape,relH_tag_logits.shape,relT_tag_logits.shape)
             # print(tag_logits_t1.shape)
+            tag_logits_t1 = torch.softmax(tag_logits_t1, dim=-1)
+            relH_tag_logits = torch.softmax(relH_tag_logits, dim=-1)
+            relT_tag_logits = torch.softmax(relT_tag_logits, dim=-1)
             tag_idx = torch.max(tag_logits_t1, dim=-1) if tag_logits_t1.shape[0] != 0 else torch.tensor(0.0)
             relH_tag_idx = torch.max(relH_tag_logits, dim=-1) if relH_tag_logits.shape[0] != 0 else torch.tensor(0.0)
             relT_tag_idx = torch.max(relT_tag_logits, dim=-1) if relT_tag_logits.shape[0] != 0 else torch.tensor(0.0)

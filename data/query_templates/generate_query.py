@@ -4,7 +4,8 @@ import json
 ace2004_entities = ['FAC', 'GPE', 'LOC', 'ORG', 'PER', 'VEH', 'WEA']
 ace2004_entities_full = ["facility","geo political","location","organization","person","vehicle","weapon"]
 ace2004_relations = ['ART', 'EMP-ORG', 'GPE-AFF', 'OTHER-AFF', 'PER-SOC', 'PHYS']
-ace2004_relations_full = ['artifact','employment, membership or subsidiary','geo political affiliation','person or organization affiliation','personal or social','physical']
+ace2004_relations_full = ['artifact','employment, membership or subsidiary','geo political affiliation',
+                          'person or organization affiliation','personal or social','physical']
 
 ace2005_entities = ['FAC', 'GPE', 'LOC', 'ORG', 'PER', 'VEH', 'WEA']
 ace2005_entities_full = ["facility","geo political","location","organization","person","vehicle","weapon"]

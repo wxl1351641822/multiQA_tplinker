@@ -40,7 +40,8 @@ def args_parser():
     # id = "20210421-102936"
     # id = "20210423-184319"
     # id = "20210426-200057"
-    id = "20210426-200057"
+    # id = "20210426-200057"
+    id = "20210514-201540"
     parser = argparse.ArgumentParser()
     parser.add_argument("--id", default=id)
     parser.add_argument("--log_path", default="./log/run_log")
@@ -48,18 +49,18 @@ def args_parser():
     parser.add_argument("--dataset_tag", default='ace2005',
                         choices=['ace2005', 'ace2004', 'duie'])
     parser.add_argument("--train_path", default='data/cleaned_data/ACE2005/bert-base-uncased_overlap_15_window_100_threshold_1_max_distance_45_is_mq_False/train.json')
-    parser.add_argument("--train_batch", type=int, default=24)
+    parser.add_argument("--train_batch", type=int, default=64)
     parser.add_argument("--test_path", default='data/cleaned_data/ACE2005/bert-base-uncased_overlap_15_window_100_threshold_1_max_distance_45_is_mq_False/test.json')
 
-    parser.add_argument("--test_batch", type=int, default=24)
+    parser.add_argument("--test_batch", type=int, default=64)
     parser.add_argument("--dev_path", default='data/cleaned_data/ACE2005/bert-base-uncased_overlap_15_window_100_threshold_1_max_distance_45_is_mq_False/dev.json')
-    parser.add_argument("--dev_batch", type=int, default=24)
+    parser.add_argument("--dev_batch", type=int, default=64)
     parser.add_argument("--max_len", default=200, type=int,
                         help="maximum length of input")
     parser.add_argument("--pretrained_model_path",default='../pretrained_models/bert-base-uncased')
     parser.add_argument("--max_epochs", default=32, type=int)
     parser.add_argument("--warmup_ratio", type=float, default=0.1)
-    parser.add_argument("--lr", type=float, default=2e-5)
+    parser.add_argument("--lr", type=float, default=5e-5)
     parser.add_argument("--dropout_prob", type=float, default=0.1)
     parser.add_argument("--weight_decay", type=float, default=0.01)
     parser.add_argument("--theta", type=float,
@@ -99,23 +100,26 @@ def args_parser():
     parser.add_argument("--relT_theta", type=float,
                         help="weight of two tasks", default=0.4)
     parser.add_argument("--rel_loss_weight", type=float,
-                       help="rel loss O's weight", default=0.25)
-
+                       help="rel loss O's weight", default=0.1)
     parser.add_argument("--use_meg", type=bool,
                         help="megstudio?", default=False)
+    parser.add_argument("--filter_rel_sigma", type=float,
+                        help="filter low pro relation", default=0.5)
+    parser.add_argument("--merge_rel_or", type=bool, help="merge rel by |? or &", default=False)
+
     args = parser.parse_args()
 
     args.test_eval = True
     # args.reload = True
     # args.train = True
     # args.dev_eval = True
-    args.dataset_tag = "duie"
+    # args.dataset_tag = "duie"
     if(args.dataset_tag == "duie"):
         args.train_batch = 16
         args.test_batch = 16
         args.dev_batch = 16
         args.lr = 5e-5
-        args.pretrain_model = "../pretrained_models/bert-base-chinese"
+        args.pretrain_model_path = "../pretrained_models/bert-base-chinese"
         args.train_path = "data/cleaned_data/Duie/bert-base-chinese_is_mq_False/train.json"
         args.dev_path = "data/cleaned_data/Duie/bert-base-chinese_is_mq_False/dev.json"
         args.test_path = "data/cleaned_data/Duie/bert-base-chinese_is_mq_False/test1.json"
@@ -302,7 +306,8 @@ def train(args, train_dataloader):
                                                 num_questions=args.num_questions,
                                                 train_ent=args.train_ent)  # test_dataloader是第一轮问答的dataloder
                 (p1, r1, f1), (p2, r2, f2) = test_evaluation(
-                    model, dev_dataloader, args.threshold, args.amp, train_ent=args.train_ent,cuda=args.cuda)
+                    model, dev_dataloader, args.threshold, args.amp, train_ent=args.train_ent, cuda=args.cuda,
+                filter_rel_sigma = args.filter_rel_sigma, merge_rel_or = args.merge_rel_or)
 
                 logger.info(
                     "Turn 1: precision:{:.4f} recall:{:.4f} f1:{:.4f}".format(p1, r1, f1))
@@ -345,7 +350,7 @@ def train(args, train_dataloader):
         #                                 args.local_rank != -1, num_questions=args.num_questions,
         #                                 train_ent=args.train_ent)  # test_dataloader是第一轮问答的dataloder
         dev_dataloader = load_eval_data(args.dataset_tag, args.test_path, args.pretrained_model_path,  batch_size=args.test_batch,
-                                        max_len=args.max_len,threshold=args.threshold,num_questions=args.num_questions,
+                                        max_len=args.max_len, threshold=args.threshold, num_questions=args.num_questions,
                                         train_ent=args.train_ent)  # test_dataloader是第一轮问答的dataloder
         (p1, r1, f1),(p2, r2, f2) = test_evaluation(
             model, dev_dataloader, args.threshold, args.amp,train_ent=args.train_ent,cuda=args.cuda)
@@ -443,11 +448,11 @@ def predict(args, beg, end):
             lis[0].append(k)
             lis[1].append(v)
         lis[1] = [str(s) for s in lis[1]]
-        # f.write("id,epoch,p1,r1,f1,p2,r2,f2," + ",".join(lis[0])+"\n")
+        f.write("id,epoch,p1,r1,f1,p2,r2,f2," + ",".join(lis[0])+"\n")
         f.write(str(args.id) + "," + ",".join(lis[1])+"\n")
 
 if __name__  ==  "__main__":
-    args,logger = args_parser()
+    args, logger = args_parser()
     set_seed(args.seed)
     # print(args)
     if(args.train):
@@ -460,7 +465,8 @@ if __name__  ==  "__main__":
         # args.reload = True
         if not os.path.exists(p1) or args.reload:
             train_dataloader = load_data(args.dataset_tag, args.train_path, args.train_batch, args.max_len, args.pretrained_model_path,
-                                         args.local_rank != -1, shuffle=True, threshold=args.threshold,num_questions=args.num_questions,train_ent=args.train_ent, train_rel=args.train_rel)
+                                         args.local_rank != -1, shuffle=True, threshold=args.threshold,
+                                         num_questions=args.num_questions,train_ent=args.train_ent, train_rel=args.train_rel)
             pickle.dump(train_dataloader, open(p1, 'wb'))
             logger.info("training data saved at "+p1)
         else:
@@ -476,6 +482,6 @@ if __name__  ==  "__main__":
         train(args, train_dataloader)
 
     if(not args.train and args.test_eval):
-        beg, end = 1,31
+        beg, end = 2,31
         predict(args, beg, end)
 

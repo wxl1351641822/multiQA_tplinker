@@ -604,7 +604,7 @@ class MyDatasetT2:
         with open(path, encoding='utf-8') as f:
             data = json.load(f)
         self.la = "ch" if dataset_tag == "duie" else "en"
-        self.data = data
+        self.data = data#[:100]
         self.tokenizer = tokenizer
         self.max_len = max_len
         self.threshold = threshold
@@ -725,7 +725,7 @@ class MyDatasetT1:
         with open(path, encoding='utf-8') as f:
             data = json.load(f)
         self.la = "ch" if dataset_tag == "duie" else "en"
-        self.data = data
+        self.data = data#[:100]
         self.tokenizer = tokenizer
         self.max_len = max_len
         self.threshold = threshold
@@ -769,7 +769,7 @@ class MyDatasetT1:
         self.gold_dic = {}
         # print(self.data[0])
 
-        for p_id,d in enumerate(tqdm(self.data, desc="dataset")):
+        for p_id, d in enumerate(tqdm(self.data, desc="dataset")):
             start = len(self.t1_gold)
             context = d['context']
             if ('title' in d):
@@ -993,14 +993,14 @@ def reload_data(old_dataloader, batch_size, max_len, threshold, local_rank, shuf
 
 
 def load_eval_data(dataset_tag, test_path, pretrained_model_path,  batch_size=10, max_len=512,threshold=5,num_questions=1,train_ent=False):
-    t1_dataloader= load_t1_data(dataset_tag, test_path, pretrained_model_path, threshold,num_questions, batch_size, max_len)
+    t1_dataloader= load_t1_data(dataset_tag, test_path, pretrained_model_path, threshold, num_questions, batch_size, max_len)
     t2_dataloader = load_t2_data(dataset_tag, test_path, pretrained_model_path, threshold, num_questions, batch_size,
                                  max_len,train_ent=train_ent)
     return t1_dataloader,t2_dataloader
 
 def load_t1_data(dataset_tag, test_path, pretrained_model_path, threhold=5,num_questions=1, batch_size=10, max_len=512):
     tokenizer = BertTokenizer.from_pretrained(pretrained_model_path)
-    t1_dataset = MyDatasetT1(dataset_tag, test_path, tokenizer, max_len=max_len, threshold=threhold,num_questions=num_questions,train_ent=True)
+    t1_dataset = MyDatasetT1(dataset_tag, test_path, tokenizer, max_len=max_len, threshold=threhold,num_questions=num_questions, train_ent=True)
     dataloader = DataLoader(t1_dataset, batch_size, collate_fn=collate_fn1)
     return dataloader
 
