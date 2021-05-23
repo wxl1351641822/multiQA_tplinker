@@ -181,7 +181,11 @@ def train(args, train_dataloader):
         cs = args.checkpoint_start
         tb = args.train_batch
         local_rank = args.local_rank
+        filter_rel_sigma = args.filter_rel_sigma
+        merge_rel_or1 = args.merge_rel_or
         args = pickle.load(open(save_dir + "args", 'rb'))
+        args.filter_rel_sigma = filter_rel_sigma
+        args.merge_rel_or = merge_rel_or1
         args.train=train
         args.dev_eval=dev
         args.test_eval=test
@@ -353,7 +357,8 @@ def train(args, train_dataloader):
                                         max_len=args.max_len, threshold=args.threshold, num_questions=args.num_questions,
                                         train_ent=args.train_ent)  # test_dataloader是第一轮问答的dataloder
         (p1, r1, f1),(p2, r2, f2) = test_evaluation(
-            model, dev_dataloader, args.threshold, args.amp,train_ent=args.train_ent,cuda=args.cuda)
+            model, dev_dataloader, args.threshold, args.amp,train_ent=args.train_ent,cuda=args.cuda,
+            filter_rel_sigma = args.filter_rel_sigma, merge_rel_or = args.merge_rel_or)
         logger.info(
             "Turn 1: precision:{:.4f} recall:{:.4f} f1:{:.4f}".format(p1, r1, f1))
         logger.info(
@@ -391,13 +396,21 @@ def predict(args, beg, end):
             dev = args.dev_eval
             test = args.test_eval
             cuda = args.cuda
-            checkpoint_start = args.checkpoint_start
+            cs = args.checkpoint_start
+            tb = args.train_batch
+            local_rank = args.local_rank
+            filter_rel_sigma = args.filter_rel_sigma
+            merge_rel_or1 = args.merge_rel_or
             args = pickle.load(open(save_dir + "args", 'rb'))
+            args.filter_rel_sigma = filter_rel_sigma
+            args.merge_rel_or = merge_rel_or1
             args.train = train
             args.dev_eval = dev
             args.test_eval = test
             args.cuda = cuda
-            args.checkpoint_start = checkpoint_start
+            args.checkpoint_start = cs
+            args.train_batch = tb
+            args.local_rank = local_rank
             checkpoint = torch.load(save_path, map_location=device)
             model_state_dict = checkpoint['model_state_dict']
             model.load_state_dict(model_state_dict, strict=False)
@@ -417,7 +430,8 @@ def predict(args, beg, end):
         #                                 train_ent=args.train_ent)  # test_dataloader是第一轮问答的dataloder
 
         (p1, r1, f1),(p2, r2, f2) = test_evaluation(
-            model, dev_dataloader, args.threshold, args.amp,train_ent=args.train_ent,cuda=args.cuda)
+            model, dev_dataloader, args.threshold, args.amp,train_ent=args.train_ent,cuda=args.cuda,
+            filter_rel_sigma=args.filter_rel_sigma, merge_rel_or=args.merge_rel_or)
         logger.info(
             "Turn 1: precision:{:.4f} recall:{:.4f} f1:{:.4f}".format(p1, r1, f1))
         logger.info(
@@ -482,6 +496,6 @@ if __name__  ==  "__main__":
         train(args, train_dataloader)
 
     if(not args.train and args.test_eval):
-        beg, end = 2,31
+        beg, end = 30,31
         predict(args, beg, end)
 

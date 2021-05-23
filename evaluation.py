@@ -5,6 +5,18 @@ from dataloader import tag_idxs, load_t2_data
 
 
 def get_score(gold_set, predict_set):
+    gold_notTP = gold_set# - predict_set
+    predict_notTP = predict_set# -gold_set
+    gold_notTP=list(gold_notTP)
+    predict_notTP=list(predict_notTP)
+    gold_notTP.sort()
+    predict_notTP.sort()
+    gold_notTP = [str(g) for g in gold_notTP]
+    predict_notTP = [str(p) for p in predict_notTP]
+    with open("./gold_notTP.txt","w",encoding="utf-8") as f:
+        f.write("\n".join(gold_notTP))
+    with open("./predict_notTP.txt","w",encoding="utf-8") as f:
+        f.write("\n".join(predict_notTP))
     TP = len(set.intersection(gold_set, predict_set))
     print("#TP:", TP, "#Gold:", len(gold_set), "#Predict:", len(predict_set))
     precision = TP/(len(predict_set)+1e-6)
@@ -48,6 +60,7 @@ def test_evaluation(model, dataloaders, threshold, amp=False, train_ent=False, c
                 # break
     # print(len(t1_predict))
     # print(predict_dic)
+    total_rel_sum = (0, 0)
     with (torch.no_grad() if not amp else torch.cuda.amp.autocast()):
         tqdm_test_dataloader=tqdm(t2_dataloader, desc="predict",ncols=150)
         for i, batch in enumerate(tqdm_test_dataloader):
@@ -58,7 +71,7 @@ def test_evaluation(model, dataloaders, threshold, amp=False, train_ent=False, c
             # txt_ids, attention_mask, token_type_ids, context_mask, = batch['txt_ids'], batch[
             #     'attention_mask'], batch['token_type_ids'], batch['context_mask']
             tag_idx, relH_tag_idx, relT_tag_idx, handshaking_context_mask = model(txt_ids.to(device), attention_mask.to(
-                device), token_type_ids.to(device),context_mask.to(device),turn_mask.to(device))
+                device), token_type_ids.to(device), context_mask.to(device),turn_mask.to(device))
             # print(relH_tag_idx)
             # print(ans)
             ents_spans,rels_spans,total_ents,total_rels = rel_tag_decode(relH_tag_idx, relT_tag_idx, handshaking_context_mask,
@@ -71,10 +84,11 @@ def test_evaluation(model, dataloaders, threshold, amp=False, train_ent=False, c
             if(len(t1_predict)==0):
                 t1_predict.extend(ents_spans)
             t2_predict.extend(rels_spans)
-            postfix_str = "total_ents:{},total_rels:{}".format(total_ents,total_rels)
+            postfix_str = "total_ents:{},total_rels:{}".format(total_ents, total_rels)
             tqdm_test_dataloader.set_postfix_str(postfix_str)
+            total_rel_sum = (total_rel_sum[0]+total_rels[0], total_rel_sum[1]+total_rels[1])
             # break
-
+        print(total_rel_sum)
 
     # get basic information
     t1_ids = t1_dataloader.dataset.t1_ids
@@ -215,8 +229,10 @@ def rel_tag_decode(relH_tag_idx, relT_tag_idx, handshaking_context_mask,context_
     ents_spans = [[]]*relH_tag_idx[1].shape[0]
     # print(ents_spans)
     rels_spans=[[]]*relH_tag_idx[1].shape[0]
+    rels_spans_or = [[]] * relH_tag_idx[1].shape[0]
+    rels_spans_and = [[]] * relH_tag_idx[1].shape[0]
     total_ents=0
-    total_rels=0
+    total_rels=(0,0)
     # relH_tag_idx=relH_tag_idx.tolist()
     # relT_tag_idx=relT_tag_idx.tolist()
     # print(relH_tag_idx[1].shape[0], relT_tag_idx[1].shape[0], handshaking_context_mask.shape[0])
@@ -333,17 +349,22 @@ def rel_tag_decode(relH_tag_idx, relT_tag_idx, handshaking_context_mask,context_
             rels = rels_H | rels_T#合并
         else:
             rels = rels_H & rels_T
+        # print(len(rels_H),len(rels_T),len(rels_H | rels_T), len(rels_H & rels_T))
         # e = time.time()
         # print(e - s)
         # s = e
         # print(ii)
         # print(rels)
         # ents_spans[ii]=list(ents)
-        rels_spans[ii]=list(rels)
+        rels_spans[ii] = list(rels)
 
-        # total_ents +=len(ents_spans[-1]——)
-        total_rels +=len(rels_spans[-1])
+        # rels_spans_or[ii] = list(rels_H | rels_T)
+        # rels_spans_and[ii] = list(rels_H & rels_T)
 
+            # total_ents +=len(ents_spans[-1]——)
+        # total_rels += len(rels_spans[-1])
+        total_rels = (total_rels[0]+len(rels_H | rels_T), total_rels[1]+len(rels_H & rels_T))
         # print(time.time()-start)
+    # print(total_rels)
     return ents_spans,rels_spans,total_ents,total_rels
 
